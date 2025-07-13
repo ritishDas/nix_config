@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{config, pkgs, ... }:
 
 {
   imports = [ ./hardware-configuration.nix ];
@@ -13,20 +13,22 @@
 
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
+  networking.networkmanager.wifi.backend = "wpa_supplicant";
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [5000 6000];
-    allowedUDPPorts = [6000];
+    allowedTCPPorts = [ 5000 6000 ];
+    allowedUDPPorts = [ 6000 ];
   };
+  
+
+
+
 
   time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_US.UTF-8";
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  users.users.ritish = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "docker" "audio" ];
-  };
 
   security.sudo.enable = true;
   nixpkgs.config.allowUnfree = true;
@@ -38,54 +40,93 @@
     xfce.thunar
     xfce.xfce4-power-manager
     xfce.xfce4-netload-plugin
+    xclip
+
     networkmanagerapplet
+    networkmanager
+    ngrok
+    firefox
+    live-server
+    localsend
+    chromium
+    openssl
+
     gst_all_1.gstreamer
     gst_all_1.gst-plugins-base
     gst_all_1.gst-plugins-good
     gst_all_1.gst-plugins-bad
     gst_all_1.gst-plugins-ugly
     gst_all_1.gst-libav
+
     neofetch
     htop
     intel-gpu-tools
     redshift
     emote
-    firefox
+    pcsx2
+    steam-run
+    spotify
+
+    python314
     neovim
     git
-    pcsx2
-    xclip
-    whatsapp-for-linux
-    unzip
-    libreoffice-qt6-fresh
+    android-tools
+    android-studio
+    watchman
+    #jdk17
+    jdk24
+    gradle_8
+    gcc
+    gnumake
+    raylib
+
     typescript-language-server
     tailwindcss-language-server
-    superhtml
     ccls
+    nil
+    kotlin-language-server
+
     vimPlugins.vim-prisma
-    gcc
+
+    unzip
+    libreoffice-qt6-fresh
     postman
-    live-server
     obs-studio
-    chromium
-    localsend
-    openssl
     godot_4
-    prisma-engines
-    steam-run
+
     postgresql
-    nodejs_23
+    nodejs_24
     docker_28
-  ];
+    prisma-engines
 
+    qemu_kvm
+    libpulseaudio  # For emulator audio
+    zlib  # Required for emulator
+    libGL  # For emulator graphics
+    ] ++ (with pkgs.pkgsi686Linux; [
+            libpulseaudio  # 32-bit audio support
+            zlib  # 32-bit zlib for emulator
+    ]);
 
-  environment.sessionVariables = {
+  environment.variables = {
   PRISMA_QUERY_ENGINE_LIBRARY = "${pkgs.prisma-engines}/lib/libquery_engine.node";
   PRISMA_QUERY_ENGINE_BINARY  = "${pkgs.prisma-engines}/bin/query-engine";
   PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/schema-engine";
   PRISMA_INTROSPECTION_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/introspection-engine";
   PRISMA_FMT_BINARY = "${pkgs.prisma-engines}/bin/prisma-fmt";
+  ANDROID_HOME = "/home/ritish/.androidStudio/sdk";
+  JAVA_HOME="${pkgs.jdk24}/lib/openjdk";
+  XDG_CONFIG_DIRS = "/etc/xdg";
+  PATH = [ "$PATH:$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools" ];
 };
+
+environment.shellAliases = {
+    nvim = "nvim -u /etc/xdg/nvim/init.lua";
+    rb = "cd /etc/nixos && sudo nixos-rebuild switch --flake .#nixos";
+    ed = "sudo nvim -u /etc/xdg/nvim/init.lua /etc/nixos/configuration.nix";
+  };
+
+environment.etc."xdg/nvim".source = ./nvim;
 
   services.openssh.enable = true;
 
@@ -106,17 +147,18 @@
     videoDrivers = [ "modesetting" ];
   };
 
-  hardware.graphics = {
-    enable = true;
-    extraPackages = with pkgs; [
-      intel-media-driver
-      vaapiVdpau
-      libvdpau-va-gl
-    ];
-    extraPackages32 = with pkgs.pkgsi686Linux; [
-      libvdpau-va-gl
-    ];
-  };
+
+hardware.graphics = {
+  enable = true;
+  extraPackages = with pkgs; [
+    intel-media-driver
+    vaapiVdpau
+    libvdpau-va-gl
+  ];
+  extraPackages32 = with pkgs.pkgsi686Linux; [
+    libvdpau-va-gl
+  ];
+};
 
   services.postgresql = {
     enable = true;
@@ -133,5 +175,16 @@
     package = pkgs.docker_28;
   };
 
-  system.stateVersion = "24.05";
+virtualisation.libvirtd = {
+    enable = true;
+    qemu = {
+        package = pkgs.qemu_kvm;
+        runAsRoot = false;  # Allow non-root users to run QEMU
+    };
+};
+
+  #
+  system.stateVersion = "25.05";
 }
+
+
