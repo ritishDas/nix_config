@@ -1,0 +1,26 @@
+{pkgs}: with pkgs; [
+    vulkan-tools
+   pciutils
+    htop
+    intel-gpu-tools
+    intel-ocl
+    kdePackages.dolphin
+    waybar
+    killall
+    gammastep
+    dunst
+    tofi
+    cliphist
+    wl-clipboard
+    swww
+    hyprpicker
+    hyprlock
+    wlogout
+    grimblast
+    hypridle
+    nwg-look
+    pamixer
+    playerctl
+    brightnessctl
+    greetd.tuigreet
+]
