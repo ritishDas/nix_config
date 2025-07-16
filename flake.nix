@@ -9,36 +9,24 @@
   };
 
   outputs = { self, nixpkgs, flake-utils, home-manager, ... }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs {
-          inherit system;
-        };
-      in {
-        # Optional: add devShell or packages if needed
-      }
-    ) // {
+  {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        modules = [
-          ./configuration.nix
-
-          # Import the Home Manager module here
-          home-manager.nixosModules.home-manager
-
-          # Point to your home.nix config
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-
-            users.users.ritish = {
-              isNormalUser = true;
-	      extraGroups = [ "wheel" "networkmanager" "kvm" "libvirt" "docker" ];            };
-
-            home-manager.users.ritish = import ./ritish.nix;
-          }
-        ];
+          system = "x86_64-linux";
+          modules = [
+              ./configuration.nix
+                  home-manager.nixosModules.home-manager
+                  {
+                      home-manager.useGlobalPkgs = true;
+                      home-manager.useUserPackages = true;
+                      users.users.ritish = {
+                          isNormalUser = true;
+                          extraGroups = [ "wheel" "networkmanager" "kvm" "libvirt" "docker" ];            
+                      };
+                      home-manager.users.ritish = import ./home.nix;
+                  }
+          ];
       };
-    };
+  };
+
 }
 
