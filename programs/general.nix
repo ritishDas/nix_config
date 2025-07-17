@@ -1,6 +1,15 @@
 {pkgs}: with pkgs; [
+    vulkan-tools
+    gvfs 
+    pciutils
+    lxappearance-gtk2
+    htop
+    nautilus
+    intel-gpu-tools
+    intel-ocl
     emote
     pcsx2
+    neofetch
     steam-run
     spotify
     unzip

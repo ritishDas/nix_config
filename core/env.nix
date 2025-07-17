@@ -10,6 +10,7 @@
     ANDROID_HOME = "/home/ritish/.androidStudio/sdk";
     JAVA_HOME = "${pkgs.jdk24}/lib/openjdk";
     PATH = [ "$PATH:$ANDROID_HOME/platform-tools" ];
+    EDITOR = "nvim";
   };
   systemPackages = (import ../programs){inherit pkgs;};
   shellAliases = {

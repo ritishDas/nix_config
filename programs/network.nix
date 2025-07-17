@@ -1,5 +1,7 @@
 {pkgs}: with pkgs; [
     linux-wifi-hotspot
+    networkmanager
+    networkmanagerapplet
     hostapd
     dnsmasq
     ngrok

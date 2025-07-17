@@ -1,10 +1,6 @@
 {pkgs}: with pkgs; [
-    vulkan-tools
-   pciutils
-    htop
-    intel-gpu-tools
-    intel-ocl
-    kdePackages.dolphin
+    kdePackages.qt6ct
+    nwg-look
     waybar
     killall
     gammastep
@@ -18,7 +14,6 @@
     wlogout
     grimblast
     hypridle
-    nwg-look
     pamixer
     playerctl
     brightnessctl

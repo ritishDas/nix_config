@@ -2,6 +2,8 @@
     python314
     alacritty
     neovim
+    ripgrep
+    fd
     git
     android-studio
     watchman
