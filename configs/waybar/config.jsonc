@@ -29,11 +29,17 @@
 "hyprland/workspaces": {
   "format": "{name}: {windows}",
   "format-window-separator": " ",
-  "window-rewrite": {
-    "class<firefox>": "🌐",
-    "class<alacritty>": "🖥️",
-    "class<code>": "📝"
-  },
+"window-rewrite": {
+  "class<firefox>": "",          // Firefox browser
+  "class<alacritty>": "",        // Terminal
+  "class<nvim>": "",            // Neovim (or use: "")
+  "class<files>": "",        // File manager
+  "class<libreoffice>": "",     // Word document
+  "class<soffice>": "",         // LibreOffice fallback
+  "class<android-studio>": "",  // Android Studio
+  "class<spotify>": "",  // Android Studio
+  "window-rewrite-default": ""  // Default app icon
+},
   "window-rewrite-default": "❓"
 },
 

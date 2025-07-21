@@ -2,7 +2,6 @@
     vulkan-tools
     gvfs 
     pciutils
-    lxappearance-gtk2
     htop
     nautilus
     intel-gpu-tools
@@ -13,6 +12,7 @@
     steam-run
     spotify
     unzip
+    vlc
     libreoffice-qt6-fresh
     postman
     obs-studio

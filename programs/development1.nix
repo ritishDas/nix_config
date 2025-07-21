@@ -2,6 +2,8 @@
     python314
     alacritty
     neovim
+    pkg-config
+    libevdev
     ripgrep
     fd
     git

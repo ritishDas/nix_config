@@ -1,5 +1,5 @@
-{pkgs}: with pkgs; [
-    kdePackages.qt6ct
+{pkgs,inputs}: with pkgs; [
+    hyprpolkitagent
     nwg-look
     waybar
     killall
@@ -15,7 +15,11 @@
     grimblast
     hypridle
     pamixer
+    pipewire
+    pwvucontrol
     playerctl
     brightnessctl
     greetd.tuigreet
-]
+]++[
+ inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+  ]

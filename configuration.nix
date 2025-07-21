@@ -1,66 +1,91 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
-  boot.loader = import ./core/bootloader.nix {};
-  networking = import ./core/networking.nix {};
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+        imports = [ ./hardware-configuration.nix ];
+        boot.loader = import ./core/bootloader.nix {};
+        networking = import ./core/networking.nix {};
+        nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  time.timeZone = "Asia/Kolkata";
-  i18n.defaultLocale = "en_US.UTF-8";
-  nixpkgs.config.allowUnfree = true;
-  security.sudo.enable = true;
+        time.timeZone = "Asia/Kolkata";
+        i18n.defaultLocale = "en_US.UTF-8";
+        nixpkgs.config.allowUnfree = true;
+        security.sudo.enable = true;
 
-  environment = import ./core/env.nix {inherit pkgs;};
-  services = import ./services {inherit pkgs;inherit lib;};
-  hardware = import ./core/graphics.nix {inherit pkgs;};
-  virtualisation= import ./core/virtualenv.nix {inherit pkgs;};
+        environment = import ./core/env.nix {inherit pkgs;inherit inputs;};
+        services = import ./services {inherit pkgs;inherit lib;};
+        hardware = import ./core/graphics.nix {inherit pkgs;};
+        virtualisation= import ./core/virtualenv.nix {inherit pkgs;};
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    withUWSM = true;
-  };
-
-  xdg = {
-      portal = {
-          enable = true;
-          extraPortals = [
-              pkgs.xdg-desktop-portal-hyprland
-                  pkgs.xdg-desktop-portal-gtk
-          ];
-      };
-      terminal-exec = {
-          enable=true;
-          package= pkgs.alacritty;
-          };
-      mime = {
-          enable = true;
-
-          defaultApplications = {
-              "application/pdf" = "chromium.desktop";
-              "text/html" = "firefox.desktop";
-              "application/vnd.oasis.opendocument.text" = "libreoffice.desktop"; # correct MIME type for .odt
-                  "x-scheme-handler/http" = "firefox.desktop";
-              "x-scheme-handler/https" = "firefox.desktop";
-          };
-
-          addedAssociations = {
-              "application/pdf" = [ "zathura.desktop" "evince.desktop" ];
-              "image/png" = [ "imv.desktop" "eog.desktop" ];
-          };
-
-          removedAssociations = {
-              "audio/mp3" = [ "mpv.desktop" "vlc.desktop" ];
-              "inode/directory" = [ "codium.desktop" ]; # must be a list
-          };
-      };
-  };
+        programs.hyprland = {
+                enable = true;
+                xwayland.enable = true;
+                withUWSM = true;
+        };
 
 
 
+        programs.nvf = {
+                enable = true;
+                settings = {
+                        vim = {
+                                theme = {
+                                        enable = true;
+                                        name = "dracula";
+                                        style = "dark";
+                                };
+                                lsp.enable = true;
+                                terminal.toggleterm.enable = true;
+                                options.termguicolors = true;
+                                globals.mapleader = " ";
+                                clipboard.enable = true;
+                                clipboard.providers.wl-copy.enable = true;
+                                clipboard.registers = "unnamedplus";
+                                clipboard.providers.wl-copy.package = pkgs.wl-clipboard;
 
+                                keymaps = [
+                                        {
+                                                key = "<Esc>";
+                                                mode = "t";
+                                                silent = true;
+                                                action = "<C-\\><C-n>";
 
-  system.stateVersion = "25.05";
+                                        }
+                                        {
+                                                key = "<leader>s";
+                                                mode = "n";
+                                                silent = true;
+                                                action = ":w<CR>";
+                                        }
+                                        {
+                                                key = "<leader>e";
+                                                mode = "n";
+                                                silent = true;
+                                                action = ":q<CR>";
+                                        }
+                                ];
+                                statusline.lualine.enable = true;
+                                telescope.enable = true;
+                                autocomplete.blink-cmp.enable = true;
+                                autocomplete.blink-cmp.friendly-snippets.enable = true;
+                                filetree.nvimTree = {
+                                        enable = true;
+                                        mappings.toggle = "<leader>f";
+                                        openOnSetup = false;
+                                };
+                                languages = {
+                                        enableTreesitter = true;
+                                        nix.enable = true;
+                                        clang.enable = true;
+                                        kotlin.enable = true;
+                                        ts.enable = true;
+                                };
+
+                        };
+                };
+        };
+
+        xdg = import ./core/xdg.nix{inherit pkgs;};
+
+        system.stateVersion = "25.05";
 }
 
