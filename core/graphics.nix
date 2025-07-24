@@ -3,9 +3,10 @@
     graphics = {
         enable = true;
         extraPackages = with pkgs; [
-            intel-media-driver
+            intel-vaapi-driver
                 vaapiVdpau
-                intel-compute-runtime
+                intel-compute-runtime-legacy1
+                        intel-ocl
                 libvdpau-va-gl
         ];
         extraPackages32 = with pkgs.pkgsi686Linux; [

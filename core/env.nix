@@ -11,8 +11,8 @@
         JAVA_HOME = "${pkgs.jdk24}/lib/openjdk";
         PATH = [ "$PATH:$ANDROID_HOME/platform-tools" ];
         EDITOR = "vim";
-        XCURSOR_SIZE="30";
-        HYPRCURSOR_SIZE="30";
+        XCURSOR_SIZE="40";
+        HYPRCURSOR_SIZE="40";
         HYPRCURSOR_THEME="rose-pine-hyprcursor";
         QT_QPA_PLATFORMTHEME="qt6ct";
         QT_QPA_PLATFORM="wayland";

@@ -1,5 +1,6 @@
 {pkgs,inputs}: with pkgs; [
     hyprpolkitagent
+        mesa
     nwg-look
     waybar
     killall
