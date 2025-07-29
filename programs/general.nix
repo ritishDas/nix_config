@@ -18,6 +18,7 @@
         pcsx2
         neofetch
         steam-run
+        steam
         spotify
         unzip
         mpv

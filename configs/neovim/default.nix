@@ -10,6 +10,7 @@
                         lsp.enable = true;
                         terminal.toggleterm.enable = true;
                         options.termguicolors = true;
+                        options.tabstop = 4;
                         globals.mapleader = " ";
                         clipboard.enable = true;
                         clipboard.providers.wl-copy.enable = true;
@@ -35,6 +36,18 @@
                                         mode = "n";
                                         silent = true;
                                         action = ":Neotree toggle<CR>";
+                                }
+                                {
+                                        key = "<leader>tf";
+                                        mode = "n";
+                                        silent = true;
+                                        action = ":Telescope fd<CR>";
+                                }
+                                {
+                                        key = "<leader>tg";
+                                        mode = "n";
+                                        silent = true;
+                                        action = ":Telescope live_grep<CR>";
                                 }
                                 {
                                         key = "<leader>e";

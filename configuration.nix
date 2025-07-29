@@ -9,6 +9,7 @@
         time.timeZone = "Asia/Kolkata";
         i18n.defaultLocale = "en_US.UTF-8";
         nixpkgs.config.allowUnfree = true;
+        nixpkgs.config.android_sdk.accept_license = true;
         security.sudo.enable = true;
 
         environment = import ./core/env.nix {inherit pkgs;inherit inputs;};

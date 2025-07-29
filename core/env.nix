@@ -24,8 +24,8 @@
         XDG_SESSION_DESKTOP="Hyprland";
         MOZ_ENABLE_WAYLAND = "1";
         ELECTRON_OZONE_PLATFORM_HINT = "auto";
+        NIXPKGS_ACCEPT_ANDROID_SDK_LICENSE="1";
     };
-
     systemPackages = (import ../programs){inherit pkgs;inherit inputs;};
     shellAliases = {
         rb = "cd /etc/nixos;sudo nixos-rebuild switch --flake .#nixos;hyprctl reload";

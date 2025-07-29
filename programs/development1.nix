@@ -8,6 +8,7 @@
         fd
         git
         android-studio
+        android-tools
         watchman
         web-ext
         jdk24
