@@ -15,10 +15,10 @@
       url = "github:notashelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+                                webscrapper = { url = "path:/home/ritish/projects/webscrapper";  };
   };
 
-  outputs = { nvf, self, nixpkgs, home-manager, ... } @inputs:
+  outputs = { nvf, self, nixpkgs, home-manager, webscrapper,... } @inputs:
   {
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";

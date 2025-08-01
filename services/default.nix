@@ -1,9 +1,11 @@
 {pkgs,lib}:
 {
-        dbus = { enable = true; };
-        libinput.enable = true;
-        openssh.enable = true;
-        udev.packages = [ pkgs.libmtp ];
+  dbus = { enable = true; };
+  libinput.enable = true;
+  gvfs.enable = true;
+  preload.enable = true;
+  openssh.enable = true;
+  udev.packages = [ pkgs.libmtp ];
 }//
 import ./login.nix {inherit pkgs;}//
 import ./audio.nix {}//

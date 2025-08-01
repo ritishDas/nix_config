@@ -30,14 +30,14 @@
   "format": "{name}: {windows}",
   "format-window-separator": " ",
 "window-rewrite": {
-  "class<firefox>": "",          // Firefox browser
+  "class<firefox>": "",          // Firefox browser
   "class<alacritty>": "",        // Terminal
-  "class<nvim>": "",            // Neovim (or use: "")
-  "class<files>": "",        // File manager
-  "class<libreoffice>": "",     // Word document
-  "class<soffice>": "",         // LibreOffice fallback
-  "class<android-studio>": "",  // Android Studio
+  "class<org.gnome.Nautilus>": "",        // File manager
+  "class<libreoffice-writer>": "",     // Word document
+  "class<libreoffice-impress>": "",         // LibreOffice fallback
+  "class<jetbrains-studio>": "",  // Android Studio
   "class<spotify>": "",  // Android Studio
+  "class<mpv>":"",
   "window-rewrite-default": ""  // Default app icon
 },
   "window-rewrite-default": "❓"
@@ -154,3 +154,4 @@
         "interval": 2
     }
 }
+

@@ -1,4 +1,5 @@
 {pkgs}: with pkgs; [
+        wget
         libva
         libva-utils
         intel-media-driver
@@ -18,7 +19,6 @@
         pcsx2
         neofetch
         steam-run
-        steam
         spotify
         unzip
         mpv

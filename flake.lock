@@ -200,6 +200,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_3": {
+      "locked": {
+        "lastModified": 1753749649,
+        "narHash": "sha256-+jkEZxs7bfOKfBIk430K+tK9IvXlwzqQQnppC2ZKFj4=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "1f08a4df998e21f4e8be8fb6fbf61d11a1a5076a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-25.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nvf": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -231,7 +247,8 @@
         "hyprland": "hyprland",
         "nixpkgs": "nixpkgs_2",
         "nvf": "nvf",
-        "rose-pine-hyprcursor": "rose-pine-hyprcursor"
+        "rose-pine-hyprcursor": "rose-pine-hyprcursor",
+        "webscrapper": "webscrapper"
       }
     },
     "rose-pine-hyprcursor": {
@@ -320,6 +337,21 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
+      }
+    },
+    "webscrapper": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "lastModified": 0,
+        "narHash": "sha256-+6n2R4LxcBtrIICH2tpPDrm/VHvI+GAV7vJzHTTM3A4=",
+        "path": "/home/ritish/projects/webscrapper",
+        "type": "path"
+      },
+      "original": {
+        "path": "/home/ritish/projects/webscrapper",
+        "type": "path"
       }
     },
     "wlroots": {

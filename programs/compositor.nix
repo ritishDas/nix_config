@@ -23,4 +23,5 @@
     greetd.tuigreet
 ]++[
  inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
-  ]
+                inputs.webscrapper.packages.${pkgs.system}.default  
+]
