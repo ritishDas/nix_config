@@ -2,26 +2,41 @@
   enable = true;
   settings = {
     vim = {
-      #      theme = {
-      #        enable = true;
-      #        name = "tokyonight";
-      #        style = "night";
-      #      };
-      highlight.Normal.bg = "#054705";
-      highlight.LineNr.fg = "#e6fc3f";
-      lsp.enable = true;
-      terminal.toggleterm.enable = true;
-      options.termguicolors = true;
-      options.tabstop = 2;
-      options.shiftwidth = 2;
-      options.softtabstop = 2;
-      options.expandtab = true;
-      globals.mapleader = " ";
-      clipboard.enable = true;
-      clipboard.providers.wl-copy.enable = true;
-      clipboard.registers = "unnamedplus";
-      clipboard.providers.wl-copy.package = pkgs.wl-clipboard;
-
+      highlight = {
+        Normal.bg = "#054705";
+        LineNr.fg = "#e6fc3f";
+      };
+      options = {
+        termguicolors = true;
+        tabstop = 2;
+        shiftwidth = 2;
+        softtabstop = 2;
+        expandtab = true;
+      };
+      clipboard = {
+        enable = true;
+        providers.wl-copy = {
+          enable = true;
+          package = pkgs.wl-clipboard;
+        };
+        registers = "unnamedplus";
+      };
+      autocomplete.blink-cmp = {
+        enable = true;
+        friendly-snippets.enable = true;
+      };
+      filetree.neo-tree = {
+        enable = true;
+      };
+      languages = {
+        enableTreesitter = true;
+        enableExtraDiagnostics = true;
+        nix.enable = true;
+        clang.enable = true;
+        kotlin.enable = true;
+        ts.enable = true;
+        tailwind.enable = true;
+      };
       keymaps = [
         {
           key = "<Esc>";
@@ -66,26 +81,32 @@
           silent = true;
           action = ":q<CR>";
         }
+        {
+          key = "<leader>n";
+          mode = "n";
+          silent = true;
+          action = ":bn<CR>";
+        }
+        {
+          key = "<leader>p";
+          mode = "n";
+          silent = true;
+          action = ":bp<CR>";
+        }
+        {
+          key = "<leader>b";
+          mode = "n";
+          silent = true;
+          action = ":buffers<CR>";
+        }
       ];
       statusline.lualine.enable = true;
       telescope.enable = true;
-      autocomplete.blink-cmp.enable = true;
-      autocomplete.blink-cmp.friendly-snippets.enable = true;
-      filetree.neo-tree = {
-        enable = true;
-      };
-      languages = {
-        enableTreesitter = true;
-        nix.enable = true;
-        clang.enable = true;
-        kotlin={
-          enable = true;
-          lsp.enable = true;
-        };
-        java.enable = true;
-        ts.enable = true;
-      };
-
+      lsp.enable = true;
+      diagnostics.config.virtual_lines = true;
+      diagnostics.config.virtual_text = true;
+      terminal.toggleterm.enable = true;
+      globals.mapleader = " ";
     };
   };
 }
