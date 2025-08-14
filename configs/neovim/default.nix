@@ -102,6 +102,7 @@
       ];
       statusline.lualine.enable = true;
       telescope.enable = true;
+      formatter.conform-nvim.enable = true;
       lsp.enable = true;
       diagnostics.config.virtual_lines = true;
       diagnostics.config.virtual_text = true;

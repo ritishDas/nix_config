@@ -1,10 +1,10 @@
 {pkgs}: with pkgs; [
   awscli2
   aws-sam-cli
+  nest-cli
   serverless
   python314
   alacritty
-  neovim
   tailwindcss_4
   pkg-config
   libevdev

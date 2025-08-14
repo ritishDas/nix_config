@@ -14,6 +14,7 @@
     "modules-right": [
         "tray",
         "memory",
+        "temperature",
         "cpu",
         "network",
         "battery",
@@ -75,6 +76,12 @@
         "on-scroll-down": "brightnessctl set 1%-",
         "min-length": 6
     },
+
+"temperature": {
+  "thermal-zone": 0,
+  "format": "{}°C",
+  "interval": 5
+},
 
     "battery": {
         "states": {

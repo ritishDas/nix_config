@@ -45,6 +45,7 @@ window#waybar {
 #battery,
 #pulseaudio,
 #network,
+#temperature,
 #cpu,
 #memory,
 #workspaces,
@@ -121,3 +122,4 @@ window#waybar {
     border-radius: 0px 10px 10px 0px;
     margin-right: 10px;
 }
+
