@@ -1,0 +1,80 @@
+* {
+    font-family: '0xProto Nerd Font', monospace;
+    font-size: 24px;
+    transition-property: background-color, box-shadow;
+    transition-duration: 0.2s;
+}
+
+window {
+    background-color: rgba(80, 150, 120, 0.3); /* soft green overlay */
+    /* border-radius: 12px; */
+}
+
+/* === Button Base === */
+button {
+    background-color: #103b28; /* deep forest green */
+    border-style: solid;
+    border-radius: 50px;
+    border-width: 2px;
+    border-color: #89e5b9;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 15%;
+    margin: 15px;
+    color: #c8fadd;
+    box-shadow: 0 0 15px rgba(50, 200, 100, 0.3);
+}
+
+/* === Hover/Active === */
+button:active,
+button:hover {
+    background-color: #89e5b9; /* minty green highlight */
+    color: #103b28;
+    box-shadow: 0 0 25px rgba(100, 255, 160, 0.6);
+}
+
+
+/* === Icons === */
+#lock {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+}
+#lock:hover {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/lock-hover.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+}
+
+#logout {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+}
+#logout:hover {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/logout-hover.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+}
+
+#suspend {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/sleep.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
+}
+#suspend:hover {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/sleep-hover.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
+}
+
+#shutdown {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/power.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+}
+#shutdown:hover {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/power-hover.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+}
+
+#reboot {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/restart.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+}
+#reboot:hover {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/restart-hover.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+}
+
+#exit {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/restart.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+}
+#exit:hover {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/restart-hover.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+}
+
+

@@ -1,0 +1,25 @@
+{pkgs}: with pkgs; [
+  jq
+  gemini-cli
+  glow
+  python314
+  alacritty
+  tailwindcss_4
+  pkg-config
+  ripgrep
+  lua-language-server
+  typescript-language-server 
+  tailwindcss-language-server
+  ccls
+  wrk
+  inkscape
+  fd
+  git
+  gh
+  vscode-fhs
+  gcc
+  gnumake
+  cmake 
+  gtk4
+  direnv
+]

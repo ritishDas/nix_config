@@ -1,0 +1,25 @@
+{pkgs,inputs}: with pkgs; [
+  hyprpolkitagent
+  mesa
+  nwg-look
+  waybar
+  killall
+  gammastep
+  dunst
+  tofi
+  wl-clipboard
+  swww
+  hyprlock
+  wlogout
+  grimblast
+  hypridle
+  pamixer
+  hyprpicker
+  pwvucontrol
+  playerctl
+  brightnessctl
+  greetd.tuigreet
+]++[
+  inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
+  inputs.astm.packages.${system}.default
+]
