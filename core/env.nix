@@ -27,7 +27,7 @@
     MOZ_ENABLE_WAYLAND = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     NIXPKGS_ACCEPT_ANDROID_SDK_LICENSE="1";
-    AVANTE_GEMINI_API_KEY="AIzaSyBJLHkXUwdZGcvHok_qm4ctR55basykJS8";
+    PNPM_HOME="/home/ritish/.local/share/pnpm/global/";
 
   };
   systemPackages = (import ../programs){inherit pkgs;inherit inputs;};

@@ -1,5 +1,5 @@
 {pkgs}: with pkgs; [
-  imv
+  swayimg
   webcamoid
   libva
   libva-utils

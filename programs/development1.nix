@@ -16,7 +16,7 @@
   fd
   git
   gh
-  vscode-fhs
+  vscode
   gcc
   gnumake
   cmake 

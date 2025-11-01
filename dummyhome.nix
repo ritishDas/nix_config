@@ -2,7 +2,7 @@
 
 let
 configDir = ./dummyconfigs;
-apps = [ "assets" "wlogout" "dunst" "tofi" "waybar" "hypr" "alacritty" "nvim" ];
+apps = [ "assets" "wlogout" "dunst" "tofi" "waybar" "hypr" "alacritty" "nvim" "mpv"];
 in
 {
 	home.username = "dummy";

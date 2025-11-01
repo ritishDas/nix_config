@@ -8,6 +8,13 @@ return {
 		},
 		opts = {},
 	},
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
+},
 	{
   "roobert/tailwindcss-colorizer-cmp.nvim",
   -- optionally, override the default options:

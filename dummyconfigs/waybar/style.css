@@ -58,6 +58,11 @@ window#waybar {
     margin-top: 5px;
 }
 
+#temperature {
+  margin-right: 5px;
+    border-radius: 10px;
+}
+
 /* Module-specific tweaks */
 #backlight {
     border-radius: 10px 0px 0px 10px;
@@ -128,4 +133,5 @@ window#waybar {
     background: #eba0ac;
     color: #1e1e2e;
 }
+
 
