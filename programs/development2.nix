@@ -3,5 +3,6 @@
   imagemagick
   pnpm
   llama-cpp
+  lunacy
 #  prisma-engines
 ]

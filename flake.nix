@@ -33,10 +33,6 @@
               isNormalUser = true;
               extraGroups = [ "wheel" "networkmanager" "kvm" "libvirt" "docker" "input" ];
             };
-            dummy = {
-              isNormalUser = true;
-              extraGroups = [ "wheel" "networkmanager" "kvm" "libvirt" "docker" "input" ];
-            };
           };
 
           # ✅ Home Manager settings
@@ -46,7 +42,6 @@
             backupFileExtension = "backup";
             users = {
               ritish = import ./home.nix;
-              dummy = import ./dummyhome.nix;
             };
           };
         }

@@ -37,6 +37,13 @@ vim.api.nvim_create_autocmd("CursorHold", {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = { "compile_commands.json", "Makefile" },
+  callback = function()
+    vim.cmd("LspRestart")
+  end,
+})
+
 -- Clipboard
 vim.opt.clipboard = "unnamedplus"
 
@@ -52,7 +59,10 @@ end
 -- Keymaps
 map("t", "<Esc>", "<C-\\><C-n>")
 map("n", "<leader>h", "<C-^>")
-map("n", "<leader>s", ":w<CR>")
+map("n", "<leader>s", function()
+  vim.lsp.buf.format()
+  vim.cmd("w")
+end, { desc = "Format and save" })
 map("n", "<leader>f", ":Neotree toggle<CR>")
 map("n", "<leader>tf", ":Telescope fd<CR>")
 map("n", "<leader>tg", ":Telescope live_grep<CR>")
@@ -62,6 +72,7 @@ map("n", "<leader>e", ":q<CR>")
 map("n", "<leader>n", ":bn<CR>")
 map("n", "<leader>p", ":bp<CR>")
 map("n", "<leader>b", ":buffers<CR>")
+map("v", "<leader>r", [[:s/<C-r><C-w>/]])
 
 require("config.lazy");
 
