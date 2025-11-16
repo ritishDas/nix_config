@@ -3,6 +3,7 @@
   mesa
   nwg-look
   waybar
+  #ppsspp
   killall
   gammastep
   dunst
@@ -18,7 +19,7 @@
   pwvucontrol
   playerctl
   brightnessctl
-  greetd.tuigreet
+  tuigreet
 ]++[
   inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
   inputs.astm.packages.${system}.default

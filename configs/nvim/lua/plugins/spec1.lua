@@ -1,49 +1,7 @@
 return {
-  {
-    "yetone/avante.nvim",
-    build = vim.fn.has("win32") ~= 0
-        and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-        or "make",
-    event = "InsertEnter", -- load only when editing
-    version = false,
-    opts = {
-      provider = "openai",
-      auto_suggestions_provider = "openai",
-      providers = {
-        openai = {
-          endpoint = "http://127.0.0.1:8080/",
-          model = "local-llama",
-          disable_tools = true,
-          extra_request_body = {
-            temperature = 0.2,
-            max_tokens = 64,
-          },
-        },
-      },
-      behaviour = {
-        auto_suggestions = true,
-        auto_set_keymaps = true,
-        minimize_diff = true,
-        enable_token_counting = false,
-        auto_add_current_file = false,
-        auto_approve_tool_permissions = true,
-        acp_follow_agent_locations = false,
-      },
-      suggestion = {
-        debounce = 300,
-        throttle = 300,
-      },
-      prompt_logger = { enabled = false },
-      dual_boost = { enabled = false },
-      selection = { enabled = false },
-      diff = { autojump = false, list_opener = "copen", override_timeoutlen = -1 },
-    },
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-      "nvim-tree/nvim-web-devicons",
-    },
-  },
+  -- {
+  --   "ggml-org/llama.vim",
+  -- },
   {
     "kawre/leetcode.nvim",
     build = ":TSUpdate html",
@@ -111,16 +69,26 @@ return {
     end,
   },
   {
-    "norcalli/nvim-colorizer.lua",
+    "NvChad/nvim-colorizer.lua",
     config = function()
-      require 'colorizer'.setup()
+      require("colorizer").setup({
+        filetypes = { "css", "scss", "html", "javascript", "typescript", "lua", "vim" },
+        user_default_options = {
+          names = true,
+          rgb_fn = true,
+          hsl_fn = true,
+          tailwind = true,
+          css = true,
+          css_fn = true,
+        }
+      })
     end
   },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     opts = {
-      ensure_installed = { "c", "html", "css", "javascript", "typescript" },
+      ensure_installed = { "c", "html", "css", "javascript", "typescript", "rust", "lua", "nix" },
       highlight = { enable = true },
       indent = { enable = true },
     },
@@ -138,8 +106,10 @@ return {
         lua_ls = {},
         ts_ls = {},
         ccls = {},
+        nixd = {},
         prismals = {},
         tailwindcss = {},
+        rls = {},
         cssls = {},
       }
       local on_attach = function(client, bufnr)
@@ -236,4 +206,3 @@ return {
     end,
   },
 }
-

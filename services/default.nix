@@ -4,7 +4,7 @@
   libinput.enable = true;
   preload.enable = true;
   gvfs.enable = true;
-  logind = {lidSwitch = "ignore";};
+  logind = {settings.Login.HandleLidSwitch = "ignore";};
   openssh.enable = true;
   udev.packages = [ pkgs.libmtp ];
 }//

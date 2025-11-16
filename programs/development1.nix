@@ -7,7 +7,11 @@
   tailwindcss_4
   pkg-config
   ripgrep
+  lua
+  rustc
+  rustup
   lua-language-server
+  nixd
   typescript-language-server 
   tailwindcss-language-server
   ccls

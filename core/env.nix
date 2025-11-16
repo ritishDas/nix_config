@@ -8,7 +8,6 @@
     PRISMA_FMT_BINARY = "${pkgs.prisma-engines}/bin/prisma-fmt";
     NIXOS_OZONE_WL = "1";
     ANDROID_HOME = "/home/ritish/.androidStudio/sdk";
-    JAVA_HOME = "${pkgs.jdk24}/lib/openjdk";
     PATH = [ "$PATH:$ANDROID_HOME/platform-tools" ];
     EDITOR = "nvim";
     XCURSOR_SIZE="40";
@@ -39,6 +38,7 @@
   shellAliases = {
     rb = "cd /etc/nixos;sudo nixos-rebuild switch --flake .#nixos;hyprctl reload";
     ed = "cd /etc/nixos ; sudo nvim configuration.nix";
+    llm = "llama-server -m \".cache/llama.cpp/qwen2.5-instruct.gguf\" -ngl 50 --port 8012";
   };
   
 

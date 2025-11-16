@@ -42,6 +42,13 @@ button:hover {
     background-image: image(url("/home/ritish/.config/assets/wlogout/assets/lock-hover.png"), url("/usr/local/share/wlogout/icons/lock.png"));
 }
 
+#hibernate {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/lock.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+}
+#hibernate:hover {
+    background-image: image(url("/home/ritish/.config/assets/wlogout/assets/lock-hover.png"), url("/usr/local/share/wlogout/icons/lock.png"));
+}
+
 #logout {
     background-image: image(url("/home/ritish/.config/assets/wlogout/assets/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
 }
@@ -76,5 +83,6 @@ button:hover {
 #exit:hover {
     background-image: image(url("/home/ritish/.config/assets/wlogout/assets/restart-hover.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
 }
+
 
 

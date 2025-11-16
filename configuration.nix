@@ -31,7 +31,6 @@
   programs.neovim.enable = true;
 
   xdg = import ./core/xdg.nix{inherit pkgs;};
-
-  system.stateVersion = "25.05";
+  system.stateVersion = "25.11";
 }
 

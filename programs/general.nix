@@ -17,7 +17,6 @@
   mpvpaper
   shotcut
   ffmpegthumbnailer
-  onlyoffice-desktopeditors
   postman
   emote
   obs-studio
@@ -26,6 +25,7 @@
   vulkan-tools
   intel-compute-runtime-legacy1
   clinfo
+  onlyoffice-desktopeditors
 # steam-run
 # godot_4
 # gnome.gvfs 
