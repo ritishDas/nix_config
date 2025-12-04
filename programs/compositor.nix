@@ -2,6 +2,7 @@
   hyprpolkitagent
   mesa
   nwg-look
+  wl-screenrec
   waybar
   #ppsspp
   killall

@@ -7,7 +7,6 @@
     PRISMA_INTROSPECTION_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/introspection-engine";
     PRISMA_FMT_BINARY = "${pkgs.prisma-engines}/bin/prisma-fmt";
     NIXOS_OZONE_WL = "1";
-    ANDROID_HOME = "/home/ritish/.androidStudio/sdk";
     PATH = [ "$PATH:$ANDROID_HOME/platform-tools" ];
     EDITOR = "nvim";
     XCURSOR_SIZE="40";
@@ -27,10 +26,12 @@
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
     NIXPKGS_ACCEPT_ANDROID_SDK_LICENSE="1";
     PNPM_HOME="/home/ritish/.local/share/pnpm/global/";
+
     VK_ICD_FILENAMES = lib.concatStringsSep ":" [
       "${pkgs.mesa}/share/vulkan/icd.d/intel_icd.x86_64.json"
-        "${pkgs.mesa}/share/vulkan/icd.d/intel_hasvk_icd.x86_64.json"
+      "${pkgs.mesa}/share/vulkan/icd.d/intel_hasvk_icd.x86_64.json"
     ];
+
 
     OPENAI_API_KEY="your-api-key";
   };
@@ -40,6 +41,6 @@
     ed = "cd /etc/nixos ; sudo nvim configuration.nix";
     llm = "llama-server -m \".cache/llama.cpp/qwen2.5-instruct.gguf\" -ngl 50 --port 8012";
   };
-  
+
 
 }

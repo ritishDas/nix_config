@@ -9,6 +9,6 @@
   udev.packages = [ pkgs.libmtp ];
 }//
 import ./login.nix {inherit pkgs;}//
-import ./audio.nix {}
-#import ./postgres.nix {inherit pkgs;}
+import ./audio.nix {}//
+import ./postgres.nix {inherit pkgs;}
 

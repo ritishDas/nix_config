@@ -12,6 +12,8 @@ vim.o.autoread = true
 
 -- Options
 vim.opt.termguicolors = true
+
+
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.softtabstop = 2
@@ -19,6 +21,7 @@ vim.opt.expandtab = true
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.swapfile = false
+vim.opt.mouse = ''
 
 vim.o.updatetime = 200
 
@@ -72,7 +75,30 @@ map("n", "<leader>e", ":q<CR>")
 map("n", "<leader>n", ":bn<CR>")
 map("n", "<leader>p", ":bp<CR>")
 map("n", "<leader>b", ":buffers<CR>")
+map("n", "<leader>c", ":CccPick<CR>")
 map("v", "<leader>r", [[:s/<C-r><C-w>/]])
 
-require("config.lazy");
+-- DAP core actions
+map("n", "<F5>", function() require("dap").continue() end, { desc = "DAP Continue" })
+map("n", "<F10>", function() require("dap").step_over() end, { desc = "DAP Step Over" })
+map("n", "<F11>", function() require("dap").step_into() end, { desc = "DAP Step Into" })
+map("n", "<F12>", function() require("dap").step_out() end, { desc = "DAP Step Out" })
 
+-- Breakpoints
+map("n", "<leader>db", function() require("dap").toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
+map("n", "<leader>dB", function()
+  require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+end, { desc = "Conditional Breakpoint" })
+
+-- DAP UI
+map("n", "<leader>du", function() require("dapui").toggle() end, { desc = "DAP UI Toggle" })
+map("n", "<leader>de", function() require("dapui").eval() end, { desc = "DAP Evaluate" })
+
+-- REPL
+map("n", "<leader>dr", function() require("dap").repl.open() end, { desc = "DAP REPL" })
+
+-- Run last debug session
+map("n", "<leader>dl", function() require("dap").run_last() end, { desc = "DAP Run Last" })
+
+
+require("config.lazy");

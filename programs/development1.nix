@@ -1,5 +1,6 @@
 {pkgs}: with pkgs; [
   jq
+  discord
   gemini-cli
   glow
   python314
@@ -7,14 +8,13 @@
   tailwindcss_4
   pkg-config
   ripgrep
-  lua
-  rustc
-  rustup
+  nginx
   lua-language-server
   nixd
   typescript-language-server 
   tailwindcss-language-server
   ccls
+  gdb
   wrk
   inkscape
   fd

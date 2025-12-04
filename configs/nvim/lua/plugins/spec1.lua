@@ -1,7 +1,60 @@
 return {
-  -- {
-  --   "ggml-org/llama.vim",
-  -- },
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "rcarriga/nvim-dap-ui",
+      "theHamsta/nvim-dap-virtual-text",
+      "nvim-neotest/nvim-nio"
+    },
+    config = function()
+      local dap = require("dap")
+      local dapui = require("dapui")
+
+      dap.adapters.cppdbg = {
+        type = 'executable',
+        command = '/run/current-system/sw/bin/gdb',
+        name = "gdb"
+      }
+
+      dap.configurations.cpp = {
+        {
+          name = "Launch file",
+          type = "cppdbg",
+          request = "launch",
+          program = function()
+            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+          end,
+          cwd = '${workspaceFolder}',
+          stopOnEntry = false,
+          args = {}, -- command-line args
+        },
+      }
+
+      -- For C files too
+      dap.configurations.c = dap.configurations.cpp
+
+      -- Setup UI and virtual text
+      dapui.setup()
+      require("nvim-dap-virtual-text").setup()
+
+      -- Auto-open & auto-close dap-ui
+      dap.listeners.before.attach.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.launch.dapui_config = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated.dapui_config = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited.dapui_config = function()
+        dapui.close()
+      end
+    end,
+  },
+  {
+    "ggml-org/llama.vim",
+  },
   {
     "kawre/leetcode.nvim",
     build = ":TSUpdate html",
@@ -17,6 +70,21 @@ return {
     ---@module "ibl"
     ---@type ibl.config
     opts = {},
+  },
+  {
+    "uga-rosa/ccc.nvim",
+    cmd = "CccPick", -- Loads the plugin when the command is called
+    config = function()
+      local ccc = require("ccc")
+      local mapping = ccc.mapping
+
+      ccc.setup({
+        highlighter = {
+          auto_enable = true,
+          lsp = true,
+        },
+      })
+    end,
   },
   {
     "roobert/tailwindcss-colorizer-cmp.nvim",
@@ -68,27 +136,27 @@ return {
       })
     end,
   },
-  {
-    "NvChad/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup({
-        filetypes = { "css", "scss", "html", "javascript", "typescript", "lua", "vim" },
-        user_default_options = {
-          names = true,
-          rgb_fn = true,
-          hsl_fn = true,
-          tailwind = true,
-          css = true,
-          css_fn = true,
-        }
-      })
-    end
-  },
+  -- {
+  --   "NvChad/nvim-colorizer.lua",
+  --   config = function()
+  --     require("colorizer").setup({
+  --       filetypes = { "css", "scss", "html", "javascript", "typescript", "lua", "vim" },
+  --       user_default_options = {
+  --         names = true,
+  --         rgb_fn = true,
+  --         hsl_fn = true,
+  --         tailwind = true,
+  --         css = true,
+  --         css_fn = true,
+  --       }
+  --     })
+  --   end
+  -- },
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     opts = {
-      ensure_installed = { "c", "html", "css", "javascript", "typescript", "rust", "lua", "nix" },
+      ensure_installed = { "c", "html", "css", "javascript", "typescript", "kotlin", "lua", "nix" },
       highlight = { enable = true },
       indent = { enable = true },
     },
@@ -107,10 +175,9 @@ return {
         ts_ls = {},
         ccls = {},
         nixd = {},
+        kotlin_language_server = {},
         prismals = {},
         tailwindcss = {},
-        rls = {},
-        cssls = {},
       }
       local on_attach = function(client, bufnr)
         local bufmap = function(mode, lhs, rhs, desc)

@@ -20,7 +20,6 @@
   postman
   emote
   obs-studio
-  pcsx2
   intel-ocl
   vulkan-tools
   intel-compute-runtime-legacy1

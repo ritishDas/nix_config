@@ -6,6 +6,12 @@
     min-height: 0;
 }
 
+#custom-recorder {
+  color: red;
+  font-size: 16px;
+  padding: 0 8px;
+}
+
 window#waybar {
     background: rgba(21, 18, 27, 0);
     color: #cdd6f4;
@@ -126,6 +132,7 @@ window#waybar {
     border-radius: 0px 10px 10px 0px;
     margin-right: 5px;
 }
+
 
 
 
