@@ -1,6 +1,11 @@
 -- Leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+vim.filetype.add({
+  extension = {
+    ejs = "html",
+  },
+})
 
 -- Highlights
 vim.api.nvim_set_hl(0, "Normal", { bg = "#1a3c1b" })
@@ -62,6 +67,7 @@ end
 -- Keymaps
 map("t", "<Esc>", "<C-\\><C-n>")
 map("n", "<leader>h", "<C-^>")
+map("n", "<leader>vh", "<cmd>vsplit #<cr>")
 map("n", "<leader>s", function()
   vim.lsp.buf.format()
   vim.cmd("w")

@@ -33,7 +33,7 @@ in
     [Desktop Entry]
     Name=Neovim
       Icon=${./icons/nvim.png}
-  Exec=alacritty -e sh -c 'cd "%f" && nvim .'
+  Exec=alacritty -e sh -c 'nvim "%f"'
     Type=Application
     Terminal=false
     NoDisplay=false

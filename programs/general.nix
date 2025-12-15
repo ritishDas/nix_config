@@ -24,7 +24,7 @@
   vulkan-tools
   intel-compute-runtime-legacy1
   clinfo
-  onlyoffice-desktopeditors
+  libreoffice
 # steam-run
 # godot_4
 # gnome.gvfs 

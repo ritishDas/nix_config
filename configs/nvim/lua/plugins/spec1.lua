@@ -96,46 +96,7 @@ return {
     end
   },
   -- nvim-cmp
-  {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "saadparwaiz1/cmp_luasnip",
-      "L3MON4D3/LuaSnip",
-      "rafamadriz/friendly-snippets",
-    },
-    config = function()
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-      require("luasnip.loaders.from_vscode").lazy_load()
-      luasnip.filetype_extend("typescriptreact", { "html", "javascriptreact" })
 
-      cmp.setup({
-        formatting = {
-          format = require("tailwindcss-colorizer-cmp").formatter
-        },
-
-        --experimental = { ghost_text = true },
-        snippet = {
-          expand = function(args)
-            luasnip.lsp_expand(args.body)
-          end,
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-        }),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "buffer" },
-          { name = "path" },
-        }),
-      })
-    end,
-  },
   -- {
   --   "NvChad/nvim-colorizer.lua",
   --   config = function()
@@ -165,6 +126,46 @@ return {
     end,
   },
   {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-path",
+      "saadparwaiz1/cmp_luasnip",
+      "L3MON4D3/LuaSnip",
+      "rafamadriz/friendly-snippets",
+    },
+    config = function()
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+      require("luasnip.loaders.from_vscode").lazy_load()
+      luasnip.filetype_extend("typescriptreact", { "html", "javascriptreact", "ejs" })
+
+      cmp.setup({
+        formatting = {
+          format = require("tailwindcss-colorizer-cmp").formatter
+        },
+
+        --experimental = { ghost_text = true },
+        snippet = {
+          expand = function(args)
+            luasnip.lsp_expand(args.body)
+          end,
+        },
+        mapping = cmp.mapping.preset.insert({
+          ["<CR>"] = cmp.mapping.confirm({ select = true }),
+          ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+        }),
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" },
+          { name = "luasnip" },
+          { name = "buffer" },
+          { name = "path" },
+        }),
+      })
+    end,
+  },
+  {
     "neovim/nvim-lspconfig",
     dependencies = { "hrsh7th/nvim-cmp" },
     config = function()
@@ -177,7 +178,16 @@ return {
         nixd = {},
         kotlin_language_server = {},
         prismals = {},
-        tailwindcss = {},
+        tailwindcss = {
+          settings = {
+            tailwindCSS = {
+              includeLanguages = {
+                ejs = "html",
+              },
+            },
+          },
+        }
+
       }
       local on_attach = function(client, bufnr)
         local bufmap = function(mode, lhs, rhs, desc)

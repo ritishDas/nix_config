@@ -16,6 +16,7 @@
   ccls
   gdb
   wrk
+  adminer
   inkscape
   fd
   git
