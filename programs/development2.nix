@@ -2,6 +2,6 @@
   nodejs_24
   imagemagick
   pnpm
-  lunacy
+  #lunacy
 #  prisma-engines
 ]

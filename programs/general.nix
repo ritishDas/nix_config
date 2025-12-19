@@ -15,16 +15,15 @@
   unzip
   mpv
   mpvpaper
-  shotcut
   ffmpegthumbnailer
   postman
   emote
   obs-studio
-  intel-ocl
   vulkan-tools
   intel-compute-runtime-legacy1
   clinfo
   libreoffice
+  #shotcut
 # steam-run
 # godot_4
 # gnome.gvfs 

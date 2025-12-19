@@ -1,7 +1,6 @@
 {pkgs}: with pkgs; [
   jq
   discord
-  gemini-cli
   glow
   python314
   alacritty
@@ -21,10 +20,16 @@
   fd
   git
   gh
-  vscode
+  antigravity
   gcc
   gnumake
   cmake 
   gtk4
   direnv
+  steam-run
+  #vscode
+  #gemini-cli
+  #claude-code
+  #opencode
+  #litellm
 ]

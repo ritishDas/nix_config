@@ -1,5 +1,7 @@
 {pkgs,inputs}: with pkgs; [
   hyprpolkitagent
+  google-chrome
+  xdg-utils
   mesa
   nwg-look
   wl-screenrec

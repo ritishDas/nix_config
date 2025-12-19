@@ -33,7 +33,6 @@
     ];
 
 
-    OPENAI_API_KEY="your-api-key";
   };
   systemPackages = (import ../programs){inherit pkgs;inherit inputs;};
   shellAliases = {

@@ -2,7 +2,6 @@
 {
   dbus = { enable = true; };
   libinput.enable = true;
-  preload.enable = true;
   gvfs.enable = true;
   logind = {settings.Login.HandleLidSwitch = "ignore";};
   openssh.enable = true;

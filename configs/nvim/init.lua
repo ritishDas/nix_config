@@ -69,8 +69,8 @@ map("t", "<Esc>", "<C-\\><C-n>")
 map("n", "<leader>h", "<C-^>")
 map("n", "<leader>vh", "<cmd>vsplit #<cr>")
 map("n", "<leader>s", function()
+  vim.cmd("wa")
   vim.lsp.buf.format()
-  vim.cmd("w")
 end, { desc = "Format and save" })
 map("n", "<leader>f", ":Neotree toggle<CR>")
 map("n", "<leader>tf", ":Telescope fd<CR>")
@@ -78,33 +78,39 @@ map("n", "<leader>tg", ":Telescope live_grep<CR>")
 map("n", "<leader>tr", ":Telescope resume<CR>")
 map("x", "p", '"_dP')
 map("n", "<leader>e", ":q<CR>")
-map("n", "<leader>n", ":bn<CR>")
-map("n", "<leader>p", ":bp<CR>")
+map("n", "<leader>x", ":bdelete<CR>")
+for i = 1, 9 do
+  vim.keymap.set("n", "<leader>" .. i, function()
+    require("bufferline").go_to(i, true)
+  end)
+end
+map("n", "<leader>n", ":BufferLineCycleNext<CR>")
+map("n", "<leader>p", ":BufferLineCyclePrev<CR>")
 map("n", "<leader>b", ":buffers<CR>")
 map("n", "<leader>c", ":CccPick<CR>")
 map("v", "<leader>r", [[:s/<C-r><C-w>/]])
 
 -- DAP core actions
-map("n", "<F5>", function() require("dap").continue() end, { desc = "DAP Continue" })
-map("n", "<F10>", function() require("dap").step_over() end, { desc = "DAP Step Over" })
-map("n", "<F11>", function() require("dap").step_into() end, { desc = "DAP Step Into" })
-map("n", "<F12>", function() require("dap").step_out() end, { desc = "DAP Step Out" })
-
--- Breakpoints
-map("n", "<leader>db", function() require("dap").toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
-map("n", "<leader>dB", function()
-  require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-end, { desc = "Conditional Breakpoint" })
-
--- DAP UI
-map("n", "<leader>du", function() require("dapui").toggle() end, { desc = "DAP UI Toggle" })
-map("n", "<leader>de", function() require("dapui").eval() end, { desc = "DAP Evaluate" })
-
--- REPL
-map("n", "<leader>dr", function() require("dap").repl.open() end, { desc = "DAP REPL" })
-
--- Run last debug session
-map("n", "<leader>dl", function() require("dap").run_last() end, { desc = "DAP Run Last" })
+--map("n", "<F5>", function() require("dap").continue() end, { desc = "DAP Continue" })
+--map("n", "<F10>", function() require("dap").step_over() end, { desc = "DAP Step Over" })
+--map("n", "<F11>", function() require("dap").step_into() end, { desc = "DAP Step Into" })
+--map("n", "<F12>", function() require("dap").step_out() end, { desc = "DAP Step Out" })
+--
+---- Breakpoints
+--map("n", "<leader>db", function() require("dap").toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
+--map("n", "<leader>dB", function()
+--  require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+--end, { desc = "Conditional Breakpoint" })
+--
+---- DAP UI
+--map("n", "<leader>du", function() require("dapui").toggle() end, { desc = "DAP UI Toggle" })
+--map("n", "<leader>de", function() require("dapui").eval() end, { desc = "DAP Evaluate" })
+--
+---- REPL
+--map("n", "<leader>dr", function() require("dap").repl.open() end, { desc = "DAP REPL" })
+--
+---- Run last debug session
+--map("n", "<leader>dl", function() require("dap").run_last() end, { desc = "DAP Run Last" })
 
 
 require("config.lazy");

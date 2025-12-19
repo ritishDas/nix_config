@@ -8,7 +8,6 @@
         intel-vaapi-driver
         libva-vdpau-driver
         intel-compute-runtime-legacy1
-        intel-ocl
         libvdpau-va-gl
 
     ];

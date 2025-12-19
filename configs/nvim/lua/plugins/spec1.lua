@@ -1,59 +1,71 @@
 return {
   {
-    "mfussenegger/nvim-dap",
-    dependencies = {
-      "rcarriga/nvim-dap-ui",
-      "theHamsta/nvim-dap-virtual-text",
-      "nvim-neotest/nvim-nio"
-    },
+    "akinsho/bufferline.nvim",
+    version = "*",
+    dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
-      local dap = require("dap")
-      local dapui = require("dapui")
-
-      dap.adapters.cppdbg = {
-        type = 'executable',
-        command = '/run/current-system/sw/bin/gdb',
-        name = "gdb"
-      }
-
-      dap.configurations.cpp = {
-        {
-          name = "Launch file",
-          type = "cppdbg",
-          request = "launch",
-          program = function()
-            return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-          end,
-          cwd = '${workspaceFolder}',
-          stopOnEntry = false,
-          args = {}, -- command-line args
+      require("bufferline").setup {
+        options = {
+          numbers = "ordinal", -- 1 2 3 4 …
         },
       }
-
-      -- For C files too
-      dap.configurations.c = dap.configurations.cpp
-
-      -- Setup UI and virtual text
-      dapui.setup()
-      require("nvim-dap-virtual-text").setup()
-
-      -- Auto-open & auto-close dap-ui
-      dap.listeners.before.attach.dapui_config = function()
-        dapui.open()
-      end
-      dap.listeners.before.launch.dapui_config = function()
-        dapui.open()
-      end
-      dap.listeners.before.event_terminated.dapui_config = function()
-        dapui.close()
-      end
-      dap.listeners.before.event_exited.dapui_config = function()
-        dapui.close()
-      end
     end,
   },
+  -- {
+  --   "mfussenegger/nvim-dap",
+  --   dependencies = {
+  --     "rcarriga/nvim-dap-ui",
+  --     "theHamsta/nvim-dap-virtual-text",
+  --     "nvim-neotest/nvim-nio"
+  --   },
+  --   config = function()
+  --     local dap = require("dap")
+  --     local dapui = require("dapui")
+  --
+  --     dap.adapters.cppdbg = {
+  --       type = 'executable',
+  --       command = '/run/current-system/sw/bin/gdb',
+  --       name = "gdb"
+  --     }
+  --
+  --     dap.configurations.cpp = {
+  --       {
+  --         name = "Launch file",
+  --         type = "cppdbg",
+  --         request = "launch",
+  --         program = function()
+  --           return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+  --         end,
+  --         cwd = '${workspaceFolder}',
+  --         stopOnEntry = false,
+  --         args = {}, -- command-line args
+  --       },
+  --     }
+  --
+  --     -- For C files too
+  --     dap.configurations.c = dap.configurations.cpp
+  --
+  --     -- Setup UI and virtual text
+  --     dapui.setup()
+  --     require("nvim-dap-virtual-text").setup()
+  --
+  --     -- Auto-open & auto-close dap-ui
+  --     dap.listeners.before.attach.dapui_config = function()
+  --       dapui.open()
+  --     end
+  --     dap.listeners.before.launch.dapui_config = function()
+  --       dapui.open()
+  --     end
+  --     dap.listeners.before.event_terminated.dapui_config = function()
+  --       dapui.close()
+  --     end
+  --     dap.listeners.before.event_exited.dapui_config = function()
+  --       dapui.close()
+  --     end
+  --   end,
+  -- },
   {
-    "ggml-org/llama.vim",
+    "ggml-org/llama.vim"
   },
   {
     "kawre/leetcode.nvim",
@@ -175,6 +187,7 @@ return {
         lua_ls = {},
         ts_ls = {},
         ccls = {},
+        dartls = {},
         nixd = {},
         kotlin_language_server = {},
         prismals = {},
@@ -206,7 +219,8 @@ return {
         end, "Format buffer")
 
         -- Optional: Rename symbol
-        bufmap("n", "<leader>rn", vim.lsp.buf.rename, "Rename symbol")
+        bufmap("n", "<leader>r", vim.lsp.buf.rename, "Rename symbol")
+        bufmap("n", "<leader>a", vim.lsp.buf.code_action, "Code Actions")
       end
       local default_opts = { capabilities = capabilities, on_attach = on_attach, }
       for name, opts in pairs(servers) do

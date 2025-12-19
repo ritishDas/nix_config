@@ -7,7 +7,7 @@ in
   {
   home.username = "ritish";
   home.homeDirectory = "/home/ritish";
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 
   home.sessionVariables = {
     EDITOR = "nvim";
