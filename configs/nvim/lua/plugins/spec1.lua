@@ -129,7 +129,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     opts = {
-      ensure_installed = { "c", "html", "css", "javascript", "typescript", "kotlin", "lua", "nix" },
+      ensure_installed = { "c", "html", "css", "javascript", "typescript", "tsx", "dart", "kotlin", "lua", "nix" },
       highlight = { enable = true },
       indent = { enable = true },
     },

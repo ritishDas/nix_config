@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ pkgs, lib, inputs, stdenv ,... }:
 
 {
   imports = [ ./hardware-configuration.nix ];
@@ -30,6 +30,6 @@
   programs.neovim.enable = true;
 
   xdg = import ./core/xdg.nix{inherit pkgs;};
-  system.stateVersion = "25.11";
+  system.stateVersion="26.05";
 }
 

@@ -7,7 +7,7 @@
     llama-cpp.url = "github:ggml-org/llama.cpp";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    hyprland.url = "github:hyprwm/hyprland?ref=v0.36.0";
+    hyprland.url = "github:hyprwm/hyprland";
     astm.url = "github:ritishDas/astm";
     rose-pine-hyprcursor = {
       url = "github:ndom91/rose-pine-hyprcursor";
@@ -18,7 +18,7 @@
   };
 
 
-  outputs = { self, nixpkgs, home-manager, astm, llama-cpp, ... } @ inputs:
+  outputs = {  nixpkgs, home-manager, ... } @ inputs:
   {
     nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
