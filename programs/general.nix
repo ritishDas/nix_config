@@ -1,5 +1,6 @@
 {pkgs}: with pkgs; [
   swayimg
+  jre
   webcamoid
   libva
   libva-utils

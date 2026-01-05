@@ -1,5 +1,19 @@
 return {
   {
+    'akinsho/flutter-tools.nvim',
+    lazy = false,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim', -- optional for better UI
+    },
+    config = function()
+      require("flutter-tools").setup({
+        -- hot_reload_on_save is true by default
+        flutter_path = "/nix/store/5hy4pnf1wmiad19kw1zrmlmawf2cdrcy-flutter-wrapped-3.38.4-sdk-links/bin/flutter",
+      })
+    end,
+  },
+  {
     "akinsho/bufferline.nvim",
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",

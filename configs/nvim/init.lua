@@ -70,11 +70,12 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- Keymaps
+vim.keymap.set("n", "<leader>fr", "<cmd>FlutterRestart<CR>", { desc = "Flutter Hot Restart" })
 map("t", "<Esc>", "<C-\\><C-n>")
 map("n", "<leader>h", "<C-^>")
 map("n", "<leader>vh", "<cmd>vsplit #<cr>")
 map("n", "<leader>s", function()
-  vim.lsp.buf.format({ async = true })
+  vim.lsp.buf.format()
   vim.cmd("wa")
 end, { desc = "Format and save" })
 map("n", "<leader>f", ":Neotree toggle<CR>")

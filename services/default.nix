@@ -6,6 +6,10 @@
   logind = {settings.Login.HandleLidSwitch = "ignore";};
   openssh.enable = true;
   udev.packages = [ pkgs.libmtp ];
+  udev.extraRules = ''
+    KERNEL=="uinput",MODE="0660", GROUP="input"
+    '';
+
 }//
 import ./login.nix {inherit pkgs;}//
 import ./audio.nix {}//
