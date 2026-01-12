@@ -2,20 +2,16 @@
   jq
   discord
   glow
-  python314
   alacritty
   tailwindcss_4
   pkg-config
   ripgrep
-  nginx
   lua-language-server
   nixd
   typescript-language-server 
   tailwindcss-language-server
   ccls
-  gdb
   wrk
-  adminer
   inkscape
   fd
   git
@@ -27,9 +23,13 @@
   gtk4
   direnv
   steam-run
+  #  python314
+  # gdb
+  # adminer
   #vscode
   #gemini-cli
   #claude-code
   #opencode
+  #  nginx
   #litellm
 ]

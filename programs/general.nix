@@ -2,13 +2,6 @@
   swayimg
   jre
   webcamoid
-  libva
-  libva-utils
-  intel-media-driver
-  vdpauinfo
-  libvdpau-va-gl
-  intel-gpu-tools
-  kdePackages.qt6ct
   wget
   htop
   nautilus
@@ -20,10 +13,8 @@
   postman
   emote
   obs-studio
-  vulkan-tools
-  intel-compute-runtime-legacy1
-  clinfo
   libreoffice
+  #kdePackages.qt6ct
   #shotcut
 # steam-run
 # godot_4

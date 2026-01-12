@@ -94,7 +94,7 @@ map("n", "<leader>n", ":BufferLineCycleNext<CR>")
 map("n", "<leader>p", ":BufferLineCyclePrev<CR>")
 map("n", "<leader>b", ":buffers<CR>")
 map("n", "<leader>c", ":CccPick<CR>")
-map("v", "<leader>r", [[:s/<C-r><C-w>/<Left>]])
+map("v", "<leader>r", [[:s/<C-r><C-w>/]])
 -- DAP core actions
 --map("n", "<F5>", function() require("dap").continue() end, { desc = "DAP Continue" })
 --map("n", "<F10>", function() require("dap").step_over() end, { desc = "DAP Step Over" })

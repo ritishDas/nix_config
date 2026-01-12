@@ -1,12 +1,10 @@
 {pkgs,inputs}: with pkgs; [
   hyprpolkitagent
-  google-chrome
+  papirus-icon-theme
   xdg-utils
-  mesa
   nwg-look
   wl-screenrec
   waybar
-  #ppsspp
   killall
   gammastep
   dunst
@@ -18,11 +16,13 @@
   grimblast
   hypridle
   pamixer
-  hyprpicker
   pwvucontrol
   playerctl
   brightnessctl
   tuigreet
+  #hyprpicker
+  #  google-chrome
+  #ppsspp
 ]++[
   inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
   inputs.astm.packages.${system}.default
