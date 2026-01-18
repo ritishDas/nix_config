@@ -13,5 +13,7 @@
   firewall = {
     enable = true;
     allowedTCPPorts = [ 5000 6000 ];
+    trustedInterfaces=["wlp3s0"];
   };
+  nat.enable=true;
 }

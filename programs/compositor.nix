@@ -1,4 +1,5 @@
 {pkgs,inputs}: with pkgs; [
+  scrcpy
   hyprpolkitagent
   papirus-icon-theme
   xdg-utils

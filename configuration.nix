@@ -11,7 +11,7 @@
   nixpkgs.config.allowUnfree = true;
 
   environment = import ./core/env.nix {inherit pkgs;inherit inputs;inherit lib;};
-  services = import ./services {inherit pkgs;inherit lib;};
+  services=import ./services {inherit pkgs;inherit lib;};
   hardware = import ./core/graphics.nix {inherit pkgs;};
   virtualisation= import ./core/virtualenv.nix {inherit pkgs;};
 

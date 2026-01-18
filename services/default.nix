@@ -9,7 +9,7 @@
   udev.extraRules = ''
     KERNEL=="uinput",MODE="0660", GROUP="input"
     '';
-
+  flatpak.enable=true;
 }//
 import ./login.nix {inherit pkgs;}//
 import ./audio.nix {}//
