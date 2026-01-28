@@ -8,9 +8,11 @@
   ripgrep
   lua-language-server
   nixd
+  jdt-language-server
   typescript-language-server 
   tailwindcss-language-server
   ccls
+  pyright
   wrk
   inkscape
   fd
@@ -22,6 +24,7 @@
   cmake 
   gtk4
   direnv
+  nix-direnv
   steam-run
   #  python314
   # gdb

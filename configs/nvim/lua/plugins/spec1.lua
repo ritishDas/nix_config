@@ -1,4 +1,5 @@
 return {
+
   {
     'akinsho/flutter-tools.nvim',
     lazy = false,
@@ -143,7 +144,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     opts = {
-      ensure_installed = { "c", "html", "css", "javascript", "typescript", "tsx", "dart", "kotlin", "lua", "nix" },
+      ensure_installed = { "c", "python", "html", "css", "javascript", "typescript", "tsx", "dart", "kotlin", "lua", "nix", "java" },
       highlight = { enable = true },
       indent = { enable = true },
     },
@@ -201,6 +202,8 @@ return {
         lua_ls = {},
         ts_ls = {},
         ccls = {},
+        jdt = {},
+        pyright = {},
         dartls = {},
         nixd = {},
         kotlin_language_server = {},
@@ -257,6 +260,15 @@ return {
         filesystem = {
           follow_current_file = { enabled = true, leave_dirs_open = true },
           use_libuv_file_watcher = true,
+        },
+        event_handlers = {
+          {
+            event = "neo_tree_buffer_enter",
+            handler = function()
+              vim.opt_local.number = true
+              vim.opt_local.relativenumber = true
+            end,
+          },
         }
       })
     end

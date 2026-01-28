@@ -25,9 +25,13 @@
     withUWSM = true;
   };
 
+  programs.chromium.enable = true;
   programs.nix-ld = {
     enable = true;
   };
+
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
 
 
   programs.neovim.enable = true;
