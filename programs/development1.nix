@@ -18,14 +18,14 @@
   fd
   git
   gh
-  antigravity
   gcc
   gnumake
   cmake 
-  gtk4
   direnv
   nix-direnv
   steam-run
+   antigravity
+  # gtk4
   #  python314
   # gdb
   # adminer

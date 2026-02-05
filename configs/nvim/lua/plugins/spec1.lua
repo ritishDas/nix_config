@@ -1,157 +1,4 @@
 return {
-
-  {
-    'akinsho/flutter-tools.nvim',
-    lazy = false,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim', -- optional for better UI
-    },
-    config = function()
-      require("flutter-tools").setup({
-        -- hot_reload_on_save is true by default
-        flutter_path = "/nix/store/5hy4pnf1wmiad19kw1zrmlmawf2cdrcy-flutter-wrapped-3.38.4-sdk-links/bin/flutter",
-      })
-    end,
-  },
-  {
-    "akinsho/bufferline.nvim",
-    version = "*",
-    dependencies = "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("bufferline").setup {
-        options = {
-          numbers = "ordinal", -- 1 2 3 4 …
-        },
-      }
-    end,
-  },
-  -- {
-  --   "mfussenegger/nvim-dap",
-  --   dependencies = {
-  --     "rcarriga/nvim-dap-ui",
-  --     "theHamsta/nvim-dap-virtual-text",
-  --     "nvim-neotest/nvim-nio"
-  --   },
-  --   config = function()
-  --     local dap = require("dap")
-  --     local dapui = require("dapui")
-  --
-  --     dap.adapters.cppdbg = {
-  --       type = 'executable',
-  --       command = '/run/current-system/sw/bin/gdb',
-  --       name = "gdb"
-  --     }
-  --
-  --     dap.configurations.cpp = {
-  --       {
-  --         name = "Launch file",
-  --         type = "cppdbg",
-  --         request = "launch",
-  --         program = function()
-  --           return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
-  --         end,
-  --         cwd = '${workspaceFolder}',
-  --         stopOnEntry = false,
-  --         args = {}, -- command-line args
-  --       },
-  --     }
-  --
-  --     -- For C files too
-  --     dap.configurations.c = dap.configurations.cpp
-  --
-  --     -- Setup UI and virtual text
-  --     dapui.setup()
-  --     require("nvim-dap-virtual-text").setup()
-  --
-  --     -- Auto-open & auto-close dap-ui
-  --     dap.listeners.before.attach.dapui_config = function()
-  --       dapui.open()
-  --     end
-  --     dap.listeners.before.launch.dapui_config = function()
-  --       dapui.open()
-  --     end
-  --     dap.listeners.before.event_terminated.dapui_config = function()
-  --       dapui.close()
-  --     end
-  --     dap.listeners.before.event_exited.dapui_config = function()
-  --       dapui.close()
-  --     end
-  --   end,
-  -- },
-  {
-    "ggml-org/llama.vim"
-  },
-  {
-    "kawre/leetcode.nvim",
-    build = ":TSUpdate html",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-    opts = {},
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    main = "ibl",
-    ---@module "ibl"
-    ---@type ibl.config
-    opts = {},
-  },
-  {
-    "uga-rosa/ccc.nvim",
-    cmd = "CccPick", -- Loads the plugin when the command is called
-    config = function()
-      local ccc = require("ccc")
-      local mapping = ccc.mapping
-
-      ccc.setup({
-        highlighter = {
-          auto_enable = true,
-          lsp = true,
-        },
-      })
-    end,
-  },
-  {
-    "roobert/tailwindcss-colorizer-cmp.nvim",
-    -- optionally, override the default options:
-    config = function()
-      require("tailwindcss-colorizer-cmp").setup({
-        color_square_width = 2,
-      })
-    end
-  },
-  -- nvim-cmp
-
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   config = function()
-  --     require("colorizer").setup({
-  --       filetypes = { "css", "scss", "html", "javascript", "typescript", "lua", "vim" },
-  --       user_default_options = {
-  --         names = true,
-  --         rgb_fn = true,
-  --         hsl_fn = true,
-  --         tailwind = true,
-  --         css = true,
-  --         css_fn = true,
-  --       }
-  --     })
-  --   end
-  -- },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    opts = {
-      ensure_installed = { "c", "python", "html", "css", "javascript", "typescript", "tsx", "dart", "kotlin", "lua", "nix", "java" },
-      highlight = { enable = true },
-      indent = { enable = true },
-    },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-    end,
-  },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -202,7 +49,6 @@ return {
         lua_ls = {},
         ts_ls = {},
         ccls = {},
-        jdt = {},
         pyright = {},
         dartls = {},
         nixd = {},
@@ -219,31 +65,119 @@ return {
         }
 
       }
-      local on_attach = function(client, bufnr)
-        local bufmap = function(mode, lhs, rhs, desc)
-          vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
-        end
-
-        -- Hover documentation
-        bufmap("n", "K", vim.lsp.buf.hover, "Show hover info")
-
-        -- Go to definition
-        bufmap("n", "gd", vim.lsp.buf.definition, "Go to definition")
-
-        -- Format buffer (LSP)
-        bufmap("n", "<C-f>", function()
-          vim.lsp.buf.format { async = true }
-        end, "Format buffer")
-
-        -- Optional: Rename symbol
-        bufmap("n", "<leader>r", vim.lsp.buf.rename, "Rename symbol")
-        bufmap("n", "<leader>a", vim.lsp.buf.code_action, "Code Actions")
-      end
-      local default_opts = { capabilities = capabilities, on_attach = on_attach, }
+      -- local on_attach = function(client, bufnr)
+      --   local bufmap = function(mode, lhs, rhs, desc)
+      --     vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
+      --   end
+      --
+      --   -- Hover documentation
+      --   bufmap("n", "K", vim.lsp.buf.hover, "Show hover info")
+      --
+      --   -- Go to definition
+      --   bufmap("n", "gd", vim.lsp.buf.definition, "Go to definition")
+      --
+      --   -- Format buffer (LSP)
+      --   bufmap("n", "<C-f>", function()
+      --     vim.lsp.buf.format { async = true }
+      --   end, "Format buffer")
+      --
+      --   -- Optional: Rename symbol
+      --   bufmap("n", "<leader>r", vim.lsp.buf.rename, "Rename symbol")
+      --   bufmap("n", "<leader>a", vim.lsp.buf.code_action, "Code Actions")
+      -- end
+      local default_opts = { capabilities = capabilities }
       for name, opts in pairs(servers) do
         vim.lsp.config(name, vim.tbl_deep_extend("force", default_opts, opts))
         vim.lsp.enable(name)
       end
+    end,
+  },
+  {
+    "mfussenegger/nvim-jdtls",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      "williamboman/mason.nvim",
+    },
+  },
+  {
+    'akinsho/flutter-tools.nvim',
+    lazy = false,
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'stevearc/dressing.nvim', -- optional for better UI
+    },
+    config = function()
+      require("flutter-tools").setup({
+        -- hot_reload_on_save is true by default
+        flutter_path = "/nix/store/5hy4pnf1wmiad19kw1zrmlmawf2cdrcy-flutter-wrapped-3.38.4-sdk-links/bin/flutter",
+      })
+    end,
+  },
+  {
+    "akinsho/bufferline.nvim",
+    version = "*",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("bufferline").setup {
+        options = {
+          numbers = "ordinal", -- 1 2 3 4 …
+        },
+      }
+    end,
+  },
+  {
+    "ggml-org/llama.vim"
+  },
+  {
+    "kawre/leetcode.nvim",
+    build = ":TSUpdate html",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    opts = {},
+  },
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    ---@module "ibl"
+    ---@type ibl.config
+    opts = {},
+  },
+  {
+    "uga-rosa/ccc.nvim",
+    cmd = "CccPick", -- Loads the plugin when the command is called
+    config = function()
+      local ccc = require("ccc")
+      local mapping = ccc.mapping
+
+      ccc.setup({
+        highlighter = {
+          auto_enable = true,
+          lsp = true,
+        },
+      })
+    end,
+  },
+  {
+    "roobert/tailwindcss-colorizer-cmp.nvim",
+    -- optionally, override the default options:
+    config = function()
+      require("tailwindcss-colorizer-cmp").setup({
+        color_square_width = 2,
+      })
+    end
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+    opts = {
+      ensure_installed = { "c", "python", "html", "css", "javascript", "typescript", "tsx", "dart", "kotlin", "lua", "nix", "java" },
+      highlight = { enable = true },
+      indent = { enable = true },
+    },
+    config = function(_, opts)
+      require("nvim-treesitter.configs").setup(opts)
     end,
   },
   {
@@ -323,3 +257,74 @@ return {
     end,
   },
 }
+-- {
+--   "mfussenegger/nvim-dap",
+--   dependencies = {
+--     "rcarriga/nvim-dap-ui",
+--     "theHamsta/nvim-dap-virtual-text",
+--     "nvim-neotest/nvim-nio"
+--   },
+--   config = function()
+--     local dap = require("dap")
+--     local dapui = require("dapui")
+--
+--     dap.adapters.cppdbg = {
+--       type = 'executable',
+--       command = '/run/current-system/sw/bin/gdb',
+--       name = "gdb"
+--     }
+--
+--     dap.configurations.cpp = {
+--       {
+--         name = "Launch file",
+--         type = "cppdbg",
+--         request = "launch",
+--         program = function()
+--           return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
+--         end,
+--         cwd = '${workspaceFolder}',
+--         stopOnEntry = false,
+--         args = {}, -- command-line args
+--       },
+--     }
+--
+--     -- For C files too
+--     dap.configurations.c = dap.configurations.cpp
+--
+--     -- Setup UI and virtual text
+--     dapui.setup()
+--     require("nvim-dap-virtual-text").setup()
+--
+--     -- Auto-open & auto-close dap-ui
+--     dap.listeners.before.attach.dapui_config = function()
+--       dapui.open()
+--     end
+--     dap.listeners.before.launch.dapui_config = function()
+--       dapui.open()
+--     end
+--     dap.listeners.before.event_terminated.dapui_config = function()
+--       dapui.close()
+--     end
+--     dap.listeners.before.event_exited.dapui_config = function()
+--       dapui.close()
+--     end
+--   end,
+-- },
+-- nvim-cmp
+
+-- {
+--   "NvChad/nvim-colorizer.lua",
+--   config = function()
+--     require("colorizer").setup({
+--       filetypes = { "css", "scss", "html", "javascript", "typescript", "lua", "vim" },
+--       user_default_options = {
+--         names = true,
+--         rgb_fn = true,
+--         hsl_fn = true,
+--         tailwind = true,
+--         css = true,
+--         css_fn = true,
+--       }
+--     })
+--   end
+-- },

@@ -4,6 +4,7 @@
   hyprpolkitagent
   papirus-icon-theme
   xdg-utils
+  xdg-terminal-exec
   nwg-look
   wl-screenrec
   waybar
@@ -28,5 +29,5 @@
 ]++[
   inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
   inputs.astm.packages.${system}.default
-  inputs.llama-cpp.packages.${system}.vulkan
+  # inputs.llama-cpp.packages.${system}.vulkan
 ]

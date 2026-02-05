@@ -3,6 +3,7 @@
   dbus = { enable = true; };
   libinput.enable = true;
   gvfs.enable = true;
+  tumbler.enable = true;
   logind = {settings.Login.HandleLidSwitch = "ignore";};
   openssh.enable = true;
   udev.packages = [ pkgs.libmtp ];

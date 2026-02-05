@@ -118,6 +118,48 @@ map("v", "<leader>r", [[:s/<C-r><C-w>/]])
 --
 ---- Run last debug session
 --map("n", "<leader>dl", function() require("dap").run_last() end, { desc = "DAP Run Last" })
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
+
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+    vim.keymap.set("n", "<C-f>", function()
+      vim.lsp.buf.format { async = true }
+    end, { buffer = bufnr })
+    vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = bufnr })
+    vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { buffer = bufnr })
+  end,
+})
+
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "java",
+  callback = function()
+    local jdtls = require("jdtls")
+
+    local root_dir = require("jdtls.setup").find_root({
+      ".git",
+      "mvnw",
+      "gradlew",
+      "pom.xml",
+      "build.gradle",
+    })
+
+    if not root_dir then
+      return
+    end
+
+    local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
+    local workspace_dir =
+        vim.fn.stdpath("data") .. "/jdtls-workspaces/" .. project_name
+
+    jdtls.start_or_attach({
+      cmd = { "jdtls", "-data", workspace_dir },
+      root_dir = root_dir,
+    })
+  end,
+})
 
 
 require("config.lazy");

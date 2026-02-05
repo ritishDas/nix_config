@@ -4,16 +4,23 @@
   webcamoid
   wget
   htop
-  nautilus
   neofetch
   unzip
   mpv
   mpvpaper
   ffmpegthumbnailer
+  gdk-pixbuf
   postman
   emote
-  obs-studio
   libreoffice
+  librsvg
+  poppler
+  xfce.thunar
+  xfce.thunar-archive-plugin
+  xfce.thunar-volman
+
+  # nautilus
+  # obs-studio
   #kdePackages.qt6ct
   #shotcut
 # steam-run
