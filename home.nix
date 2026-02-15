@@ -18,16 +18,6 @@ in
   home.file.".local/share/fonts".source = ./fonts;
 
 
-  home.file.".local/share/applications/open-terminal-here.desktop".text = ''
-    [Desktop Entry]
-    Name=Open Terminal Here
-      Icon=${./icons/terminal.svg}
-  Exec=alacritty --working-directory %f
-    Type=Application
-    Terminal=false
-    NoDisplay=false
-    MimeType=inode/directory;
-  '';
 
   home.file.".local/share/applications/Neovim.desktop".text = ''
     [Desktop Entry]
@@ -58,14 +48,23 @@ in
       Categories=Network;WebBrowser;
   '';
 
-  home.file.".local/share/applications/whatsapp.desktop".text = ''
-    [Desktop Entry]
-    Name=Whatsapp
-      Exec=firefox https://web.whatsapp.com/
-      Icon=firefox
-      Type=Application
-      Categories=Network;WebBrowser;
-  '';
+  # home.file.".local/share/applications/whatsapp.desktop".text = ''
+  #   [Desktop Entry]
+  #   Name=Whatsapp
+  #     Exec=chromium --app=https://web.whatsapp.com/
+  #     Icon=whatsapp
+  #     Type=Application
+  #     Categories=Network;WebBrowser;
+  # '';
+  #
+  # home.file.".local/share/applications/discord.desktop".text = ''
+  #   [Desktop Entry]
+  #   Name=Discord
+  #     Exec=chromium --app=https://discord.com/app
+  #     Icon=discord
+  #     Type=Application
+  #     Categories=Network;WebBrowser;
+  # '';
 
   home.file.".bashrc".text = ''
     eval "$(direnv hook bash)"

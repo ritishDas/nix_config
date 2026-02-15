@@ -60,7 +60,7 @@
         },
 
         "custom/recorder": {
-            "exec": "pgrep wl-screenrec >/dev/null && echo '●' || echo ''",
+            "exec": "pgrep wf-recorder >/dev/null && echo '●' || echo ''",
             "interval": 1,
             "tooltip": false
         },

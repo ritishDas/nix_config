@@ -1,7 +1,7 @@
 {pkgs}: with pkgs; [
   jq
-  discord
   glow
+  opencode
   alacritty
   tailwindcss_4
   pkg-config
@@ -24,7 +24,7 @@
   direnv
   nix-direnv
   steam-run
-   antigravity
+   # antigravity
   # gtk4
   #  python314
   # gdb
@@ -35,4 +35,5 @@
   #opencode
   #  nginx
   #litellm
+  # discord
 ]

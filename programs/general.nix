@@ -1,5 +1,6 @@
 {pkgs}: with pkgs; [
   swayimg
+  zip
   jre
   webcamoid
   wget

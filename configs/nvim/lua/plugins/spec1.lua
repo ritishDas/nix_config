@@ -1,5 +1,8 @@
 return {
   {
+    "github/copilot.vim"
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
@@ -28,7 +31,7 @@ return {
         },
         mapping = cmp.mapping.preset.insert({
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+          -- ["<Tab>"] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },

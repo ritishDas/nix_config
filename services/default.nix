@@ -11,6 +11,7 @@
     KERNEL=="uinput",MODE="0660", GROUP="input"
     '';
   flatpak.enable=true;
+  upower.enable=true;
   tlp={
     enable=true;
     settings={

@@ -38,7 +38,7 @@
   shellAliases = {
     rb = "cd /etc/nixos;sudo nixos-rebuild switch --flake .#nixos;hyprctl reload";
     ed = "cd /etc/nixos ; sudo nvim configuration.nix";
-    llm = "llama-server -m \".cache/llama.cpp/qwen2.5-instruct.gguf\" -ngl 50 --port 8012";
+    sz = "du -sh .[^.]* */ | sort -h";
   };
 
 

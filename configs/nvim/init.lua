@@ -1,4 +1,3 @@
--- Leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.filetype.add({
@@ -31,7 +30,7 @@ vim.opt.expandtab = true
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.swapfile = false
-vim.opt.mouse = ''
+vim.opt.mouse = 'a'
 
 vim.o.updatetime = 200
 
@@ -44,11 +43,6 @@ vim.diagnostic.config({
   float = { border = "rounded", max_width = 80 },
 })
 
-vim.api.nvim_create_autocmd("CursorHold", {
-  callback = function()
-    vim.diagnostic.open_float(nil, { focusable = false, border = "rounded" })
-  end,
-})
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = { "compile_commands.json", "Makefile" },
@@ -118,6 +112,7 @@ map("v", "<leader>r", [[:s/<C-r><C-w>/]])
 --
 ---- Run last debug session
 --map("n", "<leader>dl", function() require("dap").run_last() end, { desc = "DAP Run Last" })
+
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local bufnr = args.buf
@@ -127,6 +122,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "<C-f>", function()
       vim.lsp.buf.format { async = true }
     end, { buffer = bufnr })
+
+
+    vim.keymap.set("n", "<leader>d", function()
+      vim.diagnostic.open_float(nil, { focusable = false, border = "rounded" })
+    end, { buffer = bufnr })
+
     vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = bufnr })
     vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { buffer = bufnr })
   end,
@@ -163,3 +164,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 require("config.lazy");
+-- vim.api.nvim_create_autocmd("CursorHold", {
+--   callback = function()
+--     vim.diagnostic.open_float(nil, { focusable = false, border = "rounded" })
+--   end,
+-- })

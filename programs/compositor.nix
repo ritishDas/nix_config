@@ -1,12 +1,14 @@
 {pkgs,inputs}: with pkgs; [
+  # obs-studio
   scrcpy
+  upower
   slurp
   hyprpolkitagent
   papirus-icon-theme
   xdg-utils
   xdg-terminal-exec
   nwg-look
-  wl-screenrec
+  wf-recorder
   waybar
   killall
   gammastep
