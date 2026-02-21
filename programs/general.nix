@@ -1,4 +1,9 @@
-{pkgs}: with pkgs; [
+{ pkgs }:
+
+let
+  yaak = pkgs.callPackage ./yaak.package.nix {};
+in
+with pkgs; [
   swayimg
   zip
   jre
@@ -18,8 +23,12 @@
   poppler
   xfce.thunar
   xfce.thunar-archive-plugin
+  gsettings-desktop-schemas
   xfce.thunar-volman
+] ++ [ yaak ]
 
+
+  # requestly
   # nautilus
   # obs-studio
   #kdePackages.qt6ct
@@ -30,4 +39,4 @@
 # libmtp
 # jmtpfs
 # pciutils
-  ]
+

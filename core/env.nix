@@ -1,11 +1,6 @@
 { pkgs,inputs,lib }:
 {
   variables = {
-    PRISMA_QUERY_ENGINE_LIBRARY = "${pkgs.prisma-engines}/lib/libquery_engine.node";
-    PRISMA_QUERY_ENGINE_BINARY  = "${pkgs.prisma-engines}/bin/query-engine";
-    PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/schema-engine";
-    PRISMA_INTROSPECTION_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/introspection-engine";
-    PRISMA_FMT_BINARY = "${pkgs.prisma-engines}/bin/prisma-fmt";
     NIXOS_OZONE_WL = "1";
     PATH = [ "$PATH:$ANDROID_HOME/platform-tools" ];
     EDITOR = "nvim";
@@ -21,6 +16,17 @@
     CLUTTER_BACKEND="wayland";
     XDG_CURRENT_DESKTOP="Hyprland";
     XDG_SESSION_TYPE="wayland";
+
+    GSETTINGS_SCHEMA_DIR =
+      "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}";
+    #
+    # XDG_DATA_DIRS =
+    #   lib.mkForce (lib.concatStringsSep ":" [
+    #     "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
+    #     "${pkgs.glib}/share"
+    #     "$XDG_DATA_DIRS"
+    #   ]);
+    #
     XDG_SESSION_DESKTOP="Hyprland";
     MOZ_ENABLE_WAYLAND = "1";
     ELECTRON_OZONE_PLATFORM_HINT = "auto";
@@ -39,7 +45,14 @@
     rb = "cd /etc/nixos;sudo nixos-rebuild switch --flake .#nixos;hyprctl reload";
     ed = "cd /etc/nixos ; sudo nvim configuration.nix";
     sz = "du -sh .[^.]* */ | sort -h";
+    reporeset = "git fetch origin & git reset --hard origin/main & git clean -fd";
   };
 
 
 }
+
+  #   PRISMA_QUERY_ENGINE_LIBRARY = "${pkgs.prisma-engines}/lib/libquery_engine.node";
+  #   PRISMA_QUERY_ENGINE_BINARY  = "${pkgs.prisma-engines}/bin/query-engine";
+  #   PRISMA_SCHEMA_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/schema-engine";
+  #   PRISMA_INTROSPECTION_ENGINE_BINARY = "${pkgs.prisma-engines}/bin/introspection-engine";
+  #   PRISMA_FMT_BINARY = "${pkgs.prisma-engines}/bin/prisma-fmt";

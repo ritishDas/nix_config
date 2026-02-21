@@ -17,6 +17,7 @@
             "format-window-separator": "\n", // Stack multiple app icons vertically
             "window-rewrite": {
                 "class<firefox>": "",
+                "class<chromium-browser>": "",
                 "class<alacritty>": "",
                 "class<thunar>": "",
                 "class<ONLYOFFICE>": "",
@@ -99,7 +100,7 @@
         },
 
         "temperature": {
-            "thermal-zone": 1,
+            "thermal-zone": 4,
             "format": "{}°C",
             "interval": 5
         },

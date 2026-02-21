@@ -35,6 +35,7 @@
 
 
   programs.neovim.enable = true;
+  programs.dconf.enable = true;
 
   xdg = import ./core/xdg.nix{inherit pkgs;};
   system.stateVersion="26.05";

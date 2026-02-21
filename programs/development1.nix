@@ -11,6 +11,7 @@
   jdt-language-server
   typescript-language-server 
   tailwindcss-language-server
+  yaml-language-server
   ccls
   pyright
   wrk
@@ -24,8 +25,10 @@
   direnv
   nix-direnv
   steam-run
+  glib
+  gtk4
+  # gtk3
    # antigravity
-  # gtk4
   #  python314
   # gdb
   # adminer

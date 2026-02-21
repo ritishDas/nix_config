@@ -1,4 +1,15 @@
 return {
+  -- {
+  --   "ggml-org/llama.vim"
+  -- },
+  {
+    'rmagatti/auto-session',
+    lazy = false,
+    opts = {
+      auto_restore_enabled = true,
+      auto_session_suppress_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
+    }
+  },
   {
     "github/copilot.vim"
   },
@@ -52,6 +63,7 @@ return {
         lua_ls = {},
         ts_ls = {},
         ccls = {},
+        yamlls = {},
         pyright = {},
         dartls = {},
         nixd = {},
@@ -127,9 +139,6 @@ return {
         },
       }
     end,
-  },
-  {
-    "ggml-org/llama.vim"
   },
   {
     "kawre/leetcode.nvim",
