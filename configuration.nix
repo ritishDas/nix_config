@@ -1,5 +1,5 @@
 { pkgs, lib, inputs, stdenv ,... }:
-
+ 
 {
   imports = [ ./hardware-configuration.nix ];
   boot.loader = import ./core/bootloader.nix {};

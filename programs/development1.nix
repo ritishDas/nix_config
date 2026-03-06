@@ -3,7 +3,6 @@
   glow
   opencode
   alacritty
-  tailwindcss_4
   pkg-config
   ripgrep
   lua-language-server
@@ -20,6 +19,7 @@
   git
   gh
   gcc
+  python314
   gnumake
   cmake 
   direnv
@@ -27,9 +27,9 @@
   steam-run
   glib
   gtk4
+  # tailwindcss_4
   # gtk3
    # antigravity
-  #  python314
   # gdb
   # adminer
   #vscode

@@ -9,7 +9,7 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "usb_storage" "sd_mod" ];
-  boot.kernelParams = [ "i915.enable_guc=3" ];
+  boot.kernelParams = [ "i915.enable_guc=3"];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" "uinput" ];
   boot.extraModulePackages = [ ];

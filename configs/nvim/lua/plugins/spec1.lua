@@ -2,6 +2,9 @@ return {
   -- {
   --   "ggml-org/llama.vim"
   -- },
+  -- {
+  --   "github/copilot.vim"
+  -- },
   {
     'rmagatti/auto-session',
     lazy = false,
@@ -9,9 +12,6 @@ return {
       auto_restore_enabled = true,
       auto_session_suppress_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
     }
-  },
-  {
-    "github/copilot.vim"
   },
   {
     "hrsh7th/nvim-cmp",
@@ -124,7 +124,7 @@ return {
     config = function()
       require("flutter-tools").setup({
         -- hot_reload_on_save is true by default
-        flutter_path = "/nix/store/5hy4pnf1wmiad19kw1zrmlmawf2cdrcy-flutter-wrapped-3.38.4-sdk-links/bin/flutter",
+        flutter_path = "/nix/store/62x0dy2s34a92gs1n76lvl43fg9cp5zf-flutter-wrapped-3.38.5-sdk-links/bin/flutter",
       })
     end,
   },

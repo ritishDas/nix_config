@@ -2,7 +2,7 @@
 
 let
   configDir = ./configs;
-  apps = [ "assets" "wlogout" "dunst" "gammastep" "tofi" "waybar" "hypr" "alacritty" "nvim" ];
+  apps = [ "mpv" "assets" "wlogout" "dunst" "gammastep" "tofi" "waybar" "hypr" "alacritty" "nvim" ];
 in
   {
   home.username = "ritish";

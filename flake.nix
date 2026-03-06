@@ -3,8 +3,8 @@
 
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    llama-cpp.url = "github:ggml-org/llama.cpp";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    # llama-cpp.url = "github:ggml-org/llama.cpp";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.url = "github:hyprwm/hyprland";

@@ -30,7 +30,7 @@ vim.opt.expandtab = true
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.swapfile = false
-vim.opt.mouse = 'a'
+vim.opt.mouse = ''
 
 vim.o.updatetime = 200
 
@@ -78,7 +78,7 @@ map("n", "<leader>tg", ":Telescope live_grep<CR>")
 map("n", "<leader>tr", ":Telescope resume<CR>")
 map("x", "p", '"_dP')
 map("n", "<leader>x", ":qa<CR>")
-map("n", "<leader>e", ":bdelete<CR>")
+map("n", "<leader>e", ":bd!<CR>")
 for i = 1, 9 do
   vim.keymap.set("n", "<leader>" .. i, function()
     require("bufferline").go_to(i, true)

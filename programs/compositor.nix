@@ -1,6 +1,5 @@
 {pkgs,inputs}: with pkgs; [
-  # obs-studio
-  scrcpy
+ scrcpy
   upower
   slurp
   hyprpolkitagent
@@ -27,6 +26,8 @@
   tuigreet
   #hyprpicker
   #  google-chrome
+   # obs-studio
+  # appflowy
   #ppsspp
 ]++[
   inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
