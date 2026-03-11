@@ -5,13 +5,56 @@ return {
   -- {
   --   "github/copilot.vim"
   -- },
+
+  {
+    "folke/tokyonight.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function()
+      require("tokyonight").setup({
+        style = "moon",
+
+        on_highlights = function(hl, c)
+          -- hl.TabLine = {
+          --   bg = "#1f2335",
+          --   fg = "#7aa2f7"
+          -- }
+          --
+          -- hl.TabLineSel = {
+          --   bg = "#bb9af7",
+          --   fg = "#1a1b26",
+          --   bold = true
+          -- }
+
+          hl.LineNr = {
+            fg = "#7affff"
+          }
+
+          -- hl.CursorLineNr = {
+          --   fg = "#7aa2f7",
+          --   bold = true
+          -- }
+          hl.LineNrAbove = { fg = "#7aa2f7" }
+          hl.LineNrBelow = { fg = "#7aa2f7" }
+        end,
+      })
+    end
+  },
   {
     'rmagatti/auto-session',
     lazy = false,
     opts = {
       auto_restore_enabled = true,
       auto_session_suppress_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
-    }
+    },
+
+    config = function()
+      require("auto-session").setup({
+        suppressed_dirs = { "~/", "~/Downloads", "/" },
+        bypass_save_filetypes = { "neo-tree" },
+      })
+    end
   },
   {
     "hrsh7th/nvim-cmp",
@@ -224,7 +267,7 @@ return {
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       require("lualine").setup({
-        options = { theme = "auto", section_separators = "", component_separators = "" },
+        options = { theme = "tokyonight", section_separators = "", component_separators = "" },
         sections = {
           lualine_a = { "mode" },
           lualine_b = { "branch", "diff", "diagnostics" },

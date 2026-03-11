@@ -9,8 +9,10 @@ vim.filetype.add({
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 -- Highlights
-vim.api.nvim_set_hl(0, "Normal", { bg = "#1a3c1b" })
-vim.api.nvim_set_hl(0, "LineNr", { fg = "#e6fc3f" })
+
+
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "#1a3c1b" })
+-- vim.api.nvim_set_hl(0, "LineNr", { fg = "#e6fc3f" })
 
 local aug = vim.api.nvim_create_augroup("user_config", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
@@ -21,7 +23,6 @@ vim.o.autoread = true
 
 -- Options
 vim.opt.termguicolors = true
-
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -40,7 +41,7 @@ vim.diagnostic.config({
   underline = true,
   update_in_insert = false,
   severity_sort = true,
-  float = { border = "rounded", max_width = 80 },
+  float = { border = "rounded" },
 })
 
 
@@ -104,7 +105,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 
     vim.keymap.set("n", "<leader>d", function()
-      vim.diagnostic.open_float(nil, { focusable = false, border = "rounded" })
+      local _, winid = vim.diagnostic.open_float(nil, {
+        focusable = true,
+        border = "rounded",
+      })
+
+      if winid then
+        vim.api.nvim_set_current_win(winid)
+      end
     end, { buffer = bufnr })
 
     vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = bufnr })
@@ -143,6 +151,8 @@ vim.api.nvim_create_autocmd("FileType", {
 
 
 require("config.lazy");
+vim.cmd("colorscheme tokyonight")
+
 -- vim.api.nvim_create_autocmd("CursorHold", {
 --   callback = function()
 --     vim.diagnostic.open_float(nil, { focusable = false, border = "rounded" })
