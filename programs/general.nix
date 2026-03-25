@@ -1,34 +1,42 @@
-{pkgs}: with pkgs; [
-  swayimg
-  webcamoid
-  libva
-  libva-utils
-  intel-media-driver
-  vdpauinfo
-  libvdpau-va-gl
-  intel-gpu-tools
-  kdePackages.qt6ct
-  wget
-  htop
-  nautilus
-  neofetch
-  unzip
-  mpv
-  mpvpaper
-  shotcut
-  ffmpegthumbnailer
-  postman
-  emote
-  obs-studio
-  intel-ocl
-  vulkan-tools
-  intel-compute-runtime-legacy1
-  clinfo
-  onlyoffice-desktopeditors
+{ pkgs }:
+
+let
+  yaak = pkgs.callPackage ./yaak.package.nix {};
+in
+  with pkgs; [
+    swayimg
+    zip
+    jre
+    webcamoid
+    wget
+    htop
+    neofetch
+    unzip
+    mpv
+    mpvpaper
+    ffmpegthumbnailer
+    gdk-pixbuf
+    emote
+    libreoffice
+    librsvg
+    poppler
+    xfce.thunar
+    xfce.thunar-archive-plugin
+    gsettings-desktop-schemas
+    xfce.thunar-volman
+  ] ++ [ yaak ]
+
+
+    # postman
+# requestly
+# nautilus
+# obs-studio
+#kdePackages.qt6ct
+#shotcut
 # steam-run
 # godot_4
 # gnome.gvfs 
 # libmtp
 # jmtpfs
 # pciutils
-  ]
+# openapi-generator-cli

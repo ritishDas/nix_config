@@ -1,5 +1,5 @@
-{ config, pkgs, lib, inputs, ... }:
-
+{ pkgs, lib, inputs, stdenv ,... }:
+ 
 {
   imports = [ ./hardware-configuration.nix ];
   boot.loader = import ./core/bootloader.nix {};
@@ -11,9 +11,9 @@
   nixpkgs.config.allowUnfree = true;
 
   environment = import ./core/env.nix {inherit pkgs;inherit inputs;inherit lib;};
-  services = import ./services {inherit pkgs;inherit lib;};
+  services=import ./services {inherit pkgs;inherit lib;};
   hardware = import ./core/graphics.nix {inherit pkgs;};
-#  virtualisation= import ./core/virtualenv.nix {inherit pkgs;};
+  virtualisation= import ./core/virtualenv.nix {inherit pkgs;};
 
   security.sudo = {
 	  enable = true;
@@ -25,11 +25,19 @@
     withUWSM = true;
   };
 
+  programs.chromium.enable = true;
+  programs.nix-ld = {
+    enable = true;
+  };
+
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
 
 
   programs.neovim.enable = true;
+  programs.dconf.enable = true;
 
   xdg = import ./core/xdg.nix{inherit pkgs;};
-  system.stateVersion = "25.11";
+  system.stateVersion="26.05";
 }
 

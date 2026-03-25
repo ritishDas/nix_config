@@ -1,10 +1,15 @@
 {pkgs,inputs}: with pkgs; [
+ scrcpy
+  # blender
+  upower
+  slurp
   hyprpolkitagent
-  mesa
+  papirus-icon-theme
+  xdg-utils
+  xdg-terminal-exec
   nwg-look
-  wl-screenrec
+  wf-recorder
   waybar
-  #ppsspp
   killall
   gammastep
   dunst
@@ -16,13 +21,17 @@
   grimblast
   hypridle
   pamixer
-  hyprpicker
   pwvucontrol
   playerctl
   brightnessctl
   tuigreet
+  #hyprpicker
+  #  google-chrome
+   # obs-studio
+  # appflowy
+  #ppsspp
 ]++[
   inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
   inputs.astm.packages.${system}.default
-  inputs.llama-cpp.packages.${system}.vulkan
+  # inputs.llama-cpp.packages.${system}.vulkan
 ]

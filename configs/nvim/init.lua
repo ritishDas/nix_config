@@ -1,18 +1,28 @@
--- Leader key
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-
+vim.opt.scrolloff = 10
+vim.filetype.add({
+  extension = {
+    ejs = "html",
+  },
+})
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 -- Highlights
-vim.api.nvim_set_hl(0, "Normal", { bg = "#1a3c1b" })
-vim.api.nvim_set_hl(0, "LineNr", { fg = "#e6fc3f" })
+
+
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "#1a3c1b" })
+-- vim.api.nvim_set_hl(0, "LineNr", { fg = "#e6fc3f" })
+
+local aug = vim.api.nvim_create_augroup("user_config", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
+  group = aug,
   command = "checktime",
 })
 vim.o.autoread = true
 
 -- Options
 vim.opt.termguicolors = true
-
 
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
@@ -31,14 +41,9 @@ vim.diagnostic.config({
   underline = true,
   update_in_insert = false,
   severity_sort = true,
-  float = { border = "rounded", max_width = 80 },
+  float = { border = "rounded" },
 })
 
-vim.api.nvim_create_autocmd("CursorHold", {
-  callback = function()
-    vim.diagnostic.open_float(nil, { focusable = false, border = "rounded" })
-  end,
-})
 
 vim.api.nvim_create_autocmd("BufWritePost", {
   pattern = { "compile_commands.json", "Makefile" },
@@ -60,45 +65,118 @@ local function map(mode, lhs, rhs, opts)
 end
 
 -- Keymaps
+vim.keymap.set("n", "<leader>fr", "<cmd>FlutterRestart<CR>", { desc = "Flutter Hot Restart" })
 map("t", "<Esc>", "<C-\\><C-n>")
 map("n", "<leader>h", "<C-^>")
+map("n", "<leader>vh", "<cmd>vsplit #<cr>")
 map("n", "<leader>s", function()
   vim.lsp.buf.format()
-  vim.cmd("w")
+  vim.cmd("wa")
 end, { desc = "Format and save" })
 map("n", "<leader>f", ":Neotree toggle<CR>")
-map("n", "<leader>tf", ":Telescope fd<CR>")
+map("n", "<leader>tf", ":Telescope find_files<CR>")
 map("n", "<leader>tg", ":Telescope live_grep<CR>")
 map("n", "<leader>tr", ":Telescope resume<CR>")
 map("x", "p", '"_dP')
-map("n", "<leader>e", ":q<CR>")
-map("n", "<leader>n", ":bn<CR>")
-map("n", "<leader>p", ":bp<CR>")
+map("n", "<leader>x", ":qa<CR>")
+map("n", "<leader>e", ":bd!<CR>")
+for i = 1, 9 do
+  vim.keymap.set("n", "<leader>" .. i, function()
+    require("bufferline").go_to(i, true)
+  end)
+end
+map("n", "<leader>n", ":BufferLineCycleNext<CR>")
+map("n", "<leader>p", ":BufferLineCyclePrev<CR>")
 map("n", "<leader>b", ":buffers<CR>")
 map("n", "<leader>c", ":CccPick<CR>")
+map("n", "<C-j>", "<C-d>zz")
+map("n", "<C-k>", "<C-u>zz")
 map("v", "<leader>r", [[:s/<C-r><C-w>/]])
 
--- DAP core actions
-map("n", "<F5>", function() require("dap").continue() end, { desc = "DAP Continue" })
-map("n", "<F10>", function() require("dap").step_over() end, { desc = "DAP Step Over" })
-map("n", "<F11>", function() require("dap").step_into() end, { desc = "DAP Step Into" })
-map("n", "<F12>", function() require("dap").step_out() end, { desc = "DAP Step Out" })
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    local bufnr = args.buf
 
--- Breakpoints
-map("n", "<leader>db", function() require("dap").toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
-map("n", "<leader>dB", function()
-  require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
-end, { desc = "Conditional Breakpoint" })
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+    vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find references" })
+    vim.keymap.set("n", "<C-f>", function()
+      vim.lsp.buf.format { async = true }
+    end, { buffer = bufnr })
 
--- DAP UI
-map("n", "<leader>du", function() require("dapui").toggle() end, { desc = "DAP UI Toggle" })
-map("n", "<leader>de", function() require("dapui").eval() end, { desc = "DAP Evaluate" })
 
--- REPL
-map("n", "<leader>dr", function() require("dap").repl.open() end, { desc = "DAP REPL" })
+    vim.keymap.set("n", "<leader>d", function()
+      local _, winid = vim.diagnostic.open_float(nil, {
+        focusable = true,
+        border = "rounded",
+      })
 
--- Run last debug session
-map("n", "<leader>dl", function() require("dap").run_last() end, { desc = "DAP Run Last" })
+      if winid then
+        vim.api.nvim_set_current_win(winid)
+      end
+    end, { buffer = bufnr })
+
+    vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = bufnr })
+    vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { buffer = bufnr })
+  end,
+})
+
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "java",
+  callback = function()
+    local jdtls = require("jdtls")
+
+    local root_dir = require("jdtls.setup").find_root({
+      ".git",
+      "mvnw",
+      "gradlew",
+      "pom.xml",
+      "build.gradle",
+    })
+
+    if not root_dir then
+      return
+    end
+
+    local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
+    local workspace_dir =
+        vim.fn.stdpath("data") .. "/jdtls-workspaces/" .. project_name
+
+    jdtls.start_or_attach({
+      cmd = { "jdtls", "-data", workspace_dir },
+      root_dir = root_dir,
+    })
+  end,
+})
 
 
 require("config.lazy");
+vim.cmd("colorscheme tokyonight")
+
+-- vim.api.nvim_create_autocmd("CursorHold", {
+--   callback = function()
+--     vim.diagnostic.open_float(nil, { focusable = false, border = "rounded" })
+--   end,
+-- })
+-- DAP core actions
+--map("n", "<F5>", function() require("dap").continue() end, { desc = "DAP Continue" })
+--map("n", "<F10>", function() require("dap").step_over() end, { desc = "DAP Step Over" })
+--map("n", "<F11>", function() require("dap").step_into() end, { desc = "DAP Step Into" })
+--map("n", "<F12>", function() require("dap").step_out() end, { desc = "DAP Step Out" })
+--
+---- Breakpoints
+--map("n", "<leader>db", function() require("dap").toggle_breakpoint() end, { desc = "Toggle Breakpoint" })
+--map("n", "<leader>dB", function()
+--  require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+--end, { desc = "Conditional Breakpoint" })
+--
+---- DAP UI
+--map("n", "<leader>du", function() require("dapui").toggle() end, { desc = "DAP UI Toggle" })
+--map("n", "<leader>de", function() require("dapui").eval() end, { desc = "DAP Evaluate" })
+--
+---- REPL
+--map("n", "<leader>dr", function() require("dap").repl.open() end, { desc = "DAP REPL" })
+--
+---- Run last debug session
+--map("n", "<leader>dl", function() require("dap").run_last() end, { desc = "DAP Run Last" })

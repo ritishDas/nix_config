@@ -1,29 +1,42 @@
 {pkgs}: with pkgs; [
   jq
-  discord
-  gemini-cli
   glow
-  python314
+  opencode
   alacritty
-  tailwindcss_4
   pkg-config
   ripgrep
-  nginx
   lua-language-server
   nixd
+  jdt-language-server
   typescript-language-server 
   tailwindcss-language-server
+  yaml-language-server
   ccls
-  gdb
+  pyright
   wrk
   inkscape
   fd
   git
   gh
-  vscode
   gcc
+  python314
   gnumake
   cmake 
-  gtk4
   direnv
+  nix-direnv
+  steam-run
+  glib
+  gtk4
+  # tailwindcss_4
+  # gtk3
+   # antigravity
+  # gdb
+  # adminer
+  #vscode
+  #gemini-cli
+  #claude-code
+  #opencode
+  #  nginx
+  #litellm
+  # discord
 ]

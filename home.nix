@@ -2,12 +2,12 @@
 
 let
   configDir = ./configs;
-  apps = [ "assets" "wlogout" "dunst" "gammastep" "tofi" "waybar" "hypr" "alacritty" "nvim" ];
+  apps = [ "mpv" "assets" "wlogout" "dunst" "gammastep" "tofi" "waybar" "hypr" "alacritty" "nvim" ];
 in
   {
   home.username = "ritish";
   home.homeDirectory = "/home/ritish";
-  home.stateVersion = "25.05";
+  home.stateVersion = "25.11";
 
   home.sessionVariables = {
     EDITOR = "nvim";
@@ -18,27 +18,17 @@ in
   home.file.".local/share/fonts".source = ./fonts;
 
 
-  home.file.".local/share/applications/open-terminal-here.desktop".text = ''
-    [Desktop Entry]
-    Name=Open Terminal Here
-      Icon=${./icons/terminal.svg}
-  Exec=alacritty --working-directory %f
-    Type=Application
-    Terminal=false
-    NoDisplay=false
-    MimeType=inode/directory;
-  '';
 
-  home.file.".local/share/applications/Neovim.desktop".text = ''
-    [Desktop Entry]
-    Name=Neovim
-      Icon=${./icons/nvim.png}
-  Exec=alacritty -e sh -c 'cd "%f" && nvim .'
-    Type=Application
-    Terminal=false
-    NoDisplay=false
-    MimeType=inode/directory;
-  '';
+  # home.file.".local/share/applications/Neovim.desktop".text = ''
+  #   [Desktop Entry]
+  #   Name=Neovim
+  #     Icon=${./icons/nvim.png}
+  # Exec=alacritty -e sh -c 'nvim "%f"'
+  #   Type=Application
+  #   Terminal=false
+  #   NoDisplay=false
+  #   MimeType=inode/directory;
+  # '';
 
   home.file.".local/share/applications/open-github.desktop".text = ''
     [Desktop Entry]
@@ -58,14 +48,23 @@ in
       Categories=Network;WebBrowser;
   '';
 
-  home.file.".local/share/applications/whatsapp.desktop".text = ''
-    [Desktop Entry]
-    Name=Whatsapp
-      Exec=firefox https://web.whatsapp.com/
-      Icon=firefox
-      Type=Application
-      Categories=Network;WebBrowser;
-  '';
+  # home.file.".local/share/applications/whatsapp.desktop".text = ''
+  #   [Desktop Entry]
+  #   Name=Whatsapp
+  #     Exec=chromium --app=https://web.whatsapp.com/
+  #     Icon=whatsapp
+  #     Type=Application
+  #     Categories=Network;WebBrowser;
+  # '';
+  #
+  # home.file.".local/share/applications/discord.desktop".text = ''
+  #   [Desktop Entry]
+  #   Name=Discord
+  #     Exec=chromium --app=https://discord.com/app
+  #     Icon=discord
+  #     Type=Application
+  #     Categories=Network;WebBrowser;
+  # '';
 
   home.file.".bashrc".text = ''
     eval "$(direnv hook bash)"

@@ -1,36 +1,36 @@
 * {
-    font-family: '0xProto Nerd FontMono', monospace;
+    font-family: '0xProto Nerd FontMono-Regular', monospace;
     font-size: 24px;
     transition-property: background-color, box-shadow;
     transition-duration: 0.2s;
 }
 
 window {
-    background-color: rgba(80, 150, 120, 0.3); /* soft green overlay */
+    background-color: rgba(120, 80, 160, 0.35); /* soft purple overlay */
     /* border-radius: 12px; */
 }
 
 /* === Button Base === */
 button {
-    background-color: #103b28; /* deep forest green */
+    background-color: #2b0f3a; /* deep violet */
     border-style: solid;
     border-radius: 50px;
     border-width: 2px;
-    border-color: #89e5b9;
+    border-color: #c084fc; /* lavender border */
     background-repeat: no-repeat;
     background-position: center;
     background-size: 15%;
     margin: 15px;
-    color: #c8fadd;
-    box-shadow: 0 0 15px rgba(50, 200, 100, 0.3);
+    color: #f3e8ff; /* soft light purple text */
+    box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
 }
 
 /* === Hover/Active === */
 button:active,
 button:hover {
-    background-color: #89e5b9; /* minty green highlight */
-    color: #103b28;
-    box-shadow: 0 0 25px rgba(100, 255, 160, 0.6);
+    background-color: #a855f7; /* bright purple highlight */
+    color: #1a0626;
+    box-shadow: 0 0 25px rgba(192, 132, 252, 0.8);
 }
 
 
@@ -83,6 +83,3 @@ button:hover {
 #exit:hover {
     background-image: image(url("/home/ritish/.config/assets/wlogout/assets/restart-hover.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
 }
-
-
-
