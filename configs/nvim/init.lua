@@ -56,42 +56,30 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 vim.opt.clipboard = "unnamedplus"
 
 -- Keymaps helper
-local function map(mode, lhs, rhs, opts)
-  local options = { silent = true }
-  if opts then
-    options = vim.tbl_extend("force", options, opts)
-  end
-  vim.keymap.set(mode, lhs, rhs, options)
+local function map(mode, lhs, rhs, desc)
+  vim.keymap.set(mode, lhs, rhs, { silent = true, desc = desc })
 end
-
 -- Keymaps
-vim.keymap.set("n", "<leader>fr", "<cmd>FlutterRestart<CR>", { desc = "Flutter Hot Restart" })
 map("t", "<Esc>", "<C-\\><C-n>")
 map("n", "<leader>h", "<C-^>")
 map("n", "<leader>vh", "<cmd>vsplit #<cr>")
-map("n", "<leader>s", function()
-  vim.lsp.buf.format()
-  vim.cmd("wa")
-end, { desc = "Format and save" })
-map("n", "<leader>f", ":Neotree toggle<CR>")
-map("n", "<leader>tf", ":Telescope find_files<CR>")
-map("n", "<leader>tg", ":Telescope live_grep<CR>")
-map("n", "<leader>tr", ":Telescope resume<CR>")
+
+
+
 map("x", "p", '"_dP')
 map("n", "<leader>x", ":qa<CR>")
 map("n", "<leader>e", ":bd!<CR>")
-for i = 1, 9 do
-  vim.keymap.set("n", "<leader>" .. i, function()
-    require("bufferline").go_to(i, true)
-  end)
-end
 map("n", "<leader>n", ":BufferLineCycleNext<CR>")
 map("n", "<leader>p", ":BufferLineCyclePrev<CR>")
 map("n", "<leader>b", ":buffers<CR>")
 map("n", "<leader>c", ":CccPick<CR>")
 map("n", "<C-j>", "<C-d>zz")
 map("n", "<C-k>", "<C-u>zz")
+map("n", "<C-a>", "ggVG")
 map("v", "<leader>r", [[:s/<C-r><C-w>/]])
+
+
+
 
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
@@ -151,9 +139,46 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99
+
 require("config.lazy");
 vim.cmd("colorscheme tokyonight")
+vim.keymap.set('v', 'gv', require('telescope.builtin').grep_string, { desc = 'Grep selection' })
 
+map("n", "<leader>s", function()
+  vim.lsp.buf.format()
+  vim.cmd("write")
+end)
+
+map("n", "<leader>fr", "<cmd>FlutterRestart<CR>", "Flutter Restart")
+
+-- Neo-tree (safe require)
+map("n", "<leader>f", function()
+  local ok, neotree = pcall(require, "neo-tree.command")
+  if ok then
+    neotree.execute({ toggle = true })
+  end
+end, "Toggle file explorer")
+
+-- Telescope
+local ok, telescope = pcall(require, "telescope.builtin")
+if ok then
+  map("n", "<leader>tf", telescope.find_files, "Find files")
+  map("n", "<leader>tg", telescope.live_grep, "Live grep")
+  map("n", "<leader>tr", telescope.resume, "Resume search")
+end
+
+-- Bufferline (safe)
+local ok_buf, bufferline = pcall(require, "bufferline")
+if ok_buf then
+  for i = 1, 9 do
+    map("n", "<leader>" .. i, function()
+      bufferline.go_to(i, true)
+    end, "Go to buffer " .. i)
+  end
+end
 -- vim.api.nvim_create_autocmd("CursorHold", {
 --   callback = function()
 --     vim.diagnostic.open_float(nil, { focusable = false, border = "rounded" })

@@ -1,6 +1,6 @@
 {pkgs,inputs}: with pkgs; [
  scrcpy
-  # blender
+  intel-gpu-tools
   upower
   slurp
   hyprpolkitagent
@@ -25,11 +25,12 @@
   playerctl
   brightnessctl
   tuigreet
-  #hyprpicker
-  #  google-chrome
-   # obs-studio
+  # blender
+  # hyprpicker
+  # google-chrome
+  # obs-studio
   # appflowy
-  #ppsspp
+  # ppsspp
 ]++[
   inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
   inputs.astm.packages.${system}.default

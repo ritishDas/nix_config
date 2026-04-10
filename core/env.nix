@@ -17,6 +17,7 @@
     CLUTTER_BACKEND="wayland";
     XDG_CURRENT_DESKTOP="Hyprland";
     XDG_SESSION_TYPE="wayland";
+    CHROME_EXECUTABLE="/run/current-system/sw/bin/chromium";
 
     GSETTINGS_SCHEMA_DIR =
       "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}";
@@ -46,8 +47,9 @@
     rb = "cd /etc/nixos;sudo nixos-rebuild switch --flake .#nixos;hyprctl reload";
     ed = "cd /etc/nixos ; sudo nvim configuration.nix";
     sz = "du -sh .[^.]* */ | sort -h";
-    reporeset = "git fetch origin & git reset --hard origin/main & git clean -fd";
   };
+
+
 
 
 }

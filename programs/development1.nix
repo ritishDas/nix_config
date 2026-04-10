@@ -1,5 +1,6 @@
 {pkgs}: with pkgs; [
   jq
+  github-copilot-cli
   glow
   opencode
   alacritty
@@ -14,7 +15,6 @@
   ccls
   pyright
   wrk
-  inkscape
   fd
   git
   gh
@@ -24,9 +24,11 @@
   cmake 
   direnv
   nix-direnv
-  steam-run
   glib
   gtk4
+
+  # steam-run
+   # activitywatch
   # tailwindcss_4
   # gtk3
    # antigravity
@@ -35,7 +37,6 @@
   #vscode
   #gemini-cli
   #claude-code
-  #opencode
   #  nginx
   #litellm
   # discord

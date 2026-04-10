@@ -1,31 +1,8 @@
 return {
-  -- {
-  --   "ggml-org/llama.vim"
-  -- },
-  {
-    "github/copilot.vim"
-  },
-  {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    dependencies = {
-      { "nvim-lua/plenary.nvim", branch = "master" },
-    },
-    build = "make tiktoken",
-    opts = {
-      -- See Configuration section for options
-    },
 
-    keys = {
-      { "<leader>zc", "<cmd>CopilotChat<CR>",       mode = 'n', desc = "Open Copilot Chat" },
-      { "<leader>zr", "<cmd>CopilotChatReview<CR>", mode = 'v', desc = "Open Copilot Review" },
-      { "<leader>zf", "<cmd>CopilotChatFix<CR>",    mode = 'v', desc = "Open Copilot Fix" },
-    },
-    config = function()
-      require("CopilotChat").setup({
-        context = "buffers",
-      })
-    end
-  },
+  -- {
+  --   "github/copilot.vim"
+  -- },
   {
     "folke/tokyonight.nvim",
     lazy = false,
@@ -36,25 +13,10 @@ return {
         style = "moon",
 
         on_highlights = function(hl, c)
-          -- hl.TabLine = {
-          --   bg = "#1f2335",
-          --   fg = "#7aa2f7"
-          -- }
-          --
-          -- hl.TabLineSel = {
-          --   bg = "#bb9af7",
-          --   fg = "#1a1b26",
-          --   bold = true
-          -- }
-
           hl.LineNr = {
             fg = "#7affff"
           }
 
-          -- hl.CursorLineNr = {
-          --   fg = "#7aa2f7",
-          --   bold = true
-          -- }
           hl.LineNrAbove = { fg = "#7aa2f7" }
           hl.LineNrBelow = { fg = "#7aa2f7" }
         end,
@@ -143,26 +105,6 @@ return {
         }
 
       }
-      -- local on_attach = function(client, bufnr)
-      --   local bufmap = function(mode, lhs, rhs, desc)
-      --     vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, desc = desc })
-      --   end
-      --
-      --   -- Hover documentation
-      --   bufmap("n", "K", vim.lsp.buf.hover, "Show hover info")
-      --
-      --   -- Go to definition
-      --   bufmap("n", "gd", vim.lsp.buf.definition, "Go to definition")
-      --
-      --   -- Format buffer (LSP)
-      --   bufmap("n", "<C-f>", function()
-      --     vim.lsp.buf.format { async = true }
-      --   end, "Format buffer")
-      --
-      --   -- Optional: Rename symbol
-      --   bufmap("n", "<leader>r", vim.lsp.buf.rename, "Rename symbol")
-      --   bufmap("n", "<leader>a", vim.lsp.buf.code_action, "Code Actions")
-      -- end
       local default_opts = { capabilities = capabilities }
       for name, opts in pairs(servers) do
         vim.lsp.config(name, vim.tbl_deep_extend("force", default_opts, opts))
@@ -202,15 +144,6 @@ return {
         },
       }
     end,
-  },
-  {
-    "kawre/leetcode.nvim",
-    build = ":TSUpdate html",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-    opts = {},
   },
   {
     "lukas-reineke/indent-blankline.nvim",
@@ -253,6 +186,12 @@ return {
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
+      vim.api.nvim_create_autocmd("BufReadPost", {
+        callback = function()
+          vim.opt_local.foldmethod = "expr"
+          vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+        end,
+      })
     end,
   },
   {
@@ -331,6 +270,8 @@ return {
       })
     end,
   },
+
+
 }
 -- {
 --   "mfussenegger/nvim-dap",
@@ -400,6 +341,57 @@ return {
 --         css = true,
 --         css_fn = true,
 --       }
+--     })
+--   end
+-- },
+--
+-- {
+--   "kawre/leetcode.nvim",
+--   build = ":TSUpdate html",
+--   dependencies = {
+--     "nvim-lua/plenary.nvim",
+--     "MunifTanjim/nui.nvim",
+--   },
+--   opts = {},
+-- },
+-- {
+--   "ggml-org/llama.vim"
+-- },
+-- {
+--   "CopilotC-Nvim/CopilotChat.nvim",
+--   dependencies = {
+--     { "nvim-lua/plenary.nvim", branch = "master" },
+--   },
+--   build = "make tiktoken",
+--   opts = {
+--     -- See Configuration section for options
+--   },
+--
+--   keys = {
+--     { "<leader>zc", "<cmd>CopilotChat<CR>",       mode = 'n', desc = "Open Copilot Chat" },
+--     { "<leader>zr", "<cmd>CopilotChatReview<CR>", mode = 'v', desc = "Open Copilot Review" },
+--     { "<leader>zf", "<cmd>CopilotChatFix<CR>",    mode = 'v', desc = "Open Copilot Fix" },
+--   },
+--   config = function()
+--     require("CopilotChat").setup({
+--       context = "buffers",
+--     })
+--   end
+-- },
+--
+-- {
+--   "stevearc/conform.nvim",
+--   opts = {},
+--   config = function()
+--     require("conform").setup({
+--       formatters_by_ft = {
+--         javascript = { "prettier", "lsp_fallback" },
+--         typescript = { "prettier", "lsp_fallback" },
+--         javascriptreact = { "prettier", "lsp_fallback" },
+--         typescriptreact = { "prettier", "lsp_fallback" },
+--         css = { "prettier", "lsp_fallback" },
+--         html = { "prettier", "lsp_fallback" },
+--       },
 --     })
 --   end
 -- },

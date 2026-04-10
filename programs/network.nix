@@ -4,10 +4,11 @@
     ngrok
     live-server
     localsend
-    firefox
   chromium
   iw
     openssl
+
+    # firefox
 #    linux-wifi-hotspot
  #   hostapd
   #  dnsmasq
