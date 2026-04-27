@@ -2,7 +2,7 @@
 
 let
   configDir = ./configs;
-  apps = [ "mpv" "assets" "wlogout" "dunst" "gammastep" "tofi" "waybar" "hypr" "alacritty" "nvim" ];
+  apps = [ "mpv" "assets" "wlogout" "dunst" "tofi" "waybar" "hypr" "nvim" ];
 in
   {
   home.username = "ritish";
@@ -39,10 +39,19 @@ in
       Categories=Network;WebBrowser;
   '';
 
-  home.file.".local/share/applications/open-chatgpt.desktop".text = ''
+  home.file.".local/share/applications/open-gemini.desktop".text = ''
     [Desktop Entry]
-    Name=Youtube
-      Exec=chromium --app=https://www.youtube.com/
+    Name=Gemini
+      Exec=chromium --app=https://gemini.google.com/
+      Icon=youtube
+      Type=Application
+      Categories=Network;WebBrowser;
+  '';
+
+  home.file.".local/share/applications/open-claude.desktop".text = ''
+    [Desktop Entry]
+    Name=Claude
+      Exec=chromium --app=https://claude.ai/new
       Icon=youtube
       Type=Application
       Categories=Network;WebBrowser;
@@ -64,6 +73,14 @@ in
       Icon=discord
       Type=Application
       Categories=Network;WebBrowser;
+  '';
+
+  home.file.".bash_profile".text=''
+    # ~/.bash_profile
+
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
   '';
 
   home.file.".bashrc".text = ''
@@ -113,6 +130,33 @@ Terminal=false
 Type=Application
   '';
 
+  home.file.".wezterm.lua".text=''
+  local wezterm = require 'wezterm'
+local config = wezterm.config_builder()
+
+-- Basic Settings
+config.default_prog = { "/run/current-system/sw/bin/bash", "-l" }
+config.font_size = 12.0
+
+-- UI Enhancements
+config.color_scheme = 'Catppuccin Macchiato' -- A very popular, easy-on-the-eyes theme
+config.hide_tab_bar_if_only_one_tab = true   -- Keeps it clean until you need tabs
+
+-- Font Configuration
+-- WezTerm comes with 'JetBrains Mono' bundled, which is excellent.
+config.font = wezterm.font('JetBrains Mono')
+
+config.window_close_confirmation = "NeverPrompt"
+-- Window Frame / Padding
+config.window_padding = {
+  left = 10,
+  right = 10,
+  top = 10,
+  bottom = 10,
+}
+
+return config
+'';
 
   home.activation.updateConfigs = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     update_config() {

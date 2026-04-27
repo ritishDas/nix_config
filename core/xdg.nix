@@ -9,7 +9,7 @@
       };
       terminal-exec = {
           enable=true;
-          package= pkgs.alacritty;
+          package= pkgs.wezterm;
           };
  
   # mime.defaultApplications = {

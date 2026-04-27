@@ -18,7 +18,7 @@
             "window-rewrite": {
                 "class<firefox>": "",
                 "class<chromium-browser>": "",
-                "class<alacritty>": "",
+                "class<org.wezfurlong.wezterm>": "",
                 "class<thunar>": "",
                 "class<ONLYOFFICE>": "",
                 "class<jetbrains-studio>": "",

@@ -1,6 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 5
 vim.filetype.add({
   extension = {
     ejs = "html",
@@ -61,7 +61,7 @@ local function map(mode, lhs, rhs, desc)
 end
 -- Keymaps
 map("t", "<Esc>", "<C-\\><C-n>")
-map("n", "<leader>h", "<C-^>")
+map("n", "<leader>u", "<C-^>")
 map("n", "<leader>vh", "<cmd>vsplit #<cr>")
 
 
@@ -85,12 +85,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local bufnr = args.buf
 
-    vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr })
+    vim.keymap.set("n", "T", vim.lsp.buf.hover, { buffer = bufnr })
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
     vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find references" })
-    vim.keymap.set("n", "<C-f>", function()
-      vim.lsp.buf.format { async = true }
-    end, { buffer = bufnr })
 
 
     vim.keymap.set("n", "<leader>d", function()
@@ -139,9 +136,11 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
+vim.opt.foldenable = true
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldlevel = 99
 
 require("config.lazy");
 vim.cmd("colorscheme tokyonight")
@@ -149,7 +148,7 @@ vim.keymap.set('v', 'gv', require('telescope.builtin').grep_string, { desc = 'Gr
 
 map("n", "<leader>s", function()
   vim.lsp.buf.format()
-  vim.cmd("write")
+  vim.cmd("wall")
 end)
 
 map("n", "<leader>fr", "<cmd>FlutterRestart<CR>", "Flutter Restart")
@@ -171,14 +170,14 @@ if ok then
 end
 
 -- Bufferline (safe)
-local ok_buf, bufferline = pcall(require, "bufferline")
-if ok_buf then
-  for i = 1, 9 do
-    map("n", "<leader>" .. i, function()
-      bufferline.go_to(i, true)
-    end, "Go to buffer " .. i)
-  end
-end
+-- local ok_buf, bufferline = pcall(require, "bufferline")
+-- if ok_buf then
+--   for i = 1, 9 do
+--     map("n", "<leader>" .. i, function()
+--       bufferline.go_to(i, true)
+--     end, "Go to buffer " .. i)
+--   end
+-- end
 -- vim.api.nvim_create_autocmd("CursorHold", {
 --   callback = function()
 --     vim.diagnostic.open_float(nil, { focusable = false, border = "rounded" })

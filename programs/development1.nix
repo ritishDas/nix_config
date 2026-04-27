@@ -1,19 +1,21 @@
 {pkgs}: with pkgs; [
+  man-pages
+  man-pages-posix
   jq
+  trash-cli
+  fzf
   github-copilot-cli
+  wezterm
   glow
   opencode
-  alacritty
   pkg-config
   ripgrep
   lua-language-server
   nixd
-  jdt-language-server
   typescript-language-server 
   tailwindcss-language-server
   yaml-language-server
   ccls
-  pyright
   wrk
   fd
   git
@@ -26,7 +28,9 @@
   nix-direnv
   glib
   gtk4
-
+  pyright
+  # alacritty
+  # jdt-language-server
   # steam-run
    # activitywatch
   # tailwindcss_4

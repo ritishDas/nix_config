@@ -2,8 +2,8 @@
   nodejs_24
   pnpm
   gimp
-  blender
   inkscape
+  # blender
   # vscodium
   # imagemagick
   #lunacy

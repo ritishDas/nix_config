@@ -1,6 +1,7 @@
 {pkgs,inputs}: with pkgs; [
  scrcpy
   intel-gpu-tools
+  hyprpicker
   upower
   slurp
   hyprpolkitagent

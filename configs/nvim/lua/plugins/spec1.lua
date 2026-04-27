@@ -39,16 +39,25 @@ return {
     end
   },
   {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = function()
+      require("nvim-autopairs").setup({})
+    end,
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-nvim-lsp",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
+      "windwp/nvim-autopairs",
       "saadparwaiz1/cmp_luasnip",
       "L3MON4D3/LuaSnip",
       "rafamadriz/friendly-snippets",
     },
     config = function()
+      local cmp_autopairs = require("nvim-autopairs.completion.cmp")
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       require("luasnip.loaders.from_vscode").lazy_load()
@@ -76,6 +85,9 @@ return {
           { name = "path" },
         }),
       })
+
+
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     end,
   },
   {
@@ -134,6 +146,50 @@ return {
     end,
   },
   {
+    "ThePrimeagen/harpoon",
+    branch = "harpoon2", -- important (new API)
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      local harpoon = require("harpoon")
+
+      harpoon.setup({
+        -- Settings must be nested inside this table for Harpoon 2
+        settings = {
+          save_on_toggle = true,
+          save_on_change = true,
+        },
+      }) -- add file
+      vim.keymap.set("n", "<leader>ha", function()
+        harpoon:list():add()
+      end)
+
+      vim.keymap.set("n", "<leader>hr", function()
+        harpoon:list():remove()
+      end)
+
+      vim.keymap.set("n", "<leader>hd", function()
+        harpoon:list().items = {}
+      end)
+
+      -- toggle quick menu
+      vim.keymap.set("n", "<leader>hm", function()
+        harpoon.ui:toggle_quick_menu(harpoon:list())
+      end)
+
+      -- jump to files
+      vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
+      vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
+      vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
+      vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
+      vim.keymap.set("n", "<leader>5", function() harpoon:list():select(1) end)
+      vim.keymap.set("n", "<leader>6", function() harpoon:list():select(2) end)
+      vim.keymap.set("n", "<leader>7", function() harpoon:list():select(3) end)
+      vim.keymap.set("n", "<leader>8", function() harpoon:list():select(4) end)
+      vim.keymap.set("n", "<leader>9", function() harpoon:list():select(1) end)
+    end
+
+  },
+  {
     "akinsho/bufferline.nvim",
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
@@ -180,7 +236,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     opts = {
-      ensure_installed = { "c", "python", "html", "css", "javascript", "typescript", "tsx", "dart", "kotlin", "lua", "nix", "java" },
+      ensure_installed = { "python", "c", "rust", "html", "css", "javascript", "typescript", "tsx", "dart", "kotlin", "lua", "nix" },
       highlight = { enable = true },
       indent = { enable = true },
     },
@@ -193,6 +249,9 @@ return {
         end,
       })
     end,
+  },
+  {
+    "andymass/vim-matchup",
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -208,6 +267,27 @@ return {
         filesystem = {
           follow_current_file = { enabled = true, leave_dirs_open = true },
           use_libuv_file_watcher = true,
+          -- Bind the 'd' key to our new trash command
+          window = {
+            mappings = {
+              ["d"] = "trash",
+            },
+          },
+          commands = {
+            trash = function(state)
+              local node = state.tree:get_node()
+              if node.type == "message" then return end
+
+              local inputs = require("neo-tree.ui.inputs")
+              inputs.confirm("Trash " .. node.name .. "?", function(confirmed)
+                if confirmed then
+                  -- This uses the external 'trash' command
+                  vim.fn.system({ "trash", node.path })
+                  require("neo-tree.sources.manager").refresh(state.name)
+                end
+              end)
+            end,
+          },
         },
         event_handlers = {
           {
@@ -217,43 +297,52 @@ return {
               vim.opt_local.relativenumber = true
             end,
           },
-        }
-      })
-    end
-  },
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("lualine").setup({
-        options = { theme = "tokyonight", section_separators = "", component_separators = "" },
-        sections = {
-          lualine_a = { "mode" },
-          lualine_b = { "branch", "diff", "diagnostics" },
-          lualine_c = {
-            {
-              function()
-                local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
-                if next(buf_clients) == nil then return "No LSP" end
-                local names = {}
-                for _, client in pairs(buf_clients) do table.insert(names, client.name) end
-                return " " .. table.concat(names, ",")
-              end,
-              color = { gui = "bold" },
-            },
-            "filename",
-          },
-          lualine_x = { "encoding", "fileformat", "filetype" },
-          lualine_y = { "progress" },
-          lualine_z = { "location" },
         },
       })
-    end,
-  },
+    end
+  }, {
+  "nvim-lualine/lualine.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    require("lualine").setup({
+      options = { theme = "tokyonight", section_separators = "", component_separators = "" },
+      sections = {
+        lualine_a = { "mode" },
+        lualine_b = { "branch", "diff", "diagnostics" },
+        lualine_c = {
+          {
+            function()
+              local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
+              if next(buf_clients) == nil then return "No LSP" end
+              local names = {}
+              for _, client in pairs(buf_clients) do table.insert(names, client.name) end
+              return " " .. table.concat(names, ",")
+            end,
+            color = { gui = "bold" },
+          },
+          "filename",
+        },
+        lualine_x = { "encoding", "fileformat", "filetype" },
+        lualine_y = { "progress" },
+        lualine_z = { "location" },
+      },
+    })
+  end,
+},
   {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        build = "make",
+      },
+    },
+    config = function()
+      require("telescope").setup({})
+      require("telescope").load_extension("fzf")
+    end
   },
   {
     "akinsho/toggleterm.nvim",
