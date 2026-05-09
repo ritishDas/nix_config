@@ -16,15 +16,15 @@
             "format": "{name}\n{windows}",  // Restore {windows} and use \n to stack them
             "format-window-separator": "\n", // Stack multiple app icons vertically
             "window-rewrite": {
-                "class<firefox>": "",
                 "class<chromium-browser>": "",
                 "class<org.wezfurlong.wezterm>": "",
                 "class<thunar>": "",
-                "class<ONLYOFFICE>": "",
-                "class<jetbrains-studio>": "",
+                "class<libreoffice-startcenter>": "",
                 "class<spotify>": "",
                 "class<mpv>": "",
                 "class<localsend_app>": "",
+                "class<chrome-web.whatsapp.com__-Profile_1>":"",
+                "class<yaak-app>":"󱂛",
                 "class<discord>": "",
                 "window-rewrite-default": ""
             },

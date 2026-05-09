@@ -1,5 +1,5 @@
 { pkgs, lib, inputs, stdenv ,... }:
- 
+
 {
   imports = [ ./hardware-configuration.nix ];
   boot.loader = import ./core/bootloader.nix {};
@@ -16,7 +16,7 @@
   virtualisation= import ./core/virtualenv.nix {inherit pkgs;};
 
   security.sudo = {
-	  enable = true;
+    enable = true;
   };
 
   programs.hyprland = {
@@ -36,6 +36,12 @@
 
   programs.neovim.enable = true;
   programs.dconf.enable = true;
+  nix.settings.auto-optimise-store = true;
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
 
   xdg = import ./core/xdg.nix{inherit pkgs;};
   system.stateVersion="26.05";

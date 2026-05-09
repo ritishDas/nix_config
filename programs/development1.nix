@@ -21,6 +21,7 @@
   git
   gh
   gcc
+  bear
   python314
   gnumake
   cmake 
