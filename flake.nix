@@ -4,8 +4,8 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+     home-manager.url = "github:nix-community/home-manager/release-25.11";
     # llama-cpp.url = "github:ggml-org/llama.cpp";
-    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.url = "github:hyprwm/hyprland";
     astm.url = "github:ritishDas/astm";
@@ -25,9 +25,7 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
-
         home-manager.nixosModules.home-manager
-
         {
           # ✅ System users (best kept outside the home-manager block)
           users.users = {
@@ -36,7 +34,6 @@
               extraGroups = [ "wheel" "networkmanager" "kvm" "libvirt" "docker" "input" ];
             };
           };
-
           # ✅ Home Manager settings
           home-manager = {
             useGlobalPkgs = true;

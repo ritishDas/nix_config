@@ -1,4 +1,4 @@
-{pkgs,lib}:
+{pkgs}:
 {
   dbus = { enable = true; };
   libinput.enable = true;
