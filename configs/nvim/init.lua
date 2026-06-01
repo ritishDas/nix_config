@@ -31,7 +31,7 @@ vim.opt.expandtab = true
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.swapfile = false
-vim.opt.mouse = ''
+vim.opt.mouse = 'a'
 
 vim.o.updatetime = 200
 
@@ -75,6 +75,8 @@ map("n", "<leader>b", ":buffers<CR>")
 map("n", "<leader>c", ":CccPick<CR>")
 map("n", "<C-j>", "<C-d>zz")
 map("n", "<C-k>", "<C-u>zz")
+map("v", "<C-j>", "<C-d>zz")
+map("v", "<C-k>", "<C-u>zz")
 map("n", "<C-a>", "ggVG")
 map("v", "<leader>r", [[:s/<C-r><C-w>/]])
 
@@ -139,8 +141,8 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.opt.foldenable = true
 vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = 99
-vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+-- vim.opt.foldmethod = "expr"
+-- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 require("config.lazy");
 vim.cmd("colorscheme tokyonight")

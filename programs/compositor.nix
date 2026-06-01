@@ -16,7 +16,7 @@
   dunst
   tofi
   wl-clipboard
-  swww
+  awww
   hyprlock
   wlogout
   grimblast

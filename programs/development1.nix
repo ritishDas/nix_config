@@ -1,5 +1,7 @@
 {pkgs}: with pkgs; [
   man-pages
+  cmatrix
+  # waydroid
   man-pages-posix
   jq
   trash-cli

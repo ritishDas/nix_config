@@ -4,6 +4,7 @@
   pnpm
   gimp
   inkscape
+  # burpsuite
   # tableplus
   # blender
   # vscodium

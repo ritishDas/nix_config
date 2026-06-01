@@ -2,6 +2,7 @@
 
 let
   configDir = ./configs;
+  user = "ritish";
   apps = [ "mpv" "assets" "wlogout" "dunst" "tofi" "waybar" "hypr" "nvim" ];
 in
   {
@@ -136,7 +137,7 @@ local config = wezterm.config_builder()
 
 -- Basic Settings
 config.default_prog = { "/run/current-system/sw/bin/bash", "-l" }
-config.font_size = 12.0
+config.font_size = 8.0
 
 -- UI Enhancements
 config.color_scheme = 'Catppuccin Macchiato' -- A very popular, easy-on-the-eyes theme
@@ -166,7 +167,7 @@ return config
 
         rm -rf "$dest"
         cp -r "$src" "$dest"
-        chown -R ritish:users "$dest"
+        chown -R ${user}:users "$dest"
         chmod -R u+rwX "$dest"
     }
 

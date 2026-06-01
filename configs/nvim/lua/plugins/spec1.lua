@@ -242,12 +242,12 @@ return {
     },
     config = function(_, opts)
       require("nvim-treesitter.configs").setup(opts)
-      vim.api.nvim_create_autocmd("BufReadPost", {
-        callback = function()
-          vim.opt_local.foldmethod = "expr"
-          vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-        end,
-      })
+      -- vim.api.nvim_create_autocmd("BufReadPost", {
+      --   callback = function()
+      --     vim.opt_local.foldmethod = "expr"
+      --     vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+      --   end,
+      -- })
     end,
   },
   {

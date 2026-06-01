@@ -5,12 +5,12 @@ let
 in
   with pkgs; [
     swayimg
+    # sublime
     zip
     jre
     webcamoid
     wget
     htop
-    neofetch
     unzip
     mpv
     mpvpaper
@@ -20,11 +20,11 @@ in
     libreoffice
     librsvg
     poppler
-    xfce.thunar
-    xfce.thunar-archive-plugin
+    thunar
+    thunar-archive-plugin
     gsettings-desktop-schemas
-    xfce.thunar-volman
-  ] ++ [ yaak ]
+    thunar-volman
+   ]  ++ [ yaak ]
 
 
     # postman
