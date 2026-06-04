@@ -76,10 +76,10 @@ rustPlatform.buildRustPackage (finalAttrs: {
     librsvg
     gdk-pixbuf
     adwaita-icon-theme
-    gsettings-desktop-schemas
-    dconf
   ]  ++ lib.optionals stdenv.hostPlatform.isLinux [
       webkitgtk_4_1
+      gsettings-desktop-schemas
+      dconf
     ];
 
   env.ELECTRON_SKIP_BINARY_DOWNLOAD = "1";

@@ -119,6 +119,8 @@ gitreset() {
   git clean -fd
 }
 
+
+
   '';
 
 
@@ -137,7 +139,7 @@ local config = wezterm.config_builder()
 
 -- Basic Settings
 config.default_prog = { "/run/current-system/sw/bin/bash", "-l" }
-config.font_size = 8.0
+config.font_size = 10.0
 
 -- UI Enhancements
 config.color_scheme = 'Catppuccin Macchiato' -- A very popular, easy-on-the-eyes theme
@@ -169,7 +171,9 @@ return config
         cp -r "$src" "$dest"
         chown -R ${user}:users "$dest"
         chmod -R u+rwX "$dest"
+
     }
+
 
     ${lib.concatStringsSep "\n" (map (app: "update_config ${app}") apps)}
   '';

@@ -1,4 +1,6 @@
 {pkgs,inputs}: with pkgs; [
+  
+  # gpu-screen-recorder
  scrcpy
   intel-gpu-tools
   hyprpicker
@@ -9,7 +11,6 @@
   xdg-utils
   xdg-terminal-exec
   nwg-look
-  wf-recorder
   waybar
   killall
   gammastep
@@ -26,6 +27,8 @@
   playerctl
   brightnessctl
   tuigreet
+  pulseaudio-ctl
+  wf-recorder
   # blender
   # hyprpicker
   # google-chrome
@@ -33,7 +36,7 @@
   # appflowy
   # ppsspp
 ]++[
-  inputs.rose-pine-hyprcursor.packages.${pkgs.system}.default
-  inputs.astm.packages.${system}.default
+  inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
+  inputs.astm.packages.${stdenv.hostPlatform.system}.default
   # inputs.llama-cpp.packages.${system}.vulkan
 ]

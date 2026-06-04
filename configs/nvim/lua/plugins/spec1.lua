@@ -3,31 +3,31 @@ return {
   -- {
   --   "github/copilot.vim"
   -- },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-    config = function()
-      require("tokyonight").setup({
-        style = "moon",
-
-        on_highlights = function(hl, c)
-          hl.LineNr = {
-            fg = "#7affff"
-          }
-
-          hl.LineNrAbove = { fg = "#7aa2f7" }
-          hl.LineNrBelow = { fg = "#7aa2f7" }
-        end,
-      })
-    end
-  },
+  -- {
+  --   "folke/tokyonight.nvim",
+  --   lazy = false,
+  --   priority = 1000,
+  --   opts = {},
+  --   config = function()
+  --     require("tokyonight").setup({
+  --       style = "moon",
+  --
+  --       on_highlights = function(hl, c)
+  --         hl.LineNr = {
+  --           fg = "#7affff"
+  --         }
+  --
+  --         hl.LineNrAbove = { fg = "#7aa2f7" }
+  --         hl.LineNrBelow = { fg = "#7aa2f7" }
+  --       end,
+  --     })
+  --   end
+  -- },
   {
     'rmagatti/auto-session',
     lazy = false,
     opts = {
-      auto_restore_enabled = true,
+      auto_restore = true,
       auto_session_suppress_dirs = { '~/', '~/Projects', '~/Downloads', '/' },
     },
 
@@ -233,24 +233,6 @@ return {
     end
   },
   {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    opts = {
-      ensure_installed = { "python", "c", "rust", "html", "css", "javascript", "typescript", "tsx", "dart", "kotlin", "lua", "nix" },
-      highlight = { enable = true },
-      indent = { enable = true },
-    },
-    config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
-      -- vim.api.nvim_create_autocmd("BufReadPost", {
-      --   callback = function()
-      --     vim.opt_local.foldmethod = "expr"
-      --     vim.opt_local.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      --   end,
-      -- })
-    end,
-  },
-  {
     "andymass/vim-matchup",
   },
   {
@@ -305,7 +287,7 @@ return {
   dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function()
     require("lualine").setup({
-      options = { theme = "tokyonight", section_separators = "", component_separators = "" },
+      options = { section_separators = "", component_separators = "" },
       sections = {
         lualine_a = { "mode" },
         lualine_b = { "branch", "diff", "diagnostics" },

@@ -108,6 +108,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  callback = function()
+    pcall(vim.treesitter.start)
+  end,
+})
 
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "java",
@@ -145,7 +150,7 @@ vim.opt.foldlevelstart = 99
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 require("config.lazy");
-vim.cmd("colorscheme tokyonight")
+-- vim.cmd("colorscheme desert")
 vim.keymap.set('v', 'gv', require('telescope.builtin').grep_string, { desc = 'Grep selection' })
 
 map("n", "<leader>s", function()

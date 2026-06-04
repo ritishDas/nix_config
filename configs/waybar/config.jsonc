@@ -43,7 +43,9 @@
         "height": 30, // Fixed height for horizontal bar
         "margin-left": 5, // Offset to not overlap with the left bar
         "modules-left": ["clock"],
-        "modules-center": ["hyprland/window"],
+        "modules-center": [
+            "custom/stopwatch"
+],
         "modules-right": [
             "custom/recorder",
             "tray",
@@ -57,9 +59,11 @@
 
         // --- Modules Configuration ---
 
-        "hyprland/window": {
-            "format": "{}"
-        },
+"custom/stopwatch": {
+    "exec": "stopwatch status",
+    "interval": 1,
+    "tooltip": false
+},
 
         "custom/recorder": {
             "exec": "pgrep wf-recorder >/dev/null && echo '●' || echo ''",
@@ -68,8 +72,8 @@
         },
 
         "tray": {
-            "icon-size": 18,
-            "spacing": 10
+          "icon-size": 18,
+          "spacing": 10
         },
 
         "clock": {
