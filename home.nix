@@ -1,4 +1,4 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib,inputs, ... }:
 
 let
   configDir = ./configs;
@@ -8,7 +8,7 @@ in
   {
   home.username = "ritish";
   home.homeDirectory = "/home/ritish";
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
 
   home.sessionVariables = {
     EDITOR = "nvim";

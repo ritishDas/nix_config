@@ -38,6 +38,9 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
+              extraSpecialArgs = {
+                inherit inputs;
+              };
             backupFileExtension = "backup";
             users = {
               ritish = import ./home.nix;

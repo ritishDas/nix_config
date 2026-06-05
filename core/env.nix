@@ -1,9 +1,39 @@
 { pkgs,inputs,lib }:
+
+let
+hyprexpo-src = pkgs.fetchFromGitHub {
+    owner = "sandwichfarm";
+    repo = "hyprexpo";
+    rev = "HEAD"; 
+    sha256 = "sha256-DPht6eNnLPYzb2VLyonGRCTfrcpzcSmymQAzA3qpHK0=";
+  };
+
+  # hyprexpo-plugin = pkgs.callPackage "${hyprexpo-src}/default.nix" {
+  #   hyprland = pkgs.hyprland; 
+  # };
+  
+  hyprexpo-plugin = (pkgs.callPackage "${hyprexpo-src}/default.nix" {
+  hyprland = pkgs.hyprland;
+}).overrideAttrs (oldAttrs: {
+  # Inject lua54 and its pkg-config setup into the build environment
+  nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ 
+    pkgs.pkg-config 
+  ];
+  
+  buildInputs = (oldAttrs.buildInputs or []) ++ [ 
+    pkgs.lua5_4
+  ];
+});
+
+in
 {
   variables = {
     NIXOS_OZONE_WL = "1";
     PATH = [ "$PATH:$ANDROID_HOME/platform-tools" ];
     EDITOR = "nvim";
+    HYPR_PLUGIN_DIR = "${hyprexpo-plugin}";
+    TEST="RD";
+
     XCURSOR_SIZE="40";
     HYPRCURSOR_SIZE="40";
     HYPRCURSOR_THEME="rose-pine-hyprcursor";
@@ -13,6 +43,8 @@
     QT_WAYLAND_DISABLE_WINDOWDECORATION="1";
     QT_AUTO_SCREEN_SCALE_FACTOR="1";
     GDK_BACKEND="wayland";
+    HYPRLAND_HEADERS = "${inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland}/include";
+
     SDL_VIDEODRIVER="wayland";
     CLUTTER_BACKEND="wayland";
     XDG_CURRENT_DESKTOP="Hyprland";

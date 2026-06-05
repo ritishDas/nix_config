@@ -5,7 +5,6 @@
   intel-gpu-tools
   hyprpicker
   upower
-  slurp
   hyprpolkitagent
   papirus-icon-theme
   xdg-utils
@@ -38,5 +37,7 @@
 ]++[
   inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
   inputs.astm.packages.${stdenv.hostPlatform.system}.default
+  # inputs.hyprexpo-fork.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
   # inputs.llama-cpp.packages.${system}.vulkan
 ]
+
