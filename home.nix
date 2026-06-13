@@ -119,7 +119,9 @@ gitreset() {
   git clean -fd
 }
 
-
+hyprRefresh(){
+cd ~/.config/hypr/; mv hypr/* .
+}
 
   '';
 

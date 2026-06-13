@@ -80,6 +80,7 @@ window#waybar.top-bar #window {
 #window,
 #clock,
 #battery,
+#custom-stopwatch,
 #pulseaudio,
 #network,
 #temperature,
@@ -92,6 +93,10 @@ window#waybar.top-bar #window {
     background: #1e1e2e;
     padding: 0px 10px;
     margin-top: 2px;
+}
+
+#custom-stopwatch{
+    border-radius: 10px;
 }
 
 #temperature, #disk {

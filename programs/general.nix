@@ -2,40 +2,16 @@
 
 let
   yaak = pkgs.callPackage ./yaak.package.nix {};
-hyprexpo-src = pkgs.fetchFromGitHub {
-    owner = "sandwichfarm";
-    repo = "hyprexpo";
-    rev = "HEAD"; 
-    sha256 = "sha256-DPht6eNnLPYzb2VLyonGRCTfrcpzcSmymQAzA3qpHK0=";
-  };
-
-  # hyprexpo-plugin = pkgs.callPackage "${hyprexpo-src}/default.nix" {
-  #   hyprland = pkgs.hyprland; 
-  # };
   
-  hyprexpo-plugin = (pkgs.callPackage "${hyprexpo-src}/default.nix" {
-  hyprland = pkgs.hyprland;
-}).overrideAttrs (oldAttrs: {
-  # Inject lua54 and its pkg-config setup into the build environment
-  nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ 
-    pkgs.pkg-config 
-  ];
-  
-  buildInputs = (oldAttrs.buildInputs or []) ++ [ 
-    pkgs.lua5_4
-  ];
-});
 
 in
   with pkgs; [
-    hyprexpo-plugin
     swayimg
-    lua5_4
-    # sublime
     zip
     jre
     webcamoid
     wget
+    redis
     htop
     unzip
     mpv

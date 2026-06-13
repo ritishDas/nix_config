@@ -8,6 +8,11 @@
     # llama-cpp.url = "github:ggml-org/llama.cpp";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     hyprland.url = "github:hyprwm/hyprland";
+       hyprspace = {
+      url = "github:KZDKM/Hyprspace";
+
+      inputs.hyprland.follows = "hyprland";
+    };
     astm.url = "github:ritishDas/astm";
     rose-pine-hyprcursor = {
       url = "github:ndom91/rose-pine-hyprcursor";

@@ -1,7 +1,6 @@
 {pkgs}: with pkgs; [
   man-pages
   cmatrix
-  # waydroid
   man-pages-posix
   jq
   trash-cli
@@ -9,7 +8,7 @@
   github-copilot-cli
   wezterm
   glow
-  opencode
+  # opencode
   pkg-config
   ripgrep
   lua-language-server
@@ -18,7 +17,7 @@
   tailwindcss-language-server
   yaml-language-server
   ccls
-  wrk
+  # wrk
   fd
   git
   gh
@@ -29,9 +28,10 @@
   cmake 
   direnv
   nix-direnv
-  glib
-  gtk4
+  # glib
+  # gtk4
   pyright
+  # waydroid
   # alacritty
   # jdt-language-server
   # steam-run

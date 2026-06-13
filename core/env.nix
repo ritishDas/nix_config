@@ -1,37 +1,11 @@
 { pkgs,inputs,lib }:
 
-let
-hyprexpo-src = pkgs.fetchFromGitHub {
-    owner = "sandwichfarm";
-    repo = "hyprexpo";
-    rev = "HEAD"; 
-    sha256 = "sha256-DPht6eNnLPYzb2VLyonGRCTfrcpzcSmymQAzA3qpHK0=";
-  };
-
-  # hyprexpo-plugin = pkgs.callPackage "${hyprexpo-src}/default.nix" {
-  #   hyprland = pkgs.hyprland; 
-  # };
-  
-  hyprexpo-plugin = (pkgs.callPackage "${hyprexpo-src}/default.nix" {
-  hyprland = pkgs.hyprland;
-}).overrideAttrs (oldAttrs: {
-  # Inject lua54 and its pkg-config setup into the build environment
-  nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ 
-    pkgs.pkg-config 
-  ];
-  
-  buildInputs = (oldAttrs.buildInputs or []) ++ [ 
-    pkgs.lua5_4
-  ];
-});
-
-in
 {
   variables = {
     NIXOS_OZONE_WL = "1";
     PATH = [ "$PATH:$ANDROID_HOME/platform-tools" ];
     EDITOR = "nvim";
-    HYPR_PLUGIN_DIR = "${hyprexpo-plugin}";
+    HYPR_PLUGIN_DIR = "${inputs.hyprspace.packages.${pkgs.stdenv.hostPlatform.system}.default}";
     TEST="RD";
 
     XCURSOR_SIZE="40";
@@ -76,7 +50,7 @@ in
   };
   systemPackages = (import ../programs){inherit pkgs;inherit inputs;};
   shellAliases = {
-    rb = "cd /etc/nixos;sudo nixos-rebuild switch --flake .#nixos;hyprctl reload";
+    rb = "cd /etc/nixos;sudo nixos-rebuild switch --flake .#nixos && hyprRefresh && hyprctl reload";
     ed = "cd /etc/nixos ; sudo nvim configuration.nix";
     sz = "du -sh .[^.]* */ | sort -h";
     vi = "nvim";

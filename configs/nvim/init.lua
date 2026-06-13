@@ -150,7 +150,7 @@ vim.opt.foldlevelstart = 99
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 require("config.lazy");
--- vim.cmd("colorscheme desert")
+vim.cmd("colorscheme catppuccin")
 vim.keymap.set('v', 'gv', require('telescope.builtin').grep_string, { desc = 'Grep selection' })
 
 map("n", "<leader>s", function()
