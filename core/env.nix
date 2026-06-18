@@ -53,7 +53,7 @@
     rb = "cd /etc/nixos;sudo nixos-rebuild switch --flake .#nixos && hyprRefresh && hyprctl reload";
     ed = "cd /etc/nixos ; sudo nvim configuration.nix";
     sz = "du -sh .[^.]* */ | sort -h";
-    vi = "nvim";
+    vi = "nvim .";
   };
 
 

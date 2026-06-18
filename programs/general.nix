@@ -7,6 +7,7 @@ let
 in
   with pkgs; [
     swayimg
+    fastfetch
     zip
     jre
     webcamoid

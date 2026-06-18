@@ -31,7 +31,7 @@ vim.opt.expandtab = true
 vim.opt.relativenumber = true
 vim.opt.number = true
 vim.opt.swapfile = false
-vim.opt.mouse = 'a'
+vim.opt.mouse = ''
 
 vim.o.updatetime = 200
 
