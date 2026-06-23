@@ -17,8 +17,13 @@ vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 local aug = vim.api.nvim_create_augroup("user_config", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
   group = aug,
-  command = "checktime",
+  callback = function()
+    if vim.o.buftype ~= "nofile" then
+      vim.cmd("checktime")
+    end
+  end,
 })
+
 vim.o.autoread = true
 
 -- Options

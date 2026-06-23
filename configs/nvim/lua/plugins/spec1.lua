@@ -248,7 +248,7 @@ return {
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
+    -- branch = "v3.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
@@ -324,7 +324,7 @@ return {
 },
   {
     "nvim-telescope/telescope.nvim",
-    tag = "0.1.8",
+    -- tag = "0.1.8",
     dependencies = {
       "nvim-lua/plenary.nvim",
       {
