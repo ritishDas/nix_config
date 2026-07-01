@@ -19,6 +19,14 @@
       STOP_CHARGE_THRESH_BAT1=75;
     };
   };
+
+
+  k3s={
+  enable=true;
+  role="server";
+  };
+
+
 }//
 import ./login.nix {inherit pkgs;}//
 import ./audio.nix {}//

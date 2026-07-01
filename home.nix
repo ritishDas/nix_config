@@ -31,6 +31,15 @@ in
   #   MimeType=inode/directory;
   # '';
 
+  home.file.".local/share/applications/open-x.desktop".text = ''
+    [Desktop Entry]
+    Name=X
+      Exec=chromium --app=https://x.com
+      Icon=X
+      Type=Application
+      Categories=Network;WebBrowser;
+  '';
+
   home.file.".local/share/applications/open-github.desktop".text = ''
     [Desktop Entry]
     Name=GitHub
@@ -144,7 +153,7 @@ config.default_prog = { "/run/current-system/sw/bin/bash", "-l" }
 config.font_size = 10.0
 
 -- UI Enhancements
-config.color_scheme = 'Catppuccin Macchiato' -- A very popular, easy-on-the-eyes theme
+-- config.color_scheme = 'Catppuccin Macchiato' -- A very popular, easy-on-the-eyes theme
 config.hide_tab_bar_if_only_one_tab = true   -- Keeps it clean until you need tabs
 
 -- Font Configuration

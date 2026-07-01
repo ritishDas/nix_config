@@ -1,5 +1,6 @@
 {pkgs}: with pkgs; [
   nodejs_24
+  tcpdump
   # bun
   pnpm
   gimp

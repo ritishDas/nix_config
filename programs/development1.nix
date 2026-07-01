@@ -2,6 +2,7 @@
   man-pages
   cmatrix
   man-pages-posix
+  kubectl
   jq
   trash-cli
   fzf
@@ -16,7 +17,8 @@
   typescript-language-server 
   tailwindcss-language-server
   yaml-language-server
-  ccls
+  clang-tools
+  # ccls
   # wrk
   fd
   git

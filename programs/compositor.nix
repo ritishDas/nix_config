@@ -1,5 +1,7 @@
 {pkgs,inputs}: with pkgs; [
   
+  apacheKafka
+  qalculate-gtk
   # gpu-screen-recorder
  scrcpy
   tree-sitter
@@ -13,7 +15,6 @@
   nwg-look
   waybar
   killall
-  gammastep
   dunst
   tofi
   wl-clipboard

@@ -6,31 +6,31 @@
 }
 
 window {
-    background-color: rgba(120, 80, 160, 0.35); /* soft purple overlay */
+    background-color: rgba(52, 90, 51, 59); /* soft purple overlay */
     /* border-radius: 12px; */
 }
 
 /* === Button Base === */
 button {
-    background-color: #2b0f3a; /* deep violet */
+    background-color:#004d00 ; /* deep violet */
     border-style: solid;
     border-radius: 50px;
     border-width: 2px;
-    border-color: #c084fc; /* lavender border */
+    border-color: #1ae666; /* lavender border */
     background-repeat: no-repeat;
     background-position: center;
     background-size: 15%;
     margin: 15px;
     color: #f3e8ff; /* soft light purple text */
-    box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+    box-shadow: 0 0 15px #4de68066;
 }
 
 /* === Hover/Active === */
 button:active,
 button:hover {
-    background-color: #a855f7; /* bright purple highlight */
-    color: #1a0626;
-    box-shadow: 0 0 25px rgba(192, 132, 252, 0.8);
+    background-color: #23e633; /* bright purple highlight */
+    color:#001a00 ;
+    box-shadow: 0 0 25px #338433cc;
 }
 
 
@@ -83,3 +83,4 @@ button:hover {
 #exit:hover {
     background-image: image(url("/home/ritish/.config/assets/wlogout/assets/restart-hover.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
 }
+

@@ -75,6 +75,8 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
+          ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+          ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
           -- ["<Tab>"] = cmp.mapping.confirm({ select = true }),
         }),
@@ -99,7 +101,7 @@ return {
       local servers = {
         lua_ls = {},
         ts_ls = {},
-        ccls = {},
+        clangd = {},
         yamlls = {},
         pyright = {},
         dartls = {},

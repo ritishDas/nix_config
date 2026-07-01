@@ -10,9 +10,9 @@ vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 -- Highlights
 
+vim.api.nvim_set_hl(0, "Normal", { bg = "#002400" })
 
--- vim.api.nvim_set_hl(0, "Normal", { bg = "#1a3c1b" })
--- vim.api.nvim_set_hl(0, "LineNr", { fg = "#e6fc3f" })
+vim.api.nvim_set_hl(0, "LineNr", { fg = "#e6fc3f" })
 
 local aug = vim.api.nvim_create_augroup("user_config", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
@@ -78,12 +78,12 @@ map("n", "<leader>n", ":BufferLineCycleNext<CR>")
 map("n", "<leader>p", ":BufferLineCyclePrev<CR>")
 map("n", "<leader>b", ":buffers<CR>")
 map("n", "<leader>c", ":CccPick<CR>")
+map("v", "<leader>r", [[:s/<C-r><C-w>/]])
 map("n", "<C-j>", "<C-d>zz")
 map("n", "<C-k>", "<C-u>zz")
 map("v", "<C-j>", "<C-d>zz")
 map("v", "<C-k>", "<C-u>zz")
 map("n", "<C-a>", "ggVG")
-map("v", "<leader>r", [[:s/<C-r><C-w>/]])
 
 
 
@@ -155,8 +155,7 @@ vim.opt.foldlevelstart = 99
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 require("config.lazy");
-vim.cmd("colorscheme catppuccin")
-vim.keymap.set('v', 'gv', require('telescope.builtin').grep_string, { desc = 'Grep selection' })
+-- vim.cmd("colorscheme catppuccin")
 
 map("n", "<leader>s", function()
   vim.lsp.buf.format()
@@ -179,6 +178,7 @@ if ok then
   map("n", "<leader>tf", telescope.find_files, "Find files")
   map("n", "<leader>tg", telescope.live_grep, "Live grep")
   map("n", "<leader>tr", telescope.resume, "Resume search")
+  vim.keymap.set('v', 'ts', require('telescope.builtin').grep_string, { desc = 'Grep selection' })
 end
 
 -- Bufferline (safe)
@@ -216,3 +216,5 @@ end
 --
 ---- Run last debug session
 --map("n", "<leader>dl", function() require("dap").run_last() end, { desc = "DAP Run Last" })
+--
+--#registry
