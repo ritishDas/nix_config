@@ -10,7 +10,7 @@
   udev.extraRules = ''
     KERNEL=="uinput",MODE="0660", GROUP="input"
     '';
-  flatpak.enable=true;
+  # flatpak.enable=true;
   upower.enable=true;
   tlp={
     enable=true;
@@ -21,11 +21,16 @@
   };
 
 
-  k3s={
-  enable=true;
-  role="server";
-  };
+  # k3s={
+  # enable=true;
+  # role="server";
+  # };
+  #
+  # speechd = {
+  #   enable = true;
+  # };
 
+blueman.enable = true;
 
 }//
 import ./login.nix {inherit pkgs;}//

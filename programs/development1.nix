@@ -9,7 +9,6 @@
   github-copilot-cli
   wezterm
   glow
-  # opencode
   pkg-config
   ripgrep
   lua-language-server
@@ -18,8 +17,6 @@
   tailwindcss-language-server
   yaml-language-server
   clang-tools
-  # ccls
-  # wrk
   fd
   git
   gh
@@ -30,9 +27,12 @@
   cmake 
   direnv
   nix-direnv
+  # ccls
+  # wrk
   # glib
   # gtk4
-  pyright
+  # pyright
+  # opencode
   # waydroid
   # alacritty
   # jdt-language-server

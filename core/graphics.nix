@@ -1,6 +1,8 @@
 { pkgs, ... }:
 
 {
+
+bluetooth.enable = true;
   graphics = {
     enable = true;
 

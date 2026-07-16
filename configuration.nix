@@ -19,13 +19,14 @@
     enable = true;
   };
 
+security.polkit.enable = true;
+
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
     withUWSM = true;
   };
 
-  programs.chromium.enable = true;
   programs.nix-ld = {
     enable = true;
   };

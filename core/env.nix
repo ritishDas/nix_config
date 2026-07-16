@@ -23,7 +23,7 @@
     CLUTTER_BACKEND="wayland";
     XDG_CURRENT_DESKTOP="Hyprland";
     XDG_SESSION_TYPE="wayland";
-    CHROME_EXECUTABLE="/run/current-system/sw/bin/chromium";
+    CHROME_EXECUTABLE="/run/current-system/sw/bin/google-chrome";
 
     GSETTINGS_SCHEMA_DIR =
       "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}";

@@ -39,6 +39,18 @@ return {
     end
   },
   {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require('nvim-ts-autotag').setup({
+        opts = {
+          enable_close = true,           -- Auto close tags
+          enable_rename = true,          -- Auto rename pairs directly!
+          enable_close_on_slash = false, -- Auto close on trailing </
+        },
+      })
+    end
+  },
+  {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
     config = function()
@@ -61,7 +73,7 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       require("luasnip.loaders.from_vscode").lazy_load()
-      luasnip.filetype_extend("typescriptreact", { "html", "javascriptreact", "ejs" })
+      luasnip.filetype_extend("typescriptreact", { "html_tags", "html", "javascriptreact", "ejs" })
 
       cmp.setup({
         formatting = {
@@ -234,7 +246,7 @@ return {
         install_dir = vim.fn.stdpath('data') .. '/site',
       }
 
-      require('nvim-treesitter').install { 'javascript', 'typescript', 'tsx' }
+      require('nvim-treesitter').install { 'html_tags', 'html', 'javascript', 'typescript', 'tsx' }
     end
   }, {
   "roobert/tailwindcss-colorizer-cmp.nvim",

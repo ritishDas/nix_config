@@ -1,8 +1,11 @@
 {pkgs,inputs}: with pkgs; [
-  
+  espeak-ng
+  speechd
+  mongodb
+  google-chrome
+  blueman
   apacheKafka
   qalculate-gtk
-  # gpu-screen-recorder
  scrcpy
   tree-sitter
   intel-gpu-tools
@@ -30,17 +33,18 @@
   tuigreet
   pulseaudio-ctl
   wf-recorder
-  # blender
-  # hyprpicker
-  # google-chrome
-  # obs-studio
-  # appflowy
-  # ppsspp
 ]++[
   inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
   inputs.astm.packages.${stdenv.hostPlatform.system}.default
   inputs.hyprspace.packages.${stdenv.hostPlatform.system}.default
   # inputs.hyprexpo-fork.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
   # inputs.llama-cpp.packages.${system}.vulkan
+  # gpu-screen-recorder
+  # blender
+  # hyprpicker
+  # google-chrome
+  # obs-studio
+  # appflowy
+  # ppsspp
 ]
 

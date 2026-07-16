@@ -36,7 +36,7 @@
           users.users = {
             ritish = {
               isNormalUser = true;
-              extraGroups = [ "wheel" "networkmanager" "kvm" "libvirt" "docker" "input" ];
+              extraGroups = [ "audio" "wheel" "networkmanager" "kvm" "libvirt" "docker" "input" ];
             };
           };
           # ✅ Home Manager settings

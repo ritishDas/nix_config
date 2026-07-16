@@ -34,7 +34,7 @@ in
   home.file.".local/share/applications/open-x.desktop".text = ''
     [Desktop Entry]
     Name=X
-      Exec=chromium --app=https://x.com
+      Exec=google-chrome --app=https://x.com
       Icon=X
       Type=Application
       Categories=Network;WebBrowser;
@@ -43,7 +43,7 @@ in
   home.file.".local/share/applications/open-github.desktop".text = ''
     [Desktop Entry]
     Name=GitHub
-      Exec=chromium --app=https://github.com
+      Exec=google-chrome --app=https://github.com
       Icon=github
       Type=Application
       Categories=Network;WebBrowser;
@@ -52,7 +52,7 @@ in
   home.file.".local/share/applications/open-gemini.desktop".text = ''
     [Desktop Entry]
     Name=Gemini
-      Exec=chromium --app=https://gemini.google.com/
+      Exec=google-chrome --app=https://gemini.google.com/
       Icon=youtube
       Type=Application
       Categories=Network;WebBrowser;
@@ -61,7 +61,7 @@ in
   home.file.".local/share/applications/open-claude.desktop".text = ''
     [Desktop Entry]
     Name=Claude
-      Exec=chromium --app=https://claude.ai/new
+      Exec=google-chrome --app=https://claude.ai/new
       Icon=youtube
       Type=Application
       Categories=Network;WebBrowser;
@@ -70,7 +70,7 @@ in
   home.file.".local/share/applications/whatsapp.desktop".text = ''
     [Desktop Entry]
     Name=Whatsapp
-      Exec=chromium --app=https://web.whatsapp.com/
+      Exec=google-chrome --app=https://web.whatsapp.com/
       Icon=whatsapp
       Type=Application
       Categories=Network;WebBrowser;
@@ -79,7 +79,7 @@ in
   home.file.".local/share/applications/discord.desktop".text = ''
     [Desktop Entry]
     Name=Discord
-      Exec=chromium --app=https://discord.com/app
+      Exec=google-chrome --app=https://discord.com/app
       Icon=discord
       Type=Application
       Categories=Network;WebBrowser;

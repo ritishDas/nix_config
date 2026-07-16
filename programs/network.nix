@@ -4,7 +4,6 @@
     ngrok
     live-server
     localsend
-  chromium
   iw
     openssl
 

@@ -16,7 +16,7 @@
             "format": "{name}\n{windows}",  // Restore {windows} and use \n to stack them
             "format-window-separator": "\n", // Stack multiple app icons vertically
             "window-rewrite": {
-                "class<chromium-browser>": "",
+                "class<google-chrome>": "",
                 "class<org.wezfurlong.wezterm>": "",
                 "class<thunar>": "",
                 "class<libreoffice-startcenter>": "",

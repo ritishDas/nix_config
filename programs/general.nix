@@ -1,10 +1,5 @@
 { pkgs }:
 
-let
-  yaak = pkgs.callPackage ./yaak.package.nix {};
-  
-
-in
   with pkgs; [
     swayimg
     fastfetch
@@ -27,8 +22,8 @@ in
     thunar-archive-plugin
     gsettings-desktop-schemas
     thunar-volman
+    yaak
    ]  ++ [ 
-  yaak
    (pkgs.writeShellScriptBin "stopwatch" ''
 STATE="$HOME/.cache/stopwatch.state"
 

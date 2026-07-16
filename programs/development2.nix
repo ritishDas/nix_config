@@ -1,10 +1,10 @@
 {pkgs}: with pkgs; [
   nodejs_24
   tcpdump
-  # bun
   pnpm
   gimp
   inkscape
+  # bun
   # burpsuite
   # tableplus
   # blender

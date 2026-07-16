@@ -6,7 +6,7 @@
 }
 
 window {
-    background-color: rgba(52, 90, 51, 59); /* soft purple overlay */
+    background-color: rgba(52, 90, 51,  0.2); /* soft purple overlay */
     /* border-radius: 12px; */
 }
 
