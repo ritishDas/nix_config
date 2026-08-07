@@ -2,8 +2,8 @@
   nodejs_24
   tcpdump
   pnpm
-  gimp
   inkscape
+  # gimp
   # bun
   # burpsuite
   # tableplus

@@ -4,7 +4,7 @@
     ngrok
     live-server
     localsend
-  iw
+    iw
     openssl
 
     # firefox

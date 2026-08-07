@@ -1,12 +1,11 @@
 {pkgs,inputs}: with pkgs; [
   espeak-ng
   speechd
-  mongodb
+  # mongodb
   google-chrome
   blueman
   apacheKafka
   qalculate-gtk
- scrcpy
   tree-sitter
   intel-gpu-tools
   hyprpicker

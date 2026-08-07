@@ -10,6 +10,10 @@ vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 -- Highlights
 
+vim.keymap.set('n', 'k', "(v:count > 1 ? \"m'\" . v:count : '') . 'k'", { expr = true, silent = true })
+vim.keymap.set('n', 'j', "(v:count > 1 ? \"m'\" . v:count : '') . 'j'", { expr = true, silent = true })
+
+
 vim.api.nvim_set_hl(0, "Normal", { bg = "#002400" })
 
 vim.api.nvim_set_hl(0, "LineNr", { fg = "#e6fc3f" })

@@ -1,6 +1,7 @@
 { pkgs }:
 
   with pkgs; [
+  wireguard-tools
     swayimg
     fastfetch
     zip

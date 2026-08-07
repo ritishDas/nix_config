@@ -1,7 +1,7 @@
 {pkgs}: with pkgs; [
   man-pages
-  cmatrix
   man-pages-posix
+  man-db
   kubectl
   jq
   trash-cli
@@ -16,17 +16,18 @@
   typescript-language-server 
   tailwindcss-language-server
   yaml-language-server
+  jdt-language-server
   clang-tools
   fd
   git
   gh
   gcc
   bear
-  python314
   gnumake
   cmake 
   direnv
   nix-direnv
+  # python314
   # ccls
   # wrk
   # glib
@@ -35,7 +36,6 @@
   # opencode
   # waydroid
   # alacritty
-  # jdt-language-server
   # steam-run
    # activitywatch
   # tailwindcss_4

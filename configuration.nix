@@ -31,6 +31,12 @@ security.polkit.enable = true;
     enable = true;
   };
 
+  documentation = {
+    enable = true;
+    man.enable = true;
+    man.generateCaches = true; 
+  };
+
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
 

@@ -115,7 +115,7 @@ return {
         ts_ls = {},
         clangd = {},
         yamlls = {},
-        pyright = {},
+        -- pyright = {},
         dartls = {},
         nixd = {},
         kotlin_language_server = {},
@@ -307,35 +307,36 @@ return {
         },
       })
     end
-  }, {
-  "nvim-lualine/lualine.nvim",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
-  config = function()
-    require("lualine").setup({
-      options = { section_separators = "", component_separators = "" },
-      sections = {
-        lualine_a = { "mode" },
-        lualine_b = { "branch", "diff", "diagnostics" },
-        lualine_c = {
-          {
-            function()
-              local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
-              if next(buf_clients) == nil then return "No LSP" end
-              local names = {}
-              for _, client in pairs(buf_clients) do table.insert(names, client.name) end
-              return " " .. table.concat(names, ",")
-            end,
-            color = { gui = "bold" },
+  },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      require("lualine").setup({
+        options = { section_separators = "", component_separators = "" },
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = { "branch", "diff", "diagnostics" },
+          lualine_c = {
+            {
+              function()
+                local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
+                if next(buf_clients) == nil then return "No LSP" end
+                local names = {}
+                for _, client in pairs(buf_clients) do table.insert(names, client.name) end
+                return " " .. table.concat(names, ",")
+              end,
+              color = { gui = "bold" },
+            },
+            "filename",
           },
-          "filename",
+          lualine_x = { "encoding", "fileformat", "filetype" },
+          lualine_y = { "progress" },
+          lualine_z = { "location" },
         },
-        lualine_x = { "encoding", "fileformat", "filetype" },
-        lualine_y = { "progress" },
-        lualine_z = { "location" },
-      },
-    })
-  end,
-},
+      })
+    end,
+  },
   {
     "nvim-telescope/telescope.nvim",
     -- tag = "0.1.8",
@@ -363,10 +364,15 @@ return {
         start_in_insert = true,
         persist_size = true,
         close_on_exit = true,
+
+        -- Callback executed when the terminal opens
+        on_open = function(term)
+          vim.opt_local.number = true         -- Enables absolute line numbers
+          vim.opt_local.relativenumber = true -- Enables relative line numbers (optional)
+        end,
       })
     end,
   },
-
 
 }
 -- {
