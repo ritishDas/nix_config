@@ -116,9 +116,9 @@ return {
         clangd = {},
         yamlls = {},
         -- pyright = {},
-        dartls = {},
+        -- dartls = {},
         nixd = {},
-        kotlin_language_server = {},
+        -- kotlin_language_server = {},
         prismals = {},
         tailwindcss = {
           settings = {
