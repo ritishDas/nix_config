@@ -3,6 +3,7 @@
   tcpdump
   pnpm
   inkscape
+  codex
   # gimp
   # bun
   # burpsuite

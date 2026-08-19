@@ -1,0 +1,70 @@
+;; Poll current date components every 10 hours
+(defpoll calendar_day   :interval "10h" "date '+%d'")
+(defpoll calendar_month :interval "10h" "date '+%m'")
+(defpoll calendar_year  :interval "10h" "date '+%Y'")
+
+;; Poll script output every 1 minute
+(defpoll elapsed_time :interval "1m" "timeElapsed")
+
+;; Define a standalone calendar widget
+(defwidget cal []
+  (box :class "cal-box"
+       :orientation "v"
+    (calendar :class "cal-widget"
+              :day calendar_day
+              :month calendar_month
+              :year calendar_year
+              :show-details false
+              :show-heading true
+              :show-day-names true)))
+
+;; Combined widget containing the counter and calendar
+(defwidget desktop_panel []
+  (box :class "panel-container"
+       :orientation "v"
+       :space-evenly false
+       :spacing 12
+    
+    ;; Date Counter Box
+    (box :class "counter-box"
+         :orientation "v"
+         :space-evenly false
+      (label :class "counter-title" :text "TIME ELAPSED")
+      (label :class "counter-value" :text elapsed_time))
+
+    ;; Calendar Box
+    (box :class "calendar-box"
+         :orientation "v"
+      (calendar :class "cal-widget"
+                :day calendar_day
+                :month calendar_month
+                :year calendar_year
+                :show-details false
+                :show-heading true
+                :show-day-names true))))
+
+;; Define the Wayland layer window for the standalone calendar
+(defwindow calendar
+  :monitor 0
+  :geometry (geometry :x "20px"
+                      :y "20px"
+                      :anchor "top right"
+                      :width "400px"
+                      :height "300px")
+  :stacking "bottom"          ;; Places it behind normal windows
+  :focusable false            ;; Prevents stealing window focus
+  :exclusive false            ;; Lets windows tile over it without reserving desktop space
+  (cal))
+
+;; Desktop wallpaper window
+(defwindow desktop_widget
+  :monitor 0
+  :geometry (geometry :x "20px"
+                      :y "20px"
+                      :anchor "top right"
+                      :width "340px")
+  :stacking "bottom"
+  :focusable false
+  :exclusive false
+  (desktop_panel))
+

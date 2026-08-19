@@ -1,4 +1,5 @@
 {pkgs,inputs}: with pkgs; [
+  eww
   espeak-ng
   speechd
   # mongodb

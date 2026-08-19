@@ -91,6 +91,37 @@ case "$1" in
         ;;
 esac
     '')
+ 
+(pkgs.writeShellScriptBin "timeElapsed" ''
+  # Set your reference start date here (YYYY-MM-DD HH:MM:SS)
+  START_DATE="2026-02-10 00:00:00"
+
+  START_SEC=$(date -d "$START_DATE" +%s)
+  NOW_SEC=$(date +%s)
+  DIFF=$(( NOW_SEC - START_SEC ))
+
+  if [ ''$DIFF -lt 0 ]; then
+      echo "Date is in the future"
+      exit 0
+  fi
+
+  # Time constants
+  SEC_PER_HOUR=3600
+  SEC_PER_DAY=86400
+  SEC_PER_MONTH=2592000 # Average 30 days
+
+  # Calculate breakdown
+  MONTHS=$(( DIFF / SEC_PER_MONTH ))
+  REMAINDER=$(( DIFF % SEC_PER_MONTH ))
+
+  DAYS=$(( REMAINDER / SEC_PER_DAY ))
+  REMAINDER=$(( REMAINDER % SEC_PER_DAY ))
+
+  HOURS=$(( REMAINDER / SEC_PER_HOUR ))
+
+  echo "''${MONTHS}m ''${DAYS}d ''${HOURS}h"
+'')
+
 ]
 
 

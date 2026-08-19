@@ -34,7 +34,6 @@ security.polkit.enable = true;
   documentation = {
     enable = true;
     man.enable = true;
-    man.generateCaches = true; 
   };
 
   programs.direnv.enable = true;
