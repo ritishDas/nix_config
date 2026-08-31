@@ -115,9 +115,10 @@ return {
         ts_ls = {},
         clangd = {},
         yamlls = {},
+        nixd = {},
+        bashls = {},
         -- pyright = {},
         -- dartls = {},
-        nixd = {},
         -- kotlin_language_server = {},
         prismals = {},
         tailwindcss = {

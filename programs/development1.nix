@@ -13,6 +13,7 @@
   ripgrep
   lua-language-server
   nixd
+  bash-language-server
   typescript-language-server 
   tailwindcss-language-server
   yaml-language-server
@@ -20,6 +21,7 @@
   clang-tools
   fd
   git
+  git-filter-repo
   gh
   gcc
   bear
@@ -27,6 +29,7 @@
   cmake 
   direnv
   nix-direnv
+  antigravity
   # python314
   # ccls
   # wrk

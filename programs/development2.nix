@@ -2,6 +2,7 @@
   nodejs_24
   tcpdump
   pnpm
+  bun
   inkscape
   codex
   # gimp

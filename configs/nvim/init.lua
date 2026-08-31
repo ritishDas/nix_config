@@ -54,12 +54,12 @@ vim.diagnostic.config({
 })
 
 
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = { "compile_commands.json", "Makefile" },
-  callback = function()
-    vim.cmd("LspRestart")
-  end,
-})
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--   pattern = { "compile_commands.json", "Makefile" },
+--   callback = function()
+--     vim.cmd("LspRestart")
+--   end,
+-- })
 
 -- Clipboard
 vim.opt.clipboard = "unnamedplus"
@@ -98,6 +98,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
     vim.keymap.set("n", "T", vim.lsp.buf.hover, { buffer = bufnr })
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
     vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find references" })
 
 
@@ -145,7 +147,12 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.fn.stdpath("data") .. "/jdtls-workspaces/" .. project_name
 
     jdtls.start_or_attach({
-      cmd = { "jdtls", "-data", workspace_dir },
+      cmd = {
+        "jdtls",
+        "-data",
+        workspace_dir,
+        "--jvm-arg=-javaagent:" .. vim.fn.expand("~/.m2/repository/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar"),
+      },
       root_dir = root_dir,
     })
   end,
