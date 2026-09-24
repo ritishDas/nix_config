@@ -3,8 +3,30 @@
 (defpoll calendar_month :interval "10h" "date '+%m'")
 (defpoll calendar_year  :interval "10h" "date '+%Y'")
 
+;; Generates all 12 months cleanly using jq range (1..12)
+(defpoll year_months :interval "10h"
+  `jq -nc --argjson cur "$(date +%-m)" '[range(1; 13) | {m: ., passed: (. <= $cur)}]bin' 2>/dev/null || jq -nc --argjson cur "$(date +%-m)" '[range(1; 13) | {m: ., passed: (. <= $cur)}]'`)
+
 ;; Poll script output every 1 minute
 (defpoll elapsed_time :interval "1m" "timeElapsed")
+
+;; Month Progress Tracker Widget (12 boxes)
+(defwidget year_progress []
+  (box :class "year-progress-box"
+       :orientation "v"
+       :space-evenly false
+       :spacing 6
+    (box :class "year-progress-header"
+         :orientation "h"
+      (label :class "progress-title" :text "YEAR PROGRESS" :halign "start")
+      (label :class "progress-count" :text "${calendar_month}/12" :halign "end"))
+    (box :class "month-boxes"
+         :orientation "h"
+         :space-evenly true
+         :spacing 4
+      (for month in year_months
+        (box :class "month-box ${month.passed ? 'active' : 'inactive'}"
+             :tooltip "Month ${month.m}")))))
 
 ;; Define a standalone calendar widget
 (defwidget cal []
@@ -18,19 +40,22 @@
               :show-heading true
               :show-day-names true)))
 
-;; Combined widget containing the counter and calendar
+;; Combined widget containing the counter, month tracker, and calendar
 (defwidget desktop_panel []
   (box :class "panel-container"
        :orientation "v"
        :space-evenly false
        :spacing 12
-    
+
     ;; Date Counter Box
     (box :class "counter-box"
          :orientation "v"
          :space-evenly false
       (label :class "counter-title" :text "TIME ELAPSED")
       (label :class "counter-value" :text elapsed_time))
+
+    ;; Year Progress Indicator
+    (year_progress)
 
     ;; Calendar Box
     (box :class "calendar-box"
@@ -43,7 +68,7 @@
                 :show-heading true
                 :show-day-names true))))
 
-;; Define the Wayland layer window for the standalone calendar
+;; Standalone calendar window
 (defwindow calendar
   :monitor 0
   :geometry (geometry :x "20px"
@@ -51,9 +76,9 @@
                       :anchor "top right"
                       :width "400px"
                       :height "300px")
-  :stacking "bottom"          ;; Places it behind normal windows
-  :focusable false            ;; Prevents stealing window focus
-  :exclusive false            ;; Lets windows tile over it without reserving desktop space
+  :stacking "bottom"
+  :focusable false
+  :exclusive false
   (cal))
 
 ;; Desktop wallpaper window
@@ -67,4 +92,3 @@
   :focusable false
   :exclusive false
   (desktop_panel))
-

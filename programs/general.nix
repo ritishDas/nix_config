@@ -1,7 +1,8 @@
 { pkgs }:
 
   with pkgs; [
-  wireguard-tools
+  # wireguard-tools
+  obs-studio
     swayimg
     fastfetch
     zip
@@ -131,7 +132,6 @@ esac
     # postman
 # requestly
 # nautilus
-# obs-studio
 #kdePackages.qt6ct
 #shotcut
 # steam-run

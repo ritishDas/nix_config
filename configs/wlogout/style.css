@@ -1,38 +1,41 @@
 * {
     font-family: '0xProto Nerd FontMono-Regular', monospace;
     font-size: 24px;
-    transition-property: background-color, box-shadow;
+    transition-property: background-color, box-shadow, border-color;
     transition-duration: 0.2s;
 }
 
 window {
-    background-color: rgba(52, 90, 51,  0.2); /* soft purple overlay */
-    /* border-radius: 12px; */
+    background-color: rgba(0, 77, 0, 0.20);
 }
 
 /* === Button Base === */
 button {
-    background-color:#004d00 ; /* deep violet */
+    background-color: #003300;
     border-style: solid;
     border-radius: 50px;
     border-width: 2px;
-    border-color: #1ae666; /* lavender border */
+    border-color: #198754;
+
     background-repeat: no-repeat;
     background-position: center;
     background-size: 15%;
+
     margin: 15px;
-    color: #f3e8ff; /* soft light purple text */
-    box-shadow: 0 0 15px #4de68066;
+    color: #b8f5c8;
+
+    box-shadow: 0 0 15px rgba(25, 135, 84, 0.4);
 }
 
-/* === Hover/Active === */
+/* === Hover / Active === */
 button:active,
 button:hover {
-    background-color: #23e633; /* bright purple highlight */
-    color:#001a00 ;
-    box-shadow: 0 0 25px #338433cc;
-}
+    background-color: #198754;
+    color: #001a0d;
+    border-color: #66e39a;
 
+    box-shadow: 0 0 25px rgba(102, 227, 154, 0.6);
+}
 
 /* === Icons === */
 #lock {

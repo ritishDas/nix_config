@@ -24,8 +24,10 @@
                 "class<spotify>": "",
                 "class<io.github.webcamoid.>": "",
                 "class<mpv>": "",
+                "class<org.kde.okular>": "",
                 "class<localsend_app>": "",
                 "class<yaak-app>":"󱂛",
+                "class<com.obsproject.Studio>":"",
                 "class<chrome-discord.com__app-Profile_1>": "",
                 "window-rewrite-default": ""
             },

@@ -54,6 +54,7 @@
     ed = "cd /etc/nixos ; sudo nvim configuration.nix";
     sz = "du -sh .[^.]* */ | sort -h";
     vi = "nvim";
+    rough = "nano ~/rough.md";
   };
 
 

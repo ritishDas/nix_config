@@ -3,7 +3,7 @@
 let
   configDir = ./configs;
   user = "ritish";
-  apps = ["eww" "mpv" "assets" "wlogout" "dunst" "tofi" "waybar" "hypr" "nvim" ];
+  apps = ["clangd" "eww" "mpv" "assets" "wlogout" "dunst" "tofi" "waybar" "hypr" "nvim" ];
 in
   {
   home.username = "ritish";
@@ -30,6 +30,8 @@ in
   #   NoDisplay=false
   #   MimeType=inode/directory;
   # '';
+
+
 
   home.file.".local/share/applications/open-x.desktop".text = ''
     [Desktop Entry]
@@ -58,10 +60,10 @@ in
       Categories=Network;WebBrowser;
   '';
 
-  home.file.".local/share/applications/open-claude.desktop".text = ''
+  home.file.".local/share/applications/open-gpt.desktop".text = ''
     [Desktop Entry]
-    Name=Claude
-      Exec=google-chrome --app=https://claude.ai/new
+    Name=ChatGPT
+      Exec=google-chrome --app=https://chatgpt.com/
       Icon=youtube
       Type=Application
       Categories=Network;WebBrowser;
@@ -150,7 +152,7 @@ local config = wezterm.config_builder()
 
 -- Basic Settings
 config.default_prog = { "/run/current-system/sw/bin/bash", "-l" }
-config.font_size = 10.0
+config.font_size = 12.0
 
 -- UI Enhancements
 -- config.color_scheme = 'Catppuccin Macchiato' -- A very popular, easy-on-the-eyes theme

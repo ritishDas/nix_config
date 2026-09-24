@@ -2,7 +2,7 @@
   man-pages
   man-pages-posix
   man-db
-  kubectl
+  # kubectl
   jq
   trash-cli
   fzf
@@ -14,10 +14,9 @@
   lua-language-server
   nixd
   bash-language-server
-  typescript-language-server 
-  tailwindcss-language-server
   yaml-language-server
   jdt-language-server
+  tailwindcss-language-server
   clang-tools
   fd
   git

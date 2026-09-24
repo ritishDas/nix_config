@@ -4,6 +4,7 @@ vim.opt.scrolloff = 5
 vim.filetype.add({
   extension = {
     ejs = "html",
+    h="c"
   },
 })
 vim.opt.undofile = true
@@ -14,9 +15,9 @@ vim.keymap.set('n', 'k', "(v:count > 1 ? \"m'\" . v:count : '') . 'k'", { expr =
 vim.keymap.set('n', 'j', "(v:count > 1 ? \"m'\" . v:count : '') . 'j'", { expr = true, silent = true })
 
 
-vim.api.nvim_set_hl(0, "Normal", { bg = "#002400" })
-
-vim.api.nvim_set_hl(0, "LineNr", { fg = "#e6fc3f" })
+-- vim.api.nvim_set_hl(0, "Normal", { bg = "#002400" })
+--
+-- vim.api.nvim_set_hl(0, "LineNr", { fg = "#e6fc3f" })
 
 local aug = vim.api.nvim_create_augroup("user_config", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" }, {
@@ -53,6 +54,10 @@ vim.diagnostic.config({
   float = { border = "rounded" },
 })
 
+
+vim.api.nvim_create_user_command("R", function()
+  vim.cmd("vsplit ~/.rough.md")
+end, {})
 
 -- vim.api.nvim_create_autocmd("BufWritePost", {
 --   pattern = { "compile_commands.json", "Makefile" },
@@ -97,7 +102,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     local bufnr = args.buf
 
     vim.keymap.set("n", "T", vim.lsp.buf.hover, { buffer = bufnr })
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
     vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find references" })
@@ -166,7 +170,7 @@ vim.opt.foldlevelstart = 99
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 require("config.lazy");
--- vim.cmd("colorscheme catppuccin")
+vim.cmd("colorscheme quiet");
 
 map("n", "<leader>s", function()
   vim.lsp.buf.format()
