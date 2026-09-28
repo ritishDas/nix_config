@@ -101,6 +101,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local bufnr = args.buf
 
+    local opts = function(desc)
+      return { buffer = bufnr, desc = desc }
+    end
 
 
 
@@ -108,10 +111,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.keymap.set("n", "gd", vim.lsp.buf.declaration, { buffer = bufnr })
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
     vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find references" })
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts("Go to type definition"))
     vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = bufnr })
     vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { buffer = bufnr })
-    vim.keymap.set("n", "go", vim.lsp.buf.document_symbol, opts("Document symbols"))
-    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts("Go to type definition"))
 
     vim.keymap.set("n", "<leader>d", function()
       local _, winid = vim.diagnostic.open_float(nil, {
@@ -157,9 +159,9 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 
-vim.opt.foldenable = true
-vim.opt.foldlevel = 99
-vim.opt.foldlevelstart = 99
+-- vim.opt.foldenable = true
+-- vim.opt.foldlevel = 99
+-- vim.opt.foldlevelstart = 99
 -- vim.opt.foldmethod = "expr"
 -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 

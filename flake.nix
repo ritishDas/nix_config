@@ -32,14 +32,14 @@
         ./configuration.nix
         home-manager.nixosModules.home-manager
         {
-          # ✅ System users (best kept outside the home-manager block)
+
           users.users = {
             ritish = {
               isNormalUser = true;
               extraGroups = [ "audio" "wheel" "networkmanager" "kvm" "libvirt" "docker" "input" ];
             };
           };
-          # ✅ Home Manager settings
+
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
