@@ -1,8 +1,10 @@
-{pkgs}: with pkgs; [
+{pkgs}:
+let
+
+in with pkgs; [
   man-pages
   man-pages-posix
   man-db
-  # kubectl
   jq
   trash-cli
   fzf
@@ -15,7 +17,6 @@
   nixd
   bash-language-server
   yaml-language-server
-  jdt-language-server
   tailwindcss-language-server
   clang-tools
   fd
@@ -28,27 +29,28 @@
   cmake 
   direnv
   nix-direnv
-  antigravity
-  # python314
-  # ccls
-  # wrk
-  # glib
-  # gtk4
-  # pyright
-  # opencode
-  # waydroid
-  # alacritty
-  # steam-run
-   # activitywatch
-  # tailwindcss_4
-  # gtk3
-   # antigravity
-  # gdb
-  # adminer
-  #vscode
-  #gemini-cli
-  #claude-code
-  #  nginx
-  #litellm
-  # discord
-]
+  # gemini-cli
+# python314
+# ccls
+# wrk
+# glib
+# gtk4
+# pyright
+# opencode
+# waydroid
+# alacritty
+# steam-run
+# activitywatch
+# tailwindcss_4
+# gtk3
+# antigravity
+# gdb
+# adminer
+#vscode
+#gemini-cli
+#claude-code
+# kubectl
+#  nginx
+#litellm
+# discord
+  ]

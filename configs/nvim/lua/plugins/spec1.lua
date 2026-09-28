@@ -1,28 +1,5 @@
 return {
 
-  -- {
-  --   "github/copilot.vim"
-  -- },
-  -- {
-  --   "folke/tokyonight.nvim",
-  --   lazy = false,
-  --   priority = 1000,
-  --   opts = {},
-  --   config = function()
-  --     require("tokyonight").setup({
-  --       style = "moon",
-  --
-  --       on_highlights = function(hl, c)
-  --         hl.LineNr = {
-  --           fg = "#7affff"
-  --         }
-  --
-  --         hl.LineNrAbove = { fg = "#7aa2f7" }
-  --         hl.LineNrBelow = { fg = "#7aa2f7" }
-  --       end,
-  --     })
-  --   end
-  -- },
   {
     'rmagatti/auto-session',
     lazy = false,
@@ -107,9 +84,40 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = { "hrsh7th/nvim-cmp" },
+
     config = function()
       local cmp_nvim_lsp = require("cmp_nvim_lsp")
       local capabilities = cmp_nvim_lsp.default_capabilities()
+
+      -- Custom Kotlin LSP configuration
+      vim.lsp.config("kotlin_lsp", {
+        cmd = { "kotlin-lsp", "--stdio" },
+
+        filetypes = { "kotlin", "java" },
+
+        root_dir = function(bufnr, on_dir)
+          local root = vim.fs.root(bufnr, {
+            "settings.gradle",
+            "settings.gradle.kts",
+            "build.gradle",
+            "build.gradle.kts",
+            ".git",
+          })
+
+          if root then
+            on_dir(root)
+          end
+        end,
+
+        single_file_support = true,
+
+        init_options = {
+          automaticWorkspaceInit = true,
+        },
+
+        capabilities = capabilities,
+      })
+
       local servers = {
         lua_ls = {},
         ts_ls = {},
@@ -117,10 +125,12 @@ return {
         yamlls = {},
         nixd = {},
         bashls = {},
-        -- pyright = {},
-        -- dartls = {},
-        -- kotlin_language_server = {},
+        dartls = {},
         prismals = {},
+
+        -- Official JetBrains Kotlin LSP
+        kotlin_lsp = {},
+
         tailwindcss = {
           settings = {
             tailwindCSS = {
@@ -129,23 +139,21 @@ return {
               },
             },
           },
-        }
-
+        },
       }
-      local default_opts = { capabilities = capabilities }
+
       for name, opts in pairs(servers) do
-        vim.lsp.config(name, vim.tbl_deep_extend("force", default_opts, opts))
+        vim.lsp.config(name, opts)
         vim.lsp.enable(name)
       end
     end,
+  }, {
+  "mfussenegger/nvim-jdtls",
+  dependencies = {
+    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
   },
-  {
-    "mfussenegger/nvim-jdtls",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      "williamboman/mason.nvim",
-    },
-  },
+},
   {
     'akinsho/flutter-tools.nvim',
     lazy = false,
@@ -161,59 +169,110 @@ return {
     end,
   },
   {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    config = function()
+      -- Custom Harpoon 2 statusline component
+      local function harpoon_component()
+        local ok, harpoon = pcall(require, "harpoon")
+        if not ok then return "" end
+
+        local entries = harpoon:list()
+        local total = entries:length()
+        if total == 0 then return "" end
+
+        local current_file_path = vim.api.nvim_buf_get_name(0)
+        local root_dir = vim.uv.cwd() or ""
+        local relative_path = current_file_path:gsub("^" .. vim.pesc(root_dir) .. "/", "")
+
+        local output = {}
+        for idx = 1, total do
+          local item = entries:get(idx)
+          if item and item.value ~= "" then
+            local filename = vim.fs.basename(item.value)
+            if item.value == relative_path or item.value == current_file_path then
+              -- Highlight active file with an asterisk or bracket
+              table.insert(output, string.format("[%d:%s*]", idx, filename))
+            else
+              table.insert(output, string.format("%d:%s", idx, filename))
+            end
+          end
+        end
+
+        return "󰛢 " .. table.concat(output, " ")
+      end
+
+      require("lualine").setup({
+        options = { section_separators = "", component_separators = "" },
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = { "branch", "diff", "diagnostics" },
+          lualine_c = {
+            {
+              function()
+                local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
+                if next(buf_clients) == nil then return "No LSP" end
+                local names = {}
+                for _, client in pairs(buf_clients) do table.insert(names, client.name) end
+                return " " .. table.concat(names, ",")
+              end,
+              color = { gui = "bold" },
+            },
+            "filename",
+            -- Display active Harpoon files right in the statusline
+            { harpoon_component, color = { fg = "#000000", gui = "bold" } },
+          },
+          lualine_x = { "encoding", "fileformat", "filetype" },
+          lualine_y = { "progress" },
+          lualine_z = { "location" },
+        },
+      })
+    end,
+  },
+  {
     "ThePrimeagen/harpoon",
-    branch = "harpoon2", -- important (new API)
+    branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
     config = function()
       local harpoon = require("harpoon")
 
-      harpoon.setup({
-        -- Settings must be nested inside this table for Harpoon 2
+      harpoon:setup({
         settings = {
           save_on_toggle = true,
           save_on_change = true,
         },
-      }) -- add file
-      vim.keymap.set("n", "<leader>ha", function()
-        harpoon:list():add()
-      end)
+      })
 
-      vim.keymap.set("n", "<leader>hr", function()
-        harpoon:list():remove()
-      end)
+      -- List management
+      vim.keymap.set("n", "<leader>ha", function() harpoon:list():add() end, { desc = "Harpoon add file" })
+      vim.keymap.set("n", "<leader>hr", function() harpoon:list():remove() end, { desc = "Harpoon remove file" })
+      vim.keymap.set("n", "<leader>hd", function() harpoon:list():clear() end, { desc = "Harpoon clear all" })
+      vim.keymap.set("n", "<leader>hm", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end,
+        { desc = "Harpoon menu" })
 
-      vim.keymap.set("n", "<leader>hd", function()
-        harpoon:list().items = {}
-      end)
-
-      -- toggle quick menu
-      vim.keymap.set("n", "<leader>hm", function()
-        harpoon.ui:toggle_quick_menu(harpoon:list())
-      end)
-
-      -- jump to files
+      -- Direct jumps (1–4)
       vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end)
       vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end)
       vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end)
       vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end)
-      vim.keymap.set("n", "<leader>5", function() harpoon:list():select(1) end)
-      vim.keymap.set("n", "<leader>6", function() harpoon:list():select(2) end)
-      vim.keymap.set("n", "<leader>7", function() harpoon:list():select(3) end)
-      vim.keymap.set("n", "<leader>8", function() harpoon:list():select(4) end)
-      vim.keymap.set("n", "<leader>9", function() harpoon:list():select(1) end)
-    end
 
+      -- Instant slot overwrites (replace slot 1-4 without opening menu)
+      vim.keymap.set("n", "<leader><C-1>", function() harpoon:list():replace_at(1) end, { desc = "Replace slot 1" })
+      vim.keymap.set("n", "<leader><C-2>", function() harpoon:list():replace_at(2) end, { desc = "Replace slot 2" })
+      vim.keymap.set("n", "<leader><C-3>", function() harpoon:list():replace_at(3) end, { desc = "Replace slot 3" })
+      vim.keymap.set("n", "<leader><C-4>", function() harpoon:list():replace_at(4) end, { desc = "Replace slot 4" })
+    end,
   },
   {
     "akinsho/bufferline.nvim",
     version = "*",
     dependencies = "nvim-tree/nvim-web-devicons",
     config = function()
-      require("bufferline").setup {
+      require("bufferline").setup({
         options = {
-          numbers = "ordinal", -- 1 2 3 4 …
+          numbers = "ordinal",
         },
-      }
+      })
     end,
   },
   {
@@ -308,35 +367,6 @@ return {
         },
       })
     end
-  },
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("lualine").setup({
-        options = { section_separators = "", component_separators = "" },
-        sections = {
-          lualine_a = { "mode" },
-          lualine_b = { "branch", "diff", "diagnostics" },
-          lualine_c = {
-            {
-              function()
-                local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
-                if next(buf_clients) == nil then return "No LSP" end
-                local names = {}
-                for _, client in pairs(buf_clients) do table.insert(names, client.name) end
-                return " " .. table.concat(names, ",")
-              end,
-              color = { gui = "bold" },
-            },
-            "filename",
-          },
-          lualine_x = { "encoding", "fileformat", "filetype" },
-          lualine_y = { "progress" },
-          lualine_z = { "location" },
-        },
-      })
-    end,
   },
   {
     "nvim-telescope/telescope.nvim",
@@ -495,6 +525,30 @@ return {
 --         css = { "prettier", "lsp_fallback" },
 --         html = { "prettier", "lsp_fallback" },
 --       },
+--     })
+--   end
+-- },
+--
+-- {
+--   "github/copilot.vim"
+-- },
+-- {
+--   "folke/tokyonight.nvim",
+--   lazy = false,
+--   priority = 1000,
+--   opts = {},
+--   config = function()
+--     require("tokyonight").setup({
+--       style = "moon",
+--
+--       on_highlights = function(hl, c)
+--         hl.LineNr = {
+--           fg = "#7affff"
+--         }
+--
+--         hl.LineNrAbove = { fg = "#7aa2f7" }
+--         hl.LineNrBelow = { fg = "#7aa2f7" }
+--       end,
 --     })
 --   end
 -- },

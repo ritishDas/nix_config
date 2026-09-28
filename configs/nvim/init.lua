@@ -4,7 +4,7 @@ vim.opt.scrolloff = 5
 vim.filetype.add({
   extension = {
     ejs = "html",
-    h="c"
+    h = "c",
   },
 })
 vim.opt.undofile = true
@@ -101,11 +101,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
     local bufnr = args.buf
 
+
+
+
     vim.keymap.set("n", "T", vim.lsp.buf.hover, { buffer = bufnr })
-    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+    vim.keymap.set("n", "gd", vim.lsp.buf.declaration, { buffer = bufnr })
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
     vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find references" })
-
+    vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = bufnr })
+    vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { buffer = bufnr })
+    vim.keymap.set("n", "go", vim.lsp.buf.document_symbol, opts("Document symbols"))
+    vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts("Go to type definition"))
 
     vim.keymap.set("n", "<leader>d", function()
       local _, winid = vim.diagnostic.open_float(nil, {
@@ -117,9 +123,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         vim.api.nvim_set_current_win(winid)
       end
     end, { buffer = bufnr })
-
-    vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { buffer = bufnr })
-    vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, { buffer = bufnr })
   end,
 })
 
@@ -134,17 +137,7 @@ vim.api.nvim_create_autocmd("FileType", {
   callback = function()
     local jdtls = require("jdtls")
 
-    local root_dir = require("jdtls.setup").find_root({
-      ".git",
-      "mvnw",
-      "gradlew",
-      "pom.xml",
-      "build.gradle",
-    })
 
-    if not root_dir then
-      return
-    end
 
     local project_name = vim.fn.fnamemodify(root_dir, ":p:h:t")
     local workspace_dir =
@@ -157,6 +150,7 @@ vim.api.nvim_create_autocmd("FileType", {
         workspace_dir,
         "--jvm-arg=-javaagent:" .. vim.fn.expand("~/.m2/repository/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar"),
       },
+
       root_dir = root_dir,
     })
   end,
