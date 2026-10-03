@@ -3,7 +3,7 @@
   hostName = "nixos";
   networkmanager={
     enable = true;
-    wifi.backend = "wpa_supplicant";
+    wifi.backend = "iwd";
   };
   # resolvconf.enable = false;
   nameservers =[

@@ -19,11 +19,12 @@
     emote
     libreoffice
     librsvg
-    poppler
     thunar
-    thunar-archive-plugin
-    gsettings-desktop-schemas
+    poppler
+    # thunar-archive-plugin
     thunar-volman
+    gsettings-desktop-schemas
+    gobject-introspection
     yaak
    ]  ++ [ 
    (pkgs.writeShellScriptBin "stopwatch" ''

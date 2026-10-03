@@ -50,6 +50,9 @@ return {
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       require("luasnip.loaders.from_vscode").lazy_load()
+      local kotlin_snippets = require("snippets.kotlin")
+      luasnip.add_snippets("kotlin", kotlin_snippets)
+
       luasnip.filetype_extend("typescriptreact", { "html_tags", "html", "javascriptreact", "ejs" })
 
       cmp.setup({
@@ -172,26 +175,36 @@ return {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-      -- Custom Harpoon 2 statusline component
       local function harpoon_component()
         local ok, harpoon = pcall(require, "harpoon")
         if not ok then return "" end
 
         local entries = harpoon:list()
         local total = entries:length()
-        if total == 0 then return "" end
 
-        local current_file_path = vim.api.nvim_buf_get_name(0)
-        local root_dir = vim.uv.cwd() or ""
-        local relative_path = current_file_path:gsub("^" .. vim.pesc(root_dir) .. "/", "")
+        if total == 0 then
+          return ""
+        end
+
+        local current_file = vim.api.nvim_buf_get_name(0)
+        local cwd = vim.uv.cwd() or ""
+
+        local relative_path =
+            current_file:gsub("^" .. vim.pesc(cwd) .. "/", "")
 
         local output = {}
+
         for idx = 1, total do
           local item = entries:get(idx)
+
           if item and item.value ~= "" then
             local filename = vim.fs.basename(item.value)
-            if item.value == relative_path or item.value == current_file_path then
-              -- Highlight active file with an asterisk or bracket
+
+            local active =
+                item.value == relative_path
+                or item.value == current_file
+
+            if active then
               table.insert(output, string.format("[%d:%s*]", idx, filename))
             else
               table.insert(output, string.format("%d:%s", idx, filename))
@@ -199,32 +212,78 @@ return {
           end
         end
 
-        return "󰛢 " .. table.concat(output, " ")
+        return "󰛢  " .. table.concat(output, "  ")
       end
 
       require("lualine").setup({
-        options = { section_separators = "", component_separators = "" },
+        options = {
+          section_separators = "",
+          component_separators = "",
+        },
+
+        -- Normal statusline
         sections = {
           lualine_a = { "mode" },
-          lualine_b = { "branch", "diff", "diagnostics" },
+
+          lualine_b = {
+            "branch",
+            "diff",
+            "diagnostics",
+          },
+
           lualine_c = {
             {
               function()
-                local buf_clients = vim.lsp.get_clients({ bufnr = 0 })
-                if next(buf_clients) == nil then return "No LSP" end
+                local clients = vim.lsp.get_clients({ bufnr = 0 })
+
+                if next(clients) == nil then
+                  return "No LSP"
+                end
+
                 local names = {}
-                for _, client in pairs(buf_clients) do table.insert(names, client.name) end
+
+                for _, client in pairs(clients) do
+                  table.insert(names, client.name)
+                end
+
                 return " " .. table.concat(names, ",")
               end,
-              color = { gui = "bold" },
+
+              color = {
+                gui = "bold"
+              },
             },
+
             "filename",
-            -- Display active Harpoon files right in the statusline
-            { harpoon_component, color = { fg = "#000000", gui = "bold" } },
           },
-          lualine_x = { "encoding", "fileformat", "filetype" },
-          lualine_y = { "progress" },
-          lualine_z = { "location" },
+
+          lualine_x = {
+            "encoding",
+            "fileformat",
+            "filetype",
+          },
+
+          lualine_y = {
+            "progress",
+          },
+
+          lualine_z = {
+            "location",
+          },
+        },
+
+        -- Separate bar above the window
+        winbar = {
+          lualine_a = {
+            {
+              harpoon_component,
+              color = {
+                fg = "#aaaaaa",
+                bg = "#000000",
+                gui = "bold",
+              },
+            },
+          },
         },
       })
     end,
@@ -306,7 +365,7 @@ return {
         install_dir = vim.fn.stdpath('data') .. '/site',
       }
 
-      require('nvim-treesitter').install { 'html_tags', 'html', 'javascript', 'typescript', 'tsx' }
+      require('nvim-treesitter').install { 'java', "kotlin", 'html', 'javascript', 'typescript', 'tsx' }
     end
   }, {
   "roobert/tailwindcss-colorizer-cmp.nvim",

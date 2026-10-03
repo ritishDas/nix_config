@@ -36,7 +36,7 @@
           users.users = {
             ritish = {
               isNormalUser = true;
-              extraGroups = [ "audio" "wheel" "networkmanager" "kvm" "libvirt" "docker" "input" ];
+              extraGroups = ["render" "video" "audio" "wheel" "networkmanager" "kvm" "libvirt" "docker" "input" "adbusers" ];
             };
           };
 

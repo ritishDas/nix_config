@@ -1,4 +1,5 @@
 {pkgs,inputs}: with pkgs; [
+  codex
   kdePackages.okular 
   cliphist
   eww
@@ -29,7 +30,7 @@
   hypridle
   pamixer
   pwvucontrol
-  playerctl
+  # playerctl
   brightnessctl
   tuigreet
   pulseaudio-ctl

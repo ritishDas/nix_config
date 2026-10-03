@@ -1,11 +1,10 @@
 {pkgs}: with pkgs; [
-    networkmanager
-    networkmanagerapplet
     ngrok
     live-server
     localsend
-    iw
+    networkmanagerapplet
     openssl
+    # iw
 
     # firefox
 #    linux-wifi-hotspot

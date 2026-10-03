@@ -10,7 +10,7 @@ vim.filetype.add({
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 -- Highlights
-
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 vim.keymap.set('n', 'k', "(v:count > 1 ? \"m'\" . v:count : '') . 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "(v:count > 1 ? \"m'\" . v:count : '') . 'j'", { expr = true, silent = true })
 
@@ -108,7 +108,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 
     vim.keymap.set("n", "T", vim.lsp.buf.hover, { buffer = bufnr })
-    vim.keymap.set("n", "gd", vim.lsp.buf.declaration, { buffer = bufnr })
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr })
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr })
     vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
     vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "Find references" })
     vim.keymap.set("n", "gt", vim.lsp.buf.type_definition, opts("Go to type definition"))
