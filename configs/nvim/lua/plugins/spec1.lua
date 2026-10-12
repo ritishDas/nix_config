@@ -361,11 +361,17 @@ return {
     lazy = false,
     build = ':TSUpdate',
     config = function()
-      require('nvim-treesitter').setup {
+      local ts = require('nvim-treesitter')
+      ts.setup {
         install_dir = vim.fn.stdpath('data') .. '/site',
       }
 
-      require('nvim-treesitter').install { 'java', "kotlin", 'html', 'javascript', 'typescript', 'tsx' }
+      ts.install { 'java', "kotlin", 'html', 'javascript', 'typescript', 'tsx' }
+
+
+      vim.keymap.set('n', '<C-s>', 'van', { remap = true, desc = 'Init AST selection' })
+      vim.keymap.set('x', '<C-s>', 'an', { remap = true, desc = 'Expand AST selection' })
+      vim.keymap.set('x', '<BS>', 'in', { remap = true, desc = 'Shrink AST selection' })
     end
   }, {
   "roobert/tailwindcss-colorizer-cmp.nvim",

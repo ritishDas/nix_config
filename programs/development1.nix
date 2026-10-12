@@ -1,6 +1,6 @@
 {pkgs}:
 let
-
+keymouse = pkgs.callPackage ./keyMouse/keyMouse.nix { };
 in with pkgs; [
   man-pages
   man-pages-posix
@@ -53,4 +53,4 @@ in with pkgs; [
 #  nginx
 #litellm
 # discord
-  ]
+  ]++[keymouse]

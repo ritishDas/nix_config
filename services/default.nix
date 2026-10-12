@@ -11,7 +11,6 @@
     KERNEL=="uinput",MODE="0660", GROUP="input"
     '';
   upower.enable=true;
-  # nginx.enable=true;
   tlp={
     enable=true;
     settings={
