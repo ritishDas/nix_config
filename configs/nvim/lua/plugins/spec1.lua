@@ -130,9 +130,10 @@ return {
         bashls = {},
         dartls = {},
         prismals = {},
+        kotlin_language_server = {},
 
         -- Official JetBrains Kotlin LSP
-        kotlin_lsp = {},
+        -- kotlin_lsp = {},
 
         tailwindcss = {
           settings = {

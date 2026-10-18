@@ -1,7 +1,9 @@
 {pkgs}: with pkgs; [
-  # tcpdump
   inkscape
   gimp
+  google-cloud-sdk
+  # tcpdump
+  # antigravity-cli
   # codex
   # bun
   # burpsuite
@@ -9,6 +11,6 @@
   # blender
   # vscodium
   # imagemagick
-  #lunacy
-#  prisma-engines
+  # lunacy
+  # prisma-engines
 ]

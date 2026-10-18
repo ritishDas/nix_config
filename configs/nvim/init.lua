@@ -90,8 +90,6 @@ map("n", "<leader>c", ":CccPick<CR>")
 map("v", "<leader>r", [[:s/<C-r><C-w>/]])
 map("n", "<C-j>", "<C-d>zz")
 map("n", "<C-k>", "<C-u>zz")
-map("v", "<C-j>", "<C-d>zz")
-map("v", "<C-k>", "<C-u>zz")
 map("n", "<C-a>", "ggVG")
 
 

@@ -1,6 +1,11 @@
-{pkgs}:
+{pkgs, inputs}:
 let
 keymouse = pkgs.callPackage ./keyMouse/keyMouse.nix { };
+unstable = import inputs.nixpkgs-unstable {
+    inherit (pkgs.stdenv.hostPlatform) system;
+    config.allowUnfree = true;
+  };
+
 in with pkgs; [
   man-pages
   man-pages-posix
@@ -53,4 +58,4 @@ in with pkgs; [
 #  nginx
 #litellm
 # discord
-  ]++[keymouse]
+  ]++[keymouse unstable.antigravity-cli]
