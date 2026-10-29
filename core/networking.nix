@@ -3,13 +3,14 @@
   hostName = "nixos";
   networkmanager={
     enable = true;
-    wifi.backend = "iwd";
+    wifi.backend = "wpa_supplicant";
   };
-  # resolvconf.enable = false;
+  resolvconf.enable = false;
   nameservers =[
     "1.1.1.1"
     "1.0.0.1"
   ];
+
   firewall = {
     enable = true;
     trustedInterfaces=["wlp3s0" "wlan0"];
