@@ -16,7 +16,6 @@ vim.keymap.set('n', 'j', "(v:count > 1 ? \"m'\" . v:count : '') . 'j'", { expr =
 
 
 -- vim.api.nvim_set_hl(0, "Normal", { bg = "#002400" })
---
 -- vim.api.nvim_set_hl(0, "LineNr", { fg = "#e6fc3f" })
 
 local aug = vim.api.nvim_create_augroup("user_config", { clear = true })
@@ -31,7 +30,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
 
 vim.o.autoread = true
 
--- Options
 vim.opt.termguicolors = true
 
 vim.opt.tabstop = 2
@@ -59,14 +57,6 @@ vim.api.nvim_create_user_command("R", function()
   vim.cmd("vsplit ~/.rough.md")
 end, {})
 
--- vim.api.nvim_create_autocmd("BufWritePost", {
---   pattern = { "compile_commands.json", "Makefile" },
---   callback = function()
---     vim.cmd("LspRestart")
---   end,
--- })
-
--- Clipboard
 vim.opt.clipboard = "unnamedplus"
 
 -- Keymaps helper
@@ -157,12 +147,6 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
-
--- vim.opt.foldenable = true
--- vim.opt.foldlevel = 99
--- vim.opt.foldlevelstart = 99
--- vim.opt.foldmethod = "expr"
--- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
 require("config.lazy");
 vim.cmd("colorscheme quiet");

@@ -5,7 +5,15 @@
   gvfs.enable = true;
   tumbler.enable = true;
   logind = {settings.Login.HandleLidSwitch = "ignore";};
-  openssh.enable = true;
+  # openssh.enable = true;
+  openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      PermitRootLogin = "no";
+    };
+  };
+
   udev.packages = [ pkgs.libmtp ];
   udev.extraRules = ''
     KERNEL=="uinput",MODE="0660", GROUP="input"

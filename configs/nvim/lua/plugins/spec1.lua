@@ -129,11 +129,11 @@ return {
         nixd = {},
         bashls = {},
         dartls = {},
-        prismals = {},
         kotlin_language_server = {},
 
         -- Official JetBrains Kotlin LSP
         -- kotlin_lsp = {},
+        --        prismals = {},
 
         tailwindcss = {
           settings = {
@@ -158,20 +158,20 @@ return {
     "williamboman/mason.nvim",
   },
 },
-  {
-    'akinsho/flutter-tools.nvim',
-    lazy = false,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'stevearc/dressing.nvim', -- optional for better UI
-    },
-    config = function()
-      require("flutter-tools").setup({
-        -- hot_reload_on_save is true by default
-        flutter_path = "/nix/store/62x0dy2s34a92gs1n76lvl43fg9cp5zf-flutter-wrapped-3.38.5-sdk-links/bin/flutter",
-      })
-    end,
-  },
+  -- {
+  --   'akinsho/flutter-tools.nvim',
+  --   lazy = false,
+  --   dependencies = {
+  --     'nvim-lua/plenary.nvim',
+  --     'stevearc/dressing.nvim', -- optional for better UI
+  --   },
+  --   config = function()
+  --     require("flutter-tools").setup({
+  --       -- hot_reload_on_save is true by default
+  --       flutter_path = "/nix/store/62x0dy2s34a92gs1n76lvl43fg9cp5zf-flutter-wrapped-3.38.5-sdk-links/bin/flutter",
+  --     })
+  --   end,
+  -- },
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -470,6 +470,22 @@ return {
       })
     end,
   },
+  {
+    "stevearc/conform.nvim",
+    opts = {},
+    config = function()
+      require("conform").setup({
+        formatters_by_ft = {
+          javascript = { "prettier", "lsp_fallback" },
+          typescript = { "prettier", "lsp_fallback" },
+          javascriptreact = { "prettier", "lsp_fallback" },
+          typescriptreact = { "prettier", "lsp_fallback" },
+          css = { "prettier", "lsp_fallback" },
+          html = { "prettier", "lsp_fallback" },
+        },
+      })
+    end
+  },
 
 }
 -- {
@@ -578,22 +594,6 @@ return {
 --   end
 -- },
 --
--- {
---   "stevearc/conform.nvim",
---   opts = {},
---   config = function()
---     require("conform").setup({
---       formatters_by_ft = {
---         javascript = { "prettier", "lsp_fallback" },
---         typescript = { "prettier", "lsp_fallback" },
---         javascriptreact = { "prettier", "lsp_fallback" },
---         typescriptreact = { "prettier", "lsp_fallback" },
---         css = { "prettier", "lsp_fallback" },
---         html = { "prettier", "lsp_fallback" },
---       },
---     })
---   end
--- },
 --
 -- {
 --   "github/copilot.vim"

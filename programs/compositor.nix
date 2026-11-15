@@ -1,5 +1,4 @@
 {pkgs,inputs}: with pkgs; [
-  # codex
   kdePackages.okular 
   cliphist
   eww
@@ -30,7 +29,6 @@
   hypridle
   pamixer
   pwvucontrol
-  # playerctl
   brightnessctl
   tuigreet
   pulseaudio-ctl
@@ -45,8 +43,9 @@
 # blender
 # hyprpicker
 # google-chrome
-# obs-studio
+# playerctl
 # appflowy
 # ppsspp
+  # codex
   ]
 

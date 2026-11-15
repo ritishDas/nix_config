@@ -6,10 +6,8 @@ stdenv.mkDerivation {
   pname = "keymouse";
   version = "1.0.0";
 
-  # Clean the current source directory so .git and binaries aren't copied
   src = lib.cleanSource ./.;
 
-  # Standard C build (gcc and linux kernel headers are already in stdenv)
   buildPhase = ''
     runHook preBuild
     $CC -O3 keymouse.c -o keymouse

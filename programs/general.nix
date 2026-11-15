@@ -1,7 +1,6 @@
 { pkgs }:
 
   with pkgs; [
-  # wireguard-tools
   obs-studio
     swayimg
     fastfetch
@@ -21,7 +20,6 @@
     librsvg
     thunar
     poppler
-    # thunar-archive-plugin
     thunar-volman
     gsettings-desktop-schemas
     gobject-introspection
@@ -96,7 +94,7 @@ esac
  
 (pkgs.writeShellScriptBin "timeElapsed" ''
   # Set your reference start date here (YYYY-MM-DD HH:MM:SS)
-  START_DATE="2005-02-10 00:00:00"
+  START_DATE="2004-02-10 00:00:00"
 
   START_SEC=$(date -d "$START_DATE" +%s)
   NOW_SEC=$(date +%s)
@@ -142,3 +140,6 @@ esac
 # jmtpfs
 # pciutils
 # openapi-generator-cli
+    # thunar-archive-plugin
+  # wireguard-tools
+  # wayvnc
