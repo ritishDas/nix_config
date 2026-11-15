@@ -8,7 +8,7 @@ padding-right = 10%
 result-spacing = 25
 num-results = 5
 
-font = 0xProto Nerd FontMono-Regular
+font = 0xProto Nerd FontMono
 font-size = 24
 
 text-color = #4e4e5f

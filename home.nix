@@ -112,9 +112,39 @@ in
 
     config.hide_tab_bar_if_only_one_tab = true   
 
-    config.font = wezterm.font('JetBrains Mono')
 
-    config.window_close_confirmation = "NeverPrompt"
+    config.font = wezterm.font('0xProto Nerd FontMono', {
+        weight = 'Regular',
+        style = 'Italic',
+        })
+
+  config.font_rules = {
+    {
+      intensity = 'Bold',
+      italic = false,
+      font = wezterm.font('0xProto Nerd FontMono', {
+          weight = 'Bold',
+          }),
+    },
+    {
+      italic = true,
+      intensity = 'Normal',
+      font = wezterm.font('0xProto Nerd FontMono', {
+          style = 'Italic',
+          }),
+    },
+    {
+      italic = true,
+      intensity = 'Bold',
+      font = wezterm.font('0xProto Nerd FontMono', {
+          weight = 'Bold',
+          style = 'Italic',
+          }),
+    },
+  }
+
+
+  config.window_close_confirmation = "NeverPrompt"
     config.window_padding = {
       left = 10,
       right = 10,
@@ -178,11 +208,11 @@ in
   }
 
   hyprRefresh() { 
-  cd ~/.config/hypr/; mv hypr/* . 
-  }
+    cd ~/.config/hypr/; mv hypr/* . 
+                                  }
 
-                                               '';
+                                  '';
 
 
-                                               }
+                                  }
 
