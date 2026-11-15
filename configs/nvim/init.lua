@@ -152,7 +152,7 @@ require("config.lazy");
 vim.cmd("colorscheme quiet");
 
 map("n", "<leader>s", function()
-  vim.lsp.buf.format()
+  require("conform").format({ lsp_fallback = true })
   vim.cmd("wall")
 end)
 

@@ -1,5 +1,16 @@
 return {
-
+  {
+    "github/copilot.vim"
+  },
+  {
+    "olimorris/codecompanion.nvim",
+    version = "^19.0.0",
+    opts = {},
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
   {
     'rmagatti/auto-session',
     lazy = false,
@@ -367,22 +378,23 @@ return {
         install_dir = vim.fn.stdpath('data') .. '/site',
       }
 
-      ts.install { 'java', "kotlin", 'html', 'javascript', 'typescript', 'tsx' }
+      ts.install { 'yaml', 'java', "kotlin", 'html', 'javascript', 'typescript', 'tsx' }
 
 
       vim.keymap.set('n', '<C-s>', 'van', { remap = true, desc = 'Init AST selection' })
       vim.keymap.set('x', '<C-s>', 'an', { remap = true, desc = 'Expand AST selection' })
       vim.keymap.set('x', '<BS>', 'in', { remap = true, desc = 'Shrink AST selection' })
     end
-  }, {
-  "roobert/tailwindcss-colorizer-cmp.nvim",
-  -- optionally, override the default options:
-  config = function()
-    require("tailwindcss-colorizer-cmp").setup({
-      color_square_width = 2,
-    })
-  end
-},
+  },
+  {
+    "roobert/tailwindcss-colorizer-cmp.nvim",
+    -- optionally, override the default options:
+    config = function()
+      require("tailwindcss-colorizer-cmp").setup({
+        color_square_width = 2,
+      })
+    end
+  },
   {
     "andymass/vim-matchup",
   },
@@ -595,9 +607,6 @@ return {
 -- },
 --
 --
--- {
---   "github/copilot.vim"
--- },
 -- {
 --   "folke/tokyonight.nvim",
 --   lazy = false,

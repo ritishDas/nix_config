@@ -6,10 +6,11 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-26.05";
-    # llama-cpp.url = "github:ggml-org/llama.cpp";
+# llama-cpp.url = "github:ggml-org/llama.cpp";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # nvim-mcp.url = "github:linw1995/nvim-mcp";
     hyprland.url = "github:hyprwm/hyprland";
-       hyprspace = {
+    hyprspace = {
       url = "github:KZDKM/Hyprspace";
 
       inputs.hyprland.follows = "hyprland";
@@ -31,28 +32,28 @@
       specialArgs = { inherit inputs; };
       modules = [
         ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
+          home-manager.nixosModules.home-manager
+          {
 
-          users.users = {
-            ritish = {
-              isNormalUser = true;
-              extraGroups = ["render" "video" "audio" "wheel" "networkmanager" "kvm" "libvirt" "docker" "input" "adbusers" ];
+            users.users = {
+              ritish = {
+                isNormalUser = true;
+                extraGroups = ["render" "video" "audio" "wheel" "networkmanager" "kvm" "libvirt" "docker" "input" "adbusers" ];
+              };
             };
-          };
 
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
               extraSpecialArgs = {
                 inherit inputs;
               };
-            backupFileExtension = "backup";
-            users = {
-              ritish = import ./home.nix;
+              backupFileExtension = "backup";
+              users = {
+                ritish = import ./home.nix;
+              };
             };
-          };
-        }
+          }
       ];
     };
   };

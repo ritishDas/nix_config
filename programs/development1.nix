@@ -58,4 +58,7 @@ in with pkgs; [
 #  nginx
 #litellm
 # discord
-  ]++[keymouse unstable.antigravity-cli]
+  ]++[
+  keymouse 
+  unstable.antigravity-cli
+  ]

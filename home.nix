@@ -177,7 +177,9 @@ in
               git clean -fd
   }
 
-  hyprRefresh(){ cd ~/.config/hypr/; mv hypr/* . }
+  hyprRefresh() { 
+  cd ~/.config/hypr/; mv hypr/* . 
+  }
 
                                                '';
 

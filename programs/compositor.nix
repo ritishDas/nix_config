@@ -37,6 +37,7 @@
     inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
     inputs.astm.packages.${stdenv.hostPlatform.system}.default
     inputs.hyprspace.packages.${stdenv.hostPlatform.system}.default
+    # inputs.nvim-mcp.packages.${stdenv.hostPlatform.system}.default
 # inputs.hyprexpo-fork.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
 # inputs.llama-cpp.packages.${system}.vulkan
 # gpu-screen-recorder
