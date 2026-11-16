@@ -6,35 +6,35 @@
 }
 
 window {
-    background-color: rgba(0, 77, 0, 0.20);
+    background-color: rgba(48, 0, 77, 0.20);
 }
 
 /* === Button Base === */
 button {
-    background-color: #003300;
+    background-color: #240046;
     border-style: solid;
     border-radius: 50px;
     border-width: 2px;
-    border-color: #198754;
+    border-color: #9D4EDD;
 
     background-repeat: no-repeat;
     background-position: center;
     background-size: 15%;
 
     margin: 15px;
-    color: #b8f5c8;
+    color: #E0AAFF;
 
-    box-shadow: 0 0 15px rgba(25, 135, 84, 0.4);
+    box-shadow: 0 0 15px rgba(157, 78, 221, 0.4);
 }
 
 /* === Hover / Active === */
 button:active,
 button:hover {
-    background-color: #198754;
-    color: #001a0d;
-    border-color: #66e39a;
+    background-color: #9D4EDD;
+    color: #10002B;
+    border-color: #E0AAFF;
 
-    box-shadow: 0 0 25px rgba(102, 227, 154, 0.6);
+    box-shadow: 0 0 25px rgba(224, 170, 255, 0.6);
 }
 
 /* === Icons === */

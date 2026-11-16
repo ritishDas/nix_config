@@ -1,5 +1,8 @@
 {pkgs,inputs}: with pkgs; [
   kdePackages.okular 
+  # dconf-editor
+  glib
+  gsettings-desktop-schemas
   cliphist
   eww
   espeak-ng
@@ -16,7 +19,6 @@
   papirus-icon-theme
   xdg-utils
   xdg-terminal-exec
-  nwg-look
   waybar
   killall
   dunst
@@ -42,6 +44,7 @@
 # inputs.llama-cpp.packages.${system}.vulkan
 # gpu-screen-recorder
 # blender
+# nwg-look
 # hyprpicker
 # google-chrome
 # playerctl

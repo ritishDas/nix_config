@@ -113,10 +113,7 @@ in
     config.hide_tab_bar_if_only_one_tab = true   
 
 
-    config.font = wezterm.font('0xProto Nerd FontMono', {
-        weight = 'Regular',
-        style = 'Italic',
-        })
+    config.font = wezterm.font('0xProto Nerd FontMono' )
 
   config.font_rules = {
     {
