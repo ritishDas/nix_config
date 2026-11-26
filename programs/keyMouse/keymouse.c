@@ -27,8 +27,8 @@
 #include <unistd.h>
 
 enum {
-  FAST_STEP = 30,
-  SLOW_STEP = 12,
+  FAST_STEP = 60,
+  SLOW_STEP = 20,
   MAX_KBD = 16,
 };
 

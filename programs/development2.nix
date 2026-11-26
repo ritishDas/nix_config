@@ -2,6 +2,7 @@
   inkscape
   gimp
   google-cloud-sdk
+  nodejs
   # tcpdump
   # antigravity-cli
   # codex

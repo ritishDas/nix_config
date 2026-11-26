@@ -1,6 +1,7 @@
 {pkgs,inputs}: with pkgs; [
-  kdePackages.okular 
   # dconf-editor
+  # kdePackages.okular 
+  evince
   glib
   gsettings-desktop-schemas
   cliphist

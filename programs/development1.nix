@@ -16,6 +16,7 @@ in with pkgs; [
   github-copilot-cli
   wezterm
   glow
+  vim
   pkg-config
   ripgrep
   lua-language-server

@@ -115,30 +115,30 @@ in
 
     config.font = wezterm.font('0xProto Nerd FontMono' )
 
-  config.font_rules = {
-    {
-      intensity = 'Bold',
-      italic = false,
-      font = wezterm.font('0xProto Nerd FontMono', {
-          weight = 'Bold',
-          }),
-    },
-    {
-      italic = true,
-      intensity = 'Normal',
-      font = wezterm.font('0xProto Nerd FontMono', {
-          style = 'Italic',
-          }),
-    },
-    {
-      italic = true,
-      intensity = 'Bold',
-      font = wezterm.font('0xProto Nerd FontMono', {
-          weight = 'Bold',
-          style = 'Italic',
-          }),
-    },
-  }
+    config.font_rules = {
+      {
+        intensity = 'Bold',
+        italic = false,
+        font = wezterm.font('0xProto Nerd FontMono', {
+            weight = 'Bold',
+            }),
+      },
+      {
+        italic = true,
+        intensity = 'Normal',
+        font = wezterm.font('0xProto Nerd FontMono', {
+            style = 'Italic',
+            }),
+      },
+      {
+        italic = true,
+        intensity = 'Bold',
+        font = wezterm.font('0xProto Nerd FontMono', {
+            weight = 'Bold',
+            style = 'Italic',
+            }),
+      },
+    }
 
 
   config.window_close_confirmation = "NeverPrompt"
@@ -168,6 +168,54 @@ in
 
   ${lib.concatStringsSep "\n" (map (app: "update_config ${app}") apps)}
   '';
+
+  home.file.".vimrc".text = ''
+    syntax on
+    filetype plugin indent on
+
+    set number
+    set relativenumber
+    set hidden
+    set splitright
+    set splitbelow
+
+    colorscheme quiet
+
+    let mapleader = " "
+
+    nnoremap <leader>s :w<CR>
+    nnoremap <leader>e :bd!<CR>
+    nnoremap <leader>h :bprevious<CR>
+    nnoremap <leader>x :qa<CR>
+    nnoremap <leader>f :Explore<CR>
+    nnoremap <leader>vh :vsplit <bar> bprevious<CR>
+    nnoremap <C-a> ggVG
+    nnoremap <C-j> <C-d>zz
+    nnoremap <C-k> <C-u>zz
+
+    command! -nargs=0 R vsplit ~/.rough.md
+
+    let s:term_bufnr = -1
+
+    function! s:ToggleTerminal() abort
+    if s:term_bufnr != -1 && bufexists(s:term_bufnr) && term_getstatus(s:term_bufnr) =~# 'running'
+      let l:winid = bufwinid(s:term_bufnr)
+        if l:winid != -1
+          execute l:winid . 'wincmd c'
+        else
+          botright 10split
+            execute 'buffer ' . s:term_bufnr
+            endif
+    else
+      botright terminal ++rows=10
+        let s:term_bufnr = bufnr('%')
+        endif
+        endfunction
+
+        nnoremap <silent> <C-t> :call <SID>ToggleTerminal()<CR>
+        tnoremap <silent> <C-t> <C-W>:call <SID>ToggleTerminal()<CR>
+        tnoremap <Esc> <C-W>N
+        '';
 
   home.file.".bashrc".text = ''
     eval "$(direnv hook bash)"

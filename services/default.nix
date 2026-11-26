@@ -14,6 +14,13 @@
     };
   };
 
+  dictd = {
+    enable = true;
+    DBs = with pkgs.dictdDBs; [
+      wordnet
+    ];
+  };
+
   udev.packages = [ pkgs.libmtp ];
   udev.extraRules = ''
     KERNEL=="uinput",MODE="0660", GROUP="input"

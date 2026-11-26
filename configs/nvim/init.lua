@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.opt.scrolloff = 5
+vim.g.copilot_enabled = false
 vim.filetype.add({
   extension = {
     ejs = "html",
@@ -10,6 +11,7 @@ vim.filetype.add({
 vim.opt.undofile = true
 vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 -- Highlights
+
 vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 vim.keymap.set('n', 'k', "(v:count > 1 ? \"m'\" . v:count : '') . 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "(v:count > 1 ? \"m'\" . v:count : '') . 'j'", { expr = true, silent = true })
@@ -80,6 +82,8 @@ map("n", "<leader>c", ":CccPick<CR>")
 map("v", "<leader>r", [[:s/<C-r><C-w>/]])
 map("n", "<C-j>", "<C-d>zz")
 map("n", "<C-k>", "<C-u>zz")
+map("v", "<C-j>", "<C-d>zz")
+map("v", "<C-k>", "<C-u>zz")
 map("n", "<C-a>", "ggVG")
 
 

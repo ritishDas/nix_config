@@ -1,6 +1,10 @@
 { pkgs }:
 
   with pkgs; [
+    dict
+  # dictd
+  # wordnet
+  # dictdDBs.wordnet
   obs-studio
     swayimg
     fastfetch
